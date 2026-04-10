@@ -48,12 +48,12 @@ body{background:var(--white);color:var(--black);font-family:'DM Sans',sans-serif
 nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(30,32,38,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08);z-index:100;transition:background .3s;}
 nav.scrolled{background:rgba(24,26,31,.92);}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.1em;color:var(--white);text-decoration:none;}
-.nav-logo span{color:rgba(0,0,255,.85);}
+.nav-logo span{color:var(--green);}
 .nav-links{display:flex;align-items:center;}
 .nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);text-decoration:none;padding:0 20px;height:64px;display:flex;align-items:center;border-left:1px solid rgba(255,255,255,.08);transition:all .2s;}
 .nav-links a:hover{color:var(--white);background:rgba(255,255,255,.06);}
-.nav-cta{background:var(--blue)!important;color:var(--white)!important;border-left:1px solid rgba(0,0,255,.4)!important;}
-.nav-cta:hover{background:#3344dd!important;}
+.nav-cta{background:var(--green)!important;color:var(--black)!important;border-left:1px solid rgba(102,200,0,.4)!important;}
+.nav-cta:hover{background:#4da800!important;}
 
 /* MOBILE NAV — FIX #4 */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(255,255,255,.15);background:transparent;}
@@ -65,8 +65,8 @@ nav.scrolled{background:rgba(24,26,31,.92);}
 .mob-menu.open{display:flex;}
 .mob-menu a{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;padding:20px 48px;border-bottom:1px solid rgba(255,255,255,.06);transition:all .2s;}
 .mob-menu a:hover{background:rgba(255,255,255,.06);color:var(--white);}
-.mob-menu a.mob-cta{background:var(--blue);color:var(--white);}
-.mob-menu a.mob-cta:hover{background:#3344dd;}
+.mob-menu a.mob-cta{background:var(--green);color:var(--black);}
+.mob-menu a.mob-cta:hover{background:#4da800;}
 
 /* TICKER */
 .ticker{background:rgba(20,22,28,.95);border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden;padding:9px 0;margin-top:64px;}
@@ -84,7 +84,7 @@ nav.scrolled{background:rgba(24,26,31,.92);}
 .deco-corner.br{bottom:24px;right:24px;border-width:0 2px 2px 0;}
 
 /* SECTIONS */
-section{position:relative;overflow:hidden;}
+section{position:relative;}
 .container{max-width:1400px;width:100%;margin:0 auto;padding:0 48px;}
 
 /* HERO — a0x style: droid fullscreen top, text below */
@@ -120,7 +120,7 @@ section{position:relative;overflow:hidden;}
   content:'';
   position:absolute;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity:.04;z-index:2;pointer-events:none;mix-blend-mode:overlay;
+  opacity:.04;z-index:1;pointer-events:none;mix-blend-mode:overlay;
 }
 
 /* Spotlight from top center — like a0x cinematic light */
@@ -137,15 +137,15 @@ section{position:relative;overflow:hidden;}
   position:absolute;
   bottom:0;left:0;right:0;height:220px;
   background:linear-gradient(to top, rgba(50,53,61,.95) 0%, transparent 100%);
-  z-index:3;pointer-events:none;
+  z-index:1;pointer-events:none;
 }
 
 /* Thin blue accent lines (like a0x subtle tech detail) */
-.hero-line-l{position:absolute;left:48px;top:80px;bottom:80px;width:1px;background:linear-gradient(to bottom,transparent,rgba(0,0,255,.25),transparent);z-index:2;}
-.hero-line-r{position:absolute;right:48px;top:80px;bottom:80px;width:1px;background:linear-gradient(to bottom,transparent,rgba(102,200,0,.2),transparent);z-index:2;}
+.hero-line-l{position:absolute;left:48px;top:80px;bottom:80px;width:1px;background:linear-gradient(to bottom,transparent,rgba(0,0,255,.25),transparent);z-index:1;pointer-events:none;}
+.hero-line-r{position:absolute;right:48px;top:80px;bottom:80px;width:1px;background:linear-gradient(to bottom,transparent,rgba(102,200,0,.2),transparent);z-index:1;pointer-events:none;}
 
 .hero-inner{
-  position:relative;z-index:4;
+  position:relative;z-index:2;
   display:flex;flex-direction:column;
   align-items:center;
   width:100%;
@@ -514,7 +514,7 @@ footer{background:var(--white);border-top:var(--border);}
 <div class="cursor-ring" id="ring"></div>
 
 <nav>
-  <a href="#" class="nav-logo">ART<span>HOUSE</span></a>
+  <a href="#what" class="nav-logo">ART<span>HOUSE</span></a>
   <div class="nav-links">
     <a href="#does">What It Does</a>
     <a href="#token">Token</a>
