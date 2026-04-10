@@ -32,6 +32,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+a,button{-webkit-tap-highlight-color:transparent;}
 :root{
   --white:#ffffff;--black:#0a0a0a;--blue:#0000ff;
   --green:#66C800;--gray:#f2f2f2;--gray-mid:#d0d0d0;
@@ -39,25 +40,27 @@
 }
 html{scroll-behavior:smooth;}
 body{background:var(--white);color:var(--black);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden;cursor:crosshair;}
+@media(hover:none){body{cursor:auto;}}
 
-/* CURSOR */
+/* CURSOR — desktop only */
 .cursor{position:fixed;width:12px;height:12px;background:var(--blue);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:normal;}
 .cursor-ring{position:fixed;width:40px;height:40px;border:2px solid var(--blue);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;mix-blend-mode:normal;}
+@media(hover:none){.cursor,.cursor-ring{display:none;}body{cursor:auto;}}
 
-/* NAV — glassmorphism overlay matching hero */
-nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;background:rgba(30,32,38,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08);z-index:100;transition:background .3s;}
-nav.scrolled{background:rgba(24,26,31,.92);}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.1em;color:var(--white);text-decoration:none;}
-.nav-logo span{color:var(--green);}
+/* NAV — solid blue header */
+nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;background:#0000ff;border-bottom:2px solid rgba(0,0,180,.6);z-index:100;transition:background .3s;}
+nav.scrolled{background:#0000cc;}
+.nav-logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:.18em;color:var(--white);text-decoration:none;text-transform:uppercase;}
+.nav-logo span{color:var(--green);font-weight:800;}
 .nav-links{display:none;}
-.nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);text-decoration:none;padding:0 20px;height:64px;display:flex;align-items:center;border-left:1px solid rgba(255,255,255,.08);transition:all .2s;}
-.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.06);}
-.nav-cta{background:var(--green)!important;color:var(--black)!important;border-left:1px solid rgba(102,200,0,.4)!important;}
+.nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;padding:0 20px;height:64px;display:flex;align-items:center;border-left:1px solid rgba(255,255,255,.15);transition:all .2s;}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.1);}
+.nav-cta{background:var(--green)!important;color:var(--black)!important;border-left:1px solid rgba(102,200,0,.4)!important;font-weight:700!important;}
 .nav-cta:hover{background:#4da800!important;}
 
-/* MOBILE NAV — FIX #4 */
-.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(0,0,255,.5);background:transparent;}
-.hamburger span{display:block;width:22px;height:2px;background:#0000ff;transition:all .3s;}
+/* MOBILE NAV */
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(255,255,255,.4);background:transparent;-webkit-tap-highlight-color:transparent;}
+.hamburger span{display:block;width:22px;height:2px;background:#ffffff;transition:all .3s;}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
@@ -76,7 +79,7 @@ nav.scrolled{background:rgba(24,26,31,.92);}
 .mob-menu .menu-socials a:hover{color:var(--white);border-color:var(--green);padding-left:12px;}
 
 /* TICKER */
-.ticker{background:rgba(20,22,28,.95);border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden;padding:9px 0;margin-top:64px;}
+.ticker{background:rgba(20,22,28,.95);border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden;padding:9px 0;margin-top:64px;position:relative;z-index:1;}
 .ticker-track{display:flex;white-space:nowrap;width:max-content;animation:tick 22s linear infinite;}
 .ticker-track:hover{animation-play-state:paused;}
 .ticker-item{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.1em;padding:0 32px;display:inline-flex;align-items:center;gap:12px;}
@@ -200,6 +203,10 @@ h1 .stroke{-webkit-text-stroke:2px rgba(255,255,255,.55);color:transparent;}
 
 /* DROID WRAP — large centered, anchored bottom of hero-right */
 .droid-wrap{position:relative;width:460px;height:600px;display:flex;align-items:flex-end;justify-content:center;flex-shrink:0;cursor:pointer;}
+@media(max-width:480px){
+  .droid-wrap{width:280px;height:380px;}
+  svg.droid{width:280px;height:373px;}
+}
 
 /* Name tag below */
 .droid-nametag{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;color:var(--green);white-space:nowrap;text-transform:uppercase;opacity:.8;}
@@ -282,7 +289,7 @@ svg.droid{filter:drop-shadow(0 12px 40px rgba(0,0,0,.45));}
 @media(max-width:640px){
   .droid-wrap{width:220px;height:300px;}
   h1{font-size:56px;}
-  .hero-left{padding:20px 20px 40px;}
+  .hero-left{padding:20px 16px 40px;}
 }
 
 /* TOKEN */
@@ -385,7 +392,7 @@ svg.droid{filter:drop-shadow(0 12px 40px rgba(0,0,0,.45));}
 .chip{white-space:nowrap;padding:6px 14px;border:var(--border-thin);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.05em;cursor:pointer;transition:all .2s;background:transparent;color:var(--black);}
 .chip:hover{background:var(--blue);color:var(--white);border-color:var(--blue);}
 .chat-inp-wrap{padding:12px 16px;border-top:var(--border);display:flex;background:var(--white);}
-.chat-inp{flex:1;background:transparent;border:var(--border-thin);border-right:none;padding:10px 16px;font-family:'DM Mono',monospace;font-size:12px;color:var(--black);outline:none;}
+.chat-inp{flex:1;background:transparent;border:var(--border-thin);border-right:none;padding:10px 16px;font-family:'DM Mono',monospace;font-size:16px;color:var(--black);outline:none;}
 .chat-send{padding:10px 20px;background:var(--blue);color:var(--white);border:var(--border);border-left:none;font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;transition:background .2s;}
 .chat-send:hover{background:var(--black);}
 .chat-redir{padding:12px 16px;background:rgba(0,0,255,.04);border-top:1px solid var(--blue);display:none;align-items:center;justify-content:space-between;gap:12px;}
@@ -473,12 +480,15 @@ footer{background:var(--white);border-top:var(--border);}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
 
 /* MOBILE — FIX #4 #6 */
+@media(min-width:1025px){
+  .nav-links{display:flex;}
+  .hamburger{display:none;}
+}
 @media(max-width:1024px){
   nav{padding:0 24px;}
   .container{padding:0 24px;}
   .token-inner,.bot-inner{grid-template-columns:1fr;}
-  /* FIX #6 — remove left border artifact on mobile */
-  .token-left{border-right:none;border-left:none;border-bottom:3px solid #222;}
+  .token-left{border-right:none;border-left:none;border-bottom:3px solid #333;padding-bottom:48px;}
   .bot-info{padding:60px 0;border-right:none;border-bottom:var(--border);}
   .bot-demo{padding:60px 0;}
   .features-grid,.steps-grid,.how-strip{grid-template-columns:1fr!important;}
@@ -500,12 +510,12 @@ footer{background:var(--white);border-top:var(--border);}
   .social-desc{max-width:100%;}
 }
 @media(max-width:640px){
-  nav{padding:0 20px;}
+  nav{padding:0 16px;}
   .mob-menu a{padding:18px 24px;}
-  h1{font-size:64px;}
-  .token-price-big{font-size:56px;}
-  .cta-title{font-size:56px;}
-  .chat-win{height:460px;}
+  h1{font-size:clamp(36px,10vw,56px);}
+  .token-price-big{font-size:48px;}
+  .cta-title{font-size:clamp(40px,10vw,56px);}
+  .chat-win{height:420px;}
   .foot-grid{grid-template-columns:1fr;}
   .foot-bot{flex-direction:column;gap:12px;padding:20px 24px;}
   .foot-col:first-child{padding-left:24px;}
@@ -743,7 +753,7 @@ footer{background:var(--white);border-top:var(--border);}
 </section>
 
 <section class="token-section" id="token">
-  <div class="container" style="max-width:100%;padding:0 48px;">
+  <div class="container" style="max-width:100%;padding:0 clamp(16px,4vw,48px);">
     <div class="token-inner">
       <div class="token-left rev-l">
         <div class="token-label">$ARTHOUSE Token · Base Network</div>
@@ -837,7 +847,7 @@ footer{background:var(--white);border-top:var(--border);}
 </section>
 
 <section class="bot-section section-hidden" id="bot">
-  <div class="container" style="max-width:100%;padding:0 48px;">
+  <div class="container" style="max-width:100%;padding:0 clamp(16px,4vw,48px);">
     <div class="bot-inner">
       <div class="bot-info rev-l">
         <div class="bot-label">AI Intelligence Agent</div>
@@ -984,10 +994,10 @@ footer{background:var(--white);border-top:var(--border);}
     </div>
     <div class="foot-col">
       <h4>Features</h4>
-      <a href="#does" onclick="document.querySelector('.section-hidden#does').style.display='block';this.closest('footer').scrollIntoView()">What It Does</a>
-      <a href="#bot" onclick="document.querySelector('.section-hidden#bot').style.display='block';this.closest('footer').scrollIntoView()">Meet Arthousexbt</a>
-      <a href="#start" onclick="document.querySelector('.section-hidden#start').style.display='block'">Get Started</a>
-      <a href="#social" onclick="document.querySelector('.section-hidden#social').style.display='block'">Social Channels</a>
+      <a href="#does" onclick="showSection('does')">What It Does</a>
+      <a href="#bot" onclick="showSection('bot')">Meet Arthousexbt</a>
+      <a href="#start" onclick="showSection('start')">Get Started</a>
+      <a href="#social" onclick="showSection('social')">Social Channels</a>
     </div>
     <div class="foot-col">
       <h4>Connect</h4>
@@ -1134,13 +1144,17 @@ function toggleNav(){
   document.body.style.overflow = document.getElementById('mobMenu').classList.contains('open') ? 'hidden' : '';
 }
 
+/* SHOW HIDDEN SECTION */
+function showSection(id){
+  const el=document.getElementById(id);
+  if(el){el.style.display='block';setTimeout(()=>{el.scrollIntoView({behavior:'smooth'});window.dispatchEvent(new Event('scroll'));},50);}
+}
+
 // Show hidden section on menu link click
 document.querySelectorAll('.mob-menu a[href^="#"]').forEach(link => {
   link.addEventListener('click', function() {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target && target.classList.contains('section-hidden')) {
-      target.style.display = 'block';
-    }
+    const id=this.getAttribute('href').slice(1);
+    showSection(id);
   });
 });
 
