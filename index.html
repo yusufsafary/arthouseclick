@@ -3,285 +3,345 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ARTHOUSE — Onchain Art Intelligence</title>
+<title>ARTHOUSE — Onchain Art Intelligence on Base & Zora</title>
+<meta name="description" content="Arthouse is the intelligence layer for onchain art. Discover real builders on Base and Zora, score creators, and find talent before everyone else. Powered by $ARTHOUSE token."/>
+<meta name="keywords" content="arthouse, onchain art, base network, zora, creator scoring, NFT intelligence, $ARTHOUSE, web3 art, talent scout, arthousexbt"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="Arthouse"/>
+<link rel="canonical" href="https://arthouse.base.eth/"/>
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://arthouse.base.eth/"/>
+<meta property="og:title" content="ARTHOUSE — Onchain Art Intelligence on Base & Zora"/>
+<meta property="og:description" content="The intelligence layer for onchain art. Score creators, discover builders, and find talent on Base and Zora before everyone else."/>
+<meta property="og:image" content="https://arthouse.base.eth/og-image.jpg"/>
+<meta property="og:site_name" content="Arthouse"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@arthousebase"/>
+<meta name="twitter:creator" content="@arthousebase"/>
+<meta name="twitter:title" content="ARTHOUSE — Onchain Art Intelligence"/>
+<meta name="twitter:description" content="The intelligence layer for onchain art. Score creators, discover builders, and find talent on Base and Zora."/>
+<meta name="twitter:image" content="https://arthouse.base.eth/og-image.jpg"/>
+<!-- JSON-LD Schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Arthouse","url":"https://arthouse.base.eth","description":"The intelligence layer for onchain art on Base and Zora","sameAs":["https://x.com/arthousebase","https://www.instagram.com/arthousebase","https://www.tiktok.com/@arthousebase","https://t.me/arthousexbt_bot"],"logo":{"@type":"ImageObject","url":"https://arthouse.base.eth/logo.png"}}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --white:#ffffff;
-  --black:#0a0a0a;
-  --blue:#0000ff;
-  --gold:#c9a84c;
-  --gold-light:#e8d5a3;
-  --gray:#f2f2f2;
-  --gray-mid:#d0d0d0;
-  --border:3px solid #0a0a0a;
-  --border-thin:1px solid #0a0a0a;
+  --white:#ffffff;--black:#0a0a0a;--blue:#0000ff;
+  --gold:#c9a84c;--green:#66C800;--gray:#f2f2f2;--gray-mid:#d0d0d0;
+  --border:3px solid #0a0a0a;--border-thin:1px solid #0a0a0a;
 }
 html{scroll-behavior:smooth;}
-body{
-  background:var(--white);color:var(--black);
-  font-family:'DM Sans',sans-serif;
-  line-height:1.6;overflow-x:hidden;cursor:crosshair;
-}
+body{background:var(--white);color:var(--black);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden;cursor:crosshair;}
 
-/* ── CURSOR ── */
+/* CURSOR */
 .cursor{position:fixed;width:12px;height:12px;background:var(--blue);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:multiply;}
-.cursor-ring{position:fixed;width:40px;height:40px;border:2px solid var(--blue);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,border-color 0.2s;mix-blend-mode:multiply;}
+.cursor-ring{position:fixed;width:40px;height:40px;border:2px solid var(--blue);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;mix-blend-mode:multiply;}
 
-/* ── NAV ── */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:var(--white);border-bottom:var(--border);z-index:100;}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.1em;color:var(--black);text-decoration:none;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.1em;color:var(--black);text-decoration:none;}
 .nav-logo span{color:var(--blue);}
-.nav-links{display:flex;align-items:center;gap:0;}
-.nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);text-decoration:none;padding:0 20px;height:64px;display:flex;align-items:center;border-left:var(--border-thin);transition:all 0.2s;}
+.nav-links{display:flex;align-items:center;}
+.nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--black);text-decoration:none;padding:0 20px;height:64px;display:flex;align-items:center;border-left:var(--border-thin);transition:all .2s;}
 .nav-links a:hover{background:var(--black);color:var(--white);}
 .nav-cta{background:var(--blue)!important;color:var(--white)!important;border-left:var(--border)!important;}
 .nav-cta:hover{background:var(--black)!important;}
 
-/* ── MOBILE NAV ── */
-.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:var(--border-thin);background:transparent;}
-.nav-hamburger span{display:block;width:22px;height:2px;background:var(--black);transition:all 0.3s;}
-.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.nav-hamburger.open span:nth-child(2){opacity:0;}
-.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:var(--border);z-index:99;flex-direction:column;}
-.mobile-menu.open{display:flex;}
-.mobile-menu a{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);text-decoration:none;padding:20px 48px;border-bottom:var(--border-thin);transition:all 0.2s;}
-.mobile-menu a:hover{background:var(--black);color:var(--white);}
-.mobile-menu a:last-child{background:var(--blue);color:var(--white);}
-.mobile-menu a:last-child:hover{background:var(--black);}
+/* MOBILE NAV — FIX #4 */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:var(--border-thin);background:transparent;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--black);transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mob-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:var(--border);z-index:99;flex-direction:column;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--black);text-decoration:none;padding:20px 48px;border-bottom:var(--border-thin);transition:all .2s;}
+.mob-menu a:hover{background:var(--black);color:var(--white);}
+.mob-menu a.mob-cta{background:var(--blue);color:var(--white);}
+.mob-menu a.mob-cta:hover{background:var(--black);}
 
-/* ── TICKER ── */
-.ticker{background:var(--blue);border-bottom:var(--border);overflow:hidden;padding:10px 0;}
-.ticker-track{display:flex;white-space:nowrap;animation:ticker 24s linear infinite;}
+/* TICKER — FIX #8 seamless JS clone */
+.ticker{background:var(--blue);border-bottom:var(--border);overflow:hidden;padding:10px 0;margin-top:64px;}
+.ticker-track{display:flex;white-space:nowrap;width:max-content;animation:tick 22s linear infinite;}
 .ticker-track:hover{animation-play-state:paused;}
-.ticker-item{font-family:'DM Mono',monospace;font-size:11px;color:var(--white);letter-spacing:0.1em;padding:0 32px;display:inline-flex;align-items:center;gap:12px;}
-.ticker-item::after{content:'◆';font-size:7px;color:rgba(255,255,255,0.4);}
-@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ticker-item{font-family:'DM Mono',monospace;font-size:11px;color:var(--white);letter-spacing:.1em;padding:0 32px;display:inline-flex;align-items:center;gap:12px;}
+.ticker-item::after{content:'◆';font-size:7px;color:rgba(255,255,255,.4);}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-/* ── DECO ── */
+/* DECO CORNERS */
 .deco-corner{position:absolute;width:40px;height:40px;border-color:var(--gold);border-style:solid;pointer-events:none;}
 .deco-corner.tl{top:24px;left:24px;border-width:2px 0 0 2px;}
 .deco-corner.tr{top:24px;right:24px;border-width:2px 2px 0 0;}
 .deco-corner.bl{bottom:24px;left:24px;border-width:0 0 2px 2px;}
 .deco-corner.br{bottom:24px;right:24px;border-width:0 2px 2px 0;}
 
-/* ── SECTIONS ── */
+/* SECTIONS */
 section{position:relative;overflow:hidden;}
 .container{max-width:1400px;width:100%;margin:0 auto;padding:0 48px;}
 
-/* ── HERO ── */
-.hero{min-height:100vh;padding-top:64px;display:flex;align-items:center;border-bottom:var(--border);background:var(--white);position:relative;}
-.hero::before{content:'';position:absolute;top:0;right:0;bottom:0;width:50%;background:var(--gray);border-left:var(--border);z-index:0;}
-.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;width:100%;}
-.hero-left{padding:80px 64px 80px 0;border-right:var(--border);position:relative;/* FIX: position:relative for deco corners */}
-.hero-right{padding:80px 0 80px 64px;display:flex;flex-direction:column;justify-content:center;}
-.hero-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:32px;display:flex;align-items:center;gap:12px;}
+/* HERO — NEW SIMPLIFIED */
+.hero{min-height:100vh;padding-top:64px;display:flex;align-items:center;border-bottom:var(--border);background:var(--white);position:relative;overflow:hidden;}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(var(--gray-mid) 1px,transparent 1px),linear-gradient(90deg,var(--gray-mid) 1px,transparent 1px);background-size:48px 48px;opacity:.18;pointer-events:none;z-index:0;}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:55% 45%;width:100%;min-height:calc(100vh - 64px);align-items:center;}
+.hero-left{padding:80px 64px 80px 0;border-right:var(--border);position:relative;display:flex;flex-direction:column;justify-content:center;}
+.hero-right{padding:40px 0 40px 40px;display:flex;align-items:center;justify-content:center;position:relative;}
+.hero-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:28px;display:flex;align-items:center;gap:12px;}
 .hero-label::before{content:'◆';font-size:8px;color:var(--gold);}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,10vw,148px);line-height:0.9;letter-spacing:0.02em;margin-bottom:32px;}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,9vw,140px);line-height:.9;letter-spacing:.02em;margin-bottom:28px;}
 h1 .blue{color:var(--blue);}
 h1 .stroke{-webkit-text-stroke:3px var(--black);color:transparent;}
-.hero-desc{font-size:17px;font-weight:300;color:#444;line-height:1.8;max-width:440px;margin-bottom:48px;border-left:4px solid var(--blue);padding-left:20px;}
-.hero-btns{display:flex;gap:0;flex-wrap:wrap;}
-.btn-primary{padding:18px 36px;background:var(--blue);color:var(--white);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:var(--border);display:inline-flex;align-items:center;gap:12px;transition:all 0.2s;font-weight:500;}
+.hero-desc{font-size:16px;font-weight:300;color:#444;line-height:1.8;max-width:420px;margin-bottom:40px;border-left:4px solid var(--blue);padding-left:20px;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:0;}
+.btn-primary{padding:18px 36px;background:var(--blue);color:var(--white);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:var(--border);display:inline-flex;align-items:center;gap:12px;transition:all .2s;}
 .btn-primary:hover{background:var(--black);}
-.btn-secondary{padding:18px 36px;background:var(--white);color:var(--black);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:var(--border);border-left:none;display:inline-flex;align-items:center;gap:12px;transition:all 0.2s;}
+.btn-secondary{padding:18px 36px;background:var(--white);color:var(--black);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:var(--border);border-left:none;display:inline-flex;align-items:center;gap:12px;transition:all .2s;}
 .btn-secondary:hover{background:var(--black);color:var(--white);}
 
-/* Hero Stats */
-.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:0;}
-.stat-box{padding:40px 32px;border:var(--border-thin);border-color:#d0d0d0;position:relative;}
-.stat-box:nth-child(1){border-right:var(--border);border-bottom:var(--border);}
-.stat-box:nth-child(2){border-bottom:var(--border);}
-.stat-box:nth-child(3){border-right:var(--border);}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;color:var(--black);margin-bottom:8px;}
-.stat-num span{color:var(--blue);}
-.stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#888;}
-.hero-badge{margin-top:32px;padding:20px 24px;border:1px solid var(--gold);background:rgba(201,168,76,0.05);position:relative;}
-.hero-badge-text{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.1em;line-height:1.8;}
+/* DROID */
+.droid-wrap{position:relative;width:320px;height:420px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.droid-wrap::before{content:'ARTHOUSEXBT';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--green);white-space:nowrap;}
+.droid-glow{position:absolute;inset:-20px;background:radial-gradient(ellipse at center,rgba(102,200,0,.08) 0%,transparent 70%);pointer-events:none;animation:glowpulse 3s ease-in-out infinite;}
+@keyframes glowpulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+svg.droid{overflow:visible;filter:drop-shadow(0 8px 32px rgba(0,0,0,.18));}
 
-/* ── TOKEN ── */
-.token-section{border-bottom:var(--border);background:var(--black);padding:0;}
+/* Droid parts animations */
+.d-antenna{animation:antennablink 2.4s ease-in-out infinite;}
+@keyframes antennablink{0%,85%,100%{opacity:1;}90%,95%{opacity:.2;}}
+.d-eye-l,.d-eye-r{transition:transform .08s ease-out;}
+.d-chest-light{animation:chestpulse 1.8s ease-in-out infinite;}
+@keyframes chestpulse{0%,100%{opacity:.7;}50%{opacity:1;}}
+.d-chest-light2{animation:chestpulse 1.8s ease-in-out infinite .6s;}
+.d-chest-light3{animation:chestpulse 1.8s ease-in-out infinite 1.2s;}
+.droid-wrap:hover svg.droid{animation:droidbounce .5s cubic-bezier(.36,.07,.19,.97);}
+@keyframes droidbounce{0%,100%{transform:translateY(0);}30%{transform:translateY(-10px);}60%{transform:translateY(-4px);}80%{transform:translateY(-7px);}}
+.d-scan-line{animation:scanline 3s linear infinite;}
+@keyframes scanline{0%{transform:translateY(-60px);opacity:0;}10%{opacity:.5;}90%{opacity:.5;}100%{transform:translateY(60px);opacity:0;}}
+
+/* Floating particles around droid */
+.droid-particle{position:absolute;width:4px;height:4px;background:var(--green);opacity:0;animation:floatparticle var(--dur,4s) ease-in-out var(--del,0s) infinite;}
+@keyframes floatparticle{0%{transform:translate(0,0);opacity:0;}20%{opacity:.8;}80%{opacity:.6;}100%{transform:translate(var(--tx,20px),var(--ty,-60px));opacity:0;}}
+
+/* Mobile: droid smaller, stacked */
+@media(max-width:1024px){
+  .droid-wrap{width:220px;height:290px;}
+}
+@media(max-width:640px){
+  .droid-wrap{width:160px;height:210px;}
+}
+
+/* TOKEN */
+.token-section{border-bottom:var(--border);background:var(--black);}
 .token-inner{display:grid;grid-template-columns:1fr 1fr;}
-.token-left{padding:64px 48px;border-right:3px solid #222;position:relative;}
+.token-left{padding:64px 48px;border-right:3px solid #1e1e1e;}
 .token-right{padding:64px 48px;}
-.token-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:8px;}
+.token-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:8px;}
 .token-label::before{content:'◆';font-size:7px;}
 .token-name{font-family:'Bebas Neue',sans-serif;font-size:64px;line-height:1;color:var(--white);margin-bottom:8px;}
-.token-address{font-family:'DM Mono',monospace;font-size:10px;color:#555;letter-spacing:0.05em;margin-bottom:32px;word-break:break-all;cursor:pointer;transition:color 0.2s;}
-.token-address:hover{color:var(--gold);}
+.token-addr{font-family:'DM Mono',monospace;font-size:10px;color:#555;letter-spacing:.05em;margin-bottom:32px;word-break:break-all;cursor:pointer;transition:color .2s;}
+.token-addr:hover{color:var(--gold);}
 .token-price-big{font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;color:var(--gold);margin-bottom:8px;}
-.token-change{font-family:'DM Mono',monospace;font-size:13px;padding:4px 12px;display:inline-block;margin-bottom:32px;}
-.token-change.positive{background:rgba(0,200,100,0.15);color:#00c864;border:1px solid #00c864;}
-.token-change.negative{background:rgba(255,60,60,0.15);color:#ff3c3c;border:1px solid #ff3c3c;}
-.token-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.token-change{font-family:'DM Mono',monospace;font-size:13px;padding:4px 12px;display:inline-block;margin-bottom:24px;}
+.token-change.pos{background:rgba(0,200,100,.15);color:#00c864;border:1px solid #00c864;}
+.token-change.neg{background:rgba(255,60,60,.15);color:#ff3c3c;border:1px solid #ff3c3c;}
+.token-stats-grid{display:grid;grid-template-columns:1fr 1fr;}
 .token-stat{padding:20px 24px;border:1px solid #1a1a1a;}
 .token-stat-val{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:4px;}
-.token-stat-label{font-family:'DM Mono',monospace;font-size:9px;color:#555;letter-spacing:0.1em;text-transform:uppercase;}
-.token-loading{font-family:'DM Mono',monospace;font-size:12px;color:#555;display:flex;align-items:center;gap:8px;padding:32px 0;}
+.token-stat-lbl{font-family:'DM Mono',monospace;font-size:9px;color:#555;letter-spacing:.1em;text-transform:uppercase;}
+.token-loading{font-family:'DM Mono',monospace;font-size:12px;color:#555;display:flex;align-items:center;gap:8px;padding:24px 0;}
 .token-loading::before{content:'';width:8px;height:8px;background:var(--gold);border-radius:50%;animation:pulsedot 1s infinite;}
-@keyframes pulsedot{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.token-error{font-family:'DM Mono',monospace;font-size:11px;color:#444;padding:20px 0;line-height:1.8;}
-.token-error a{color:var(--gold);text-decoration:none;}
-.token-error a:hover{text-decoration:underline;}
-.token-cta-link{display:inline-flex;align-items:center;gap:8px;margin-top:32px;padding:14px 28px;border:2px solid var(--gold);color:var(--gold);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
-.token-cta-link:hover{background:var(--gold);color:var(--black);}
-.token-desc{font-size:15px;font-weight:300;color:#aaa;line-height:1.8;margin-bottom:32px;}
-.token-benefits{list-style:none;margin-bottom:32px;}
+@keyframes pulsedot{0%,100%{opacity:1;}50%{opacity:.3;}}
+/* FIX #1 — graceful CORS fallback */
+.token-fallback{font-family:'DM Mono',monospace;font-size:11px;color:#444;padding:16px 0;line-height:2;}
+.token-fallback a{color:var(--gold);text-decoration:none;}
+.token-fallback a:hover{text-decoration:underline;}
+.token-refresh{font-family:'DM Mono',monospace;font-size:9px;color:#333;margin-top:10px;}
+.token-cta{display:inline-flex;align-items:center;gap:8px;margin-top:28px;padding:14px 28px;border:2px solid var(--gold);color:var(--gold);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.token-cta:hover{background:var(--gold);color:var(--black);}
+.token-desc{font-size:15px;font-weight:300;color:#aaa;line-height:1.8;margin-bottom:28px;}
+.token-benefits{list-style:none;margin-bottom:28px;}
 .token-benefits li{font-family:'DM Mono',monospace;font-size:12px;color:#888;padding:12px 0;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:12px;}
 .token-benefits li::before{content:'◆';font-size:7px;color:var(--gold);}
 .token-benefits li span{color:var(--white);}
-.token-refresh{font-family:'DM Mono',monospace;font-size:9px;color:#333;letter-spacing:0.05em;margin-top:12px;}
 
-/* ── DOES ── */
+/* DOES */
 .does-section{border-bottom:var(--border);background:var(--white);}
 .does-inner{padding:96px 0;}
-.section-header{display:flex;align-items:flex-start;gap:0;margin-bottom:64px;border-bottom:var(--border);padding-bottom:32px;}
-.section-num{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--blue);min-width:80px;padding-top:8px;}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,88px);line-height:0.95;letter-spacing:0.02em;flex:1;}
+.section-header{display:flex;align-items:flex-start;margin-bottom:64px;border-bottom:var(--border);padding-bottom:32px;}
+.section-num{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--blue);min-width:80px;padding-top:8px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,88px);line-height:.95;letter-spacing:.02em;flex:1;}
 .section-title em{font-style:normal;-webkit-text-stroke:2px var(--black);color:transparent;}
 .section-desc{font-size:15px;color:#666;max-width:320px;font-weight:300;line-height:1.7;border-left:3px solid var(--gold);padding-left:20px;align-self:flex-end;}
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:var(--border);}
-.feature-card{padding:48px 40px;border-right:var(--border);position:relative;overflow:hidden;transition:all 0.3s;}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);border:var(--border);}
+.feature-card{padding:48px 40px;border-right:var(--border);position:relative;overflow:hidden;}
 .feature-card:last-child{border-right:none;}
-.feature-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:0;background:var(--blue);transition:height 0.4s cubic-bezier(0.25,0.46,0.45,0.94);z-index:0;}
+.feature-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:0;background:var(--blue);transition:height .4s cubic-bezier(.25,.46,.45,.94);z-index:0;}
 .feature-card:hover::before{height:100%;}
-.feature-card:hover .feature-num,.feature-card:hover .feature-title,.feature-card:hover .feature-desc,.feature-card:hover .feature-icon-wrap{color:var(--white)!important;border-color:rgba(255,255,255,0.5)!important;}
-.feature-card *{position:relative;z-index:1;transition:color 0.3s,border-color 0.3s;}
-.feature-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);margin-bottom:32px;display:block;}
-.feature-icon-wrap{width:56px;height:56px;border:var(--border);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:28px;}
-.feature-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:16px;}
-.feature-desc{font-size:14px;color:#666;line-height:1.7;font-weight:300;}
+.feature-card:hover .feat-num,.feature-card:hover .feat-title,.feature-card:hover .feat-desc,.feature-card:hover .feat-icon{color:var(--white)!important;border-color:rgba(255,255,255,.4)!important;}
+.feature-card *{position:relative;z-index:1;transition:color .3s,border-color .3s;}
+.feat-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);margin-bottom:32px;display:block;}
+.feat-icon{width:56px;height:56px;border:var(--border);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:28px;}
+.feat-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:16px;}
+.feat-desc{font-size:14px;color:#666;line-height:1.7;font-weight:300;}
 
-/* ── BOT ── */
+/* BOT */
 .bot-section{border-bottom:var(--border);background:var(--gray);}
-.bot-inner{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.bot-inner{display:grid;grid-template-columns:1fr 1fr;}
 .bot-info{padding:96px 64px 96px 0;border-right:var(--border);}
 .bot-demo{padding:96px 0 96px 64px;}
-.bot-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:24px;display:flex;align-items:center;gap:8px;}
+.bot-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:24px;display:flex;align-items:center;gap:8px;}
 .bot-label::before{content:'◆';font-size:7px;color:var(--gold);}
-.bot-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,5vw,72px);line-height:0.95;margin-bottom:24px;}
+.bot-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,5vw,72px);line-height:.95;margin-bottom:24px;}
 .bot-title span{color:var(--blue);}
 .bot-text{font-size:16px;color:#555;line-height:1.8;font-weight:300;margin-bottom:40px;max-width:440px;}
-.bot-capabilities{list-style:none;margin-bottom:48px;}
-.bot-capabilities li{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:var(--border-thin);font-size:14px;}
-.bot-capabilities li .cap-icon{width:32px;height:32px;min-width:32px;border:var(--border-thin);display:flex;align-items:center;justify-content:center;font-size:14px;}
-.bot-capabilities li .cap-text strong{display:block;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:2px;}
-.bot-capabilities li .cap-text span{color:#888;font-size:13px;font-weight:300;}
+.bot-caps{list-style:none;margin-bottom:48px;}
+.bot-caps li{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:var(--border-thin);}
+.cap-icon{width:32px;height:32px;min-width:32px;border:var(--border-thin);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.cap-text strong{display:block;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:2px;}
+.cap-text span{color:#888;font-size:13px;font-weight:300;}
 
-/* Chat */
-.chat-window{border:var(--border);background:var(--white);display:flex;flex-direction:column;height:540px;position:relative;}
-.chat-window::before{content:'';position:absolute;top:-2px;left:32px;right:32px;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
-.chat-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--black);border-bottom:var(--border);}
+/* CHAT */
+.chat-win{border:var(--border);background:var(--white);display:flex;flex-direction:column;height:540px;position:relative;}
+.chat-win::before{content:'';position:absolute;top:-2px;left:32px;right:32px;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.chat-hdr{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--black);border-bottom:var(--border);}
 .chat-avatar{width:36px;height:36px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:16px;border:2px solid var(--white);}
-.chat-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--white);flex:1;}
-.chat-status-dot{width:8px;height:8px;border-radius:50%;background:#00c864;box-shadow:0 0 8px #00c864;}
-.chat-status-text{font-family:'DM Mono',monospace;font-size:9px;color:#00c864;letter-spacing:0.05em;margin-left:4px;}
-.chat-reset{margin-left:auto;background:transparent;border:1px solid #333;color:#666;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.05em;padding:4px 10px;cursor:pointer;transition:all 0.2s;}
-.chat-reset:hover{border-color:#666;color:var(--white);}
-.chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:var(--gray-mid) transparent;}
+.chat-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--white);flex:1;}
+.chat-dot{width:8px;height:8px;border-radius:50%;background:#00c864;box-shadow:0 0 8px #00c864;}
+.chat-online{font-family:'DM Mono',monospace;font-size:9px;color:#00c864;margin-left:4px;}
+/* FIX #7 — reset button */
+.chat-reset{margin-left:auto;background:transparent;border:1px solid #333;color:#666;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.05em;padding:4px 10px;cursor:pointer;transition:all .2s;}
+.chat-reset:hover{border-color:#888;color:var(--white);}
+.chat-msgs{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:var(--gray-mid) transparent;}
 .msg{display:flex;gap:8px;}
-.msg.user{flex-direction:row-reverse;}
-.msg-bubble{max-width:75%;padding:12px 16px;font-size:13px;line-height:1.6;border:var(--border-thin);}
-.msg-bubble.ai{background:var(--white);border-color:#d0d0d0;}
-.msg-bubble.user{background:var(--blue);color:var(--white);border-color:var(--blue);}
-.msg-bubble.system{background:rgba(201,168,76,0.1);border-color:var(--gold);color:#8a6f2e;font-family:'DM Mono',monospace;font-size:11px;max-width:92%;align-self:center;text-align:center;}
-.score-display{font-family:'DM Mono',monospace;font-size:12px;line-height:1.8;}
-.score-bar{display:flex;align-items:center;justify-content:space-between;margin:2px 0;font-size:11px;}
-.typing-indicator{display:flex;gap:4px;align-items:center;padding:4px 0;}
-.typing-dot{width:6px;height:6px;border-radius:50%;background:#999;animation:typinganim 1.2s infinite;}
-.typing-dot:nth-child(2){animation-delay:0.2s;}
-.typing-dot:nth-child(3){animation-delay:0.4s;}
-@keyframes typinganim{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
-
-/* FIX: chips persist and reset properly */
-.chat-suggestions{padding:12px 16px;border-top:1px solid #e0e0e0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex-wrap:wrap;}
-.suggestion-chip{white-space:nowrap;padding:6px 14px;border:var(--border-thin);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.05em;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--black);}
-.suggestion-chip:hover{background:var(--blue);color:var(--white);border-color:var(--blue);}
-.chat-input-area{padding:12px 16px;border-top:var(--border);display:flex;gap:0;background:var(--white);}
-.chat-input{flex:1;background:transparent;border:var(--border-thin);border-right:none;padding:10px 16px;font-family:'DM Mono',monospace;font-size:12px;color:var(--black);outline:none;}
-.chat-send{padding:10px 20px;background:var(--blue);color:var(--white);border:var(--border);border-left:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.05em;cursor:pointer;transition:background 0.2s;}
+.msg.usr{flex-direction:row-reverse;}
+.bubble{max-width:75%;padding:12px 16px;font-size:13px;line-height:1.6;border:var(--border-thin);}
+.bubble.ai{background:var(--white);border-color:#d0d0d0;}
+.bubble.usr{background:var(--blue);color:var(--white);border-color:var(--blue);}
+.bubble.sys{background:rgba(201,168,76,.1);border-color:var(--gold);color:#8a6f2e;font-family:'DM Mono',monospace;font-size:11px;max-width:92%;align-self:center;text-align:center;}
+.score-disp{font-family:'DM Mono',monospace;font-size:12px;line-height:1.8;}
+.score-row{display:flex;align-items:center;justify-content:space-between;margin:2px 0;font-size:11px;}
+.typi{display:flex;gap:4px;align-items:center;padding:4px 0;}
+.tdot{width:6px;height:6px;border-radius:50%;background:#999;animation:tya 1.2s infinite;}
+.tdot:nth-child(2){animation-delay:.2s;}
+.tdot:nth-child(3){animation-delay:.4s;}
+@keyframes tya{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
+/* FIX #2 — chips always visible */
+.chips{padding:12px 16px;border-top:1px solid #e0e0e0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex-wrap:wrap;}
+.chip{white-space:nowrap;padding:6px 14px;border:var(--border-thin);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.05em;cursor:pointer;transition:all .2s;background:transparent;color:var(--black);}
+.chip:hover{background:var(--blue);color:var(--white);border-color:var(--blue);}
+.chat-inp-wrap{padding:12px 16px;border-top:var(--border);display:flex;background:var(--white);}
+.chat-inp{flex:1;background:transparent;border:var(--border-thin);border-right:none;padding:10px 16px;font-family:'DM Mono',monospace;font-size:12px;color:var(--black);outline:none;}
+.chat-send{padding:10px 20px;background:var(--blue);color:var(--white);border:var(--border);border-left:none;font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;transition:background .2s;}
 .chat-send:hover{background:var(--black);}
-.chat-redirect{padding:12px 16px;background:rgba(0,0,255,0.04);border-top:1px solid var(--blue);display:none;align-items:center;justify-content:space-between;gap:12px;}
-.chat-redirect.show{display:flex;}
-.chat-redirect-text{font-family:'DM Mono',monospace;font-size:10px;color:var(--blue);letter-spacing:0.05em;}
-.chat-redirect-btn{padding:8px 16px;background:var(--blue);color:var(--white);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.05em;text-decoration:none;border:none;white-space:nowrap;transition:background 0.2s;cursor:pointer;display:inline-block;}
-.chat-redirect-btn:hover{background:var(--black);}
+.chat-redir{padding:12px 16px;background:rgba(0,0,255,.04);border-top:1px solid var(--blue);display:none;align-items:center;justify-content:space-between;gap:12px;}
+.chat-redir.show{display:flex;}
+.redir-txt{font-family:'DM Mono',monospace;font-size:10px;color:var(--blue);letter-spacing:.05em;}
+.redir-btn{padding:8px 16px;background:var(--blue);color:var(--white);font-family:'DM Mono',monospace;font-size:10px;text-decoration:none;border:none;white-space:nowrap;transition:background .2s;cursor:pointer;display:inline-block;}
+.redir-btn:hover{background:var(--black);}
 
-/* ── HOW IT WORKS ── */
+/* HOW */
 .how-section{border-bottom:var(--border);background:var(--white);}
 .how-inner{padding:96px 0;}
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:var(--border);margin-top:64px;}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);border:var(--border);margin-top:64px;}
 .step{padding:48px 40px;border-right:var(--border);position:relative;}
 .step:last-child{border-right:none;}
-.step-num{font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:1;position:absolute;top:24px;right:24px;-webkit-text-stroke:1px var(--gray-mid);color:transparent;pointer-events:none;}
+.step-bg{font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:1;position:absolute;top:24px;right:24px;-webkit-text-stroke:1px var(--gray-mid);color:transparent;pointer-events:none;}
 .step-icon{width:48px;height:48px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:28px;border:var(--border);}
 .step-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;}
 .step-desc{font-size:14px;color:#666;line-height:1.7;font-weight:300;}
 
-/* ── CTA ── */
+/* CTA */
 .cta-section{background:var(--black);border-bottom:var(--border);}
-.cta-inner{padding:120px 0;text-align:center;position:relative;}
-/* FIX: deco corners relative to container, not window edge */
-.cta-deco-wrap{position:relative;display:inline-block;padding:40px 60px;margin-bottom:24px;}
-.cta-deco{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.3em;color:var(--gold);display:flex;align-items:center;justify-content:center;gap:16px;}
+/* FIX #10 — cta inner padding so corners align properly */
+.cta-inner{padding:120px 48px;text-align:center;position:relative;}
+.cta-deco{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:16px;}
 .cta-deco::before,.cta-deco::after{content:'';width:60px;height:1px;background:var(--gold);}
-.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,9vw,140px);line-height:0.9;color:var(--white);margin-bottom:32px;letter-spacing:0.02em;}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,9vw,140px);line-height:.9;color:var(--white);margin-bottom:32px;letter-spacing:.02em;}
 .cta-title span{color:var(--blue);}
 .cta-title em{font-style:normal;-webkit-text-stroke:2px var(--white);color:transparent;}
 .cta-desc{font-size:17px;color:#888;font-weight:300;max-width:560px;margin:0 auto 56px;line-height:1.8;}
-.cta-btns{display:flex;gap:0;justify-content:center;flex-wrap:wrap;}
-.cta-btn-main{padding:20px 48px;background:var(--blue);color:var(--white);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:3px solid var(--blue);transition:all 0.2s;}
-.cta-btn-main:hover{background:transparent;color:var(--blue);}
-.cta-btn-ghost{padding:20px 48px;background:transparent;color:var(--white);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:3px solid #333;border-left:none;transition:all 0.2s;}
-.cta-btn-ghost:hover{border-color:var(--white);}
+.cta-btns{display:flex;justify-content:center;flex-wrap:wrap;}
+.cta-main{padding:20px 48px;background:var(--blue);color:var(--white);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:3px solid var(--blue);transition:all .2s;}
+.cta-main:hover{background:transparent;color:var(--blue);}
+.cta-ghost{padding:20px 48px;background:transparent;color:var(--white);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:3px solid #333;border-left:none;transition:all .2s;}
+.cta-ghost:hover{border-color:var(--white);}
 
-/* ── FOOTER ── */
-footer{background:var(--white);border-top:var(--border);padding:0;}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:var(--border-thin);}
-.footer-col{padding:48px 40px;border-right:var(--border-thin);}
-.footer-col:last-child{border-right:none;}
-.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:0.1em;margin-bottom:16px;}
-.footer-brand span{color:var(--blue);}
-.footer-tagline{font-size:13px;color:#888;font-weight:300;line-height:1.7;max-width:280px;margin-bottom:24px;}
-.footer-col h4{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#aaa;margin-bottom:20px;}
-.footer-col a{display:block;font-size:14px;color:#555;text-decoration:none;margin-bottom:12px;transition:color 0.2s;}
-.footer-col a:hover{color:var(--blue);}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;}
-.footer-bottom-left{font-family:'DM Mono',monospace;font-size:10px;color:#aaa;letter-spacing:0.05em;}
-.footer-bottom-right{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;display:flex;align-items:center;gap:8px;}
-.footer-bottom-right::before{content:'◆';font-size:7px;}
+/* FOOTER */
+footer{background:var(--white);border-top:var(--border);}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:var(--border-thin);}
+.foot-col{padding:48px 40px;border-right:var(--border-thin);}
+.foot-col:first-child{padding-left:48px;}
+.foot-col:last-child{border-right:none;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.1em;margin-bottom:16px;}
+.foot-brand span{color:var(--blue);}
+.foot-tag{font-size:13px;color:#888;font-weight:300;line-height:1.7;max-width:280px;margin-bottom:24px;}
+.foot-col h4{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#aaa;margin-bottom:20px;}
+.foot-col a{display:block;font-size:14px;color:#555;text-decoration:none;margin-bottom:12px;transition:color .2s;}
+.foot-col a:hover{color:var(--blue);}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;padding:20px 48px;}
+.foot-copy{font-family:'DM Mono',monospace;font-size:10px;color:#aaa;letter-spacing:.05em;}
+/* FIX #12 — year 2026 */
+.foot-ever{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.1em;display:flex;align-items:center;gap:8px;}
+.foot-ever::before{content:'◆';font-size:7px;}
 
-/* ── SCROLL ANIMATIONS ── */
-/* FIX: threshold 0.15 instead of 0.1 */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity 0.7s ease,transform 0.7s ease;}
-.reveal-left.visible{opacity:1;transform:translateX(0);}
-.reveal-right{opacity:0;transform:translateX(32px);transition:opacity 0.7s ease,transform 0.7s ease;}
-.reveal-right.visible{opacity:1;transform:translateX(0);}
-.delay-1{transition-delay:0.1s;}
-.delay-2{transition-delay:0.2s;}
-.delay-3{transition-delay:0.3s;}
-.delay-4{transition-delay:0.4s;}
+/* SOCIAL SECTION */
+.social-section{border-bottom:var(--border);background:var(--white);position:relative;overflow:hidden;}
+.social-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--blue),var(--green),var(--gold));z-index:2;}
+.social-inner{padding:80px 0;}
+.social-header{display:flex;align-items:flex-start;margin-bottom:56px;border-bottom:var(--border);padding-bottom:28px;gap:24px;flex-wrap:wrap;}
+.social-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.social-label::before{content:'◆';font-size:7px;color:var(--green);}
+.social-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,80px);line-height:.95;letter-spacing:.02em;flex:1;min-width:200px;}
+.social-title em{font-style:normal;-webkit-text-stroke:2px var(--black);color:transparent;}
+.social-desc{font-size:14px;color:#666;max-width:280px;font-weight:300;line-height:1.7;border-left:3px solid var(--green);padding-left:16px;align-self:flex-end;}
+.social-grid{display:grid;grid-template-columns:repeat(4,1fr);border:var(--border);gap:0;}
+.social-card{position:relative;padding:36px 28px;border-right:var(--border);display:flex;flex-direction:column;overflow:hidden;text-decoration:none;color:var(--black);transition:all .3s cubic-bezier(.25,.46,.45,.94);background:var(--white);}
+.social-card:last-child{border-right:none;}
+.social-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:0;background:var(--black);transition:height .35s cubic-bezier(.25,.46,.45,.94);z-index:0;}
+.social-card:hover::after{height:100%;}
+.social-card:hover .sc-platform,
+.social-card:hover .sc-handle,
+.social-card:hover .sc-arrow,
+.social-card:hover .sc-icon-wrap{color:var(--white)!important;border-color:rgba(255,255,255,.25)!important;}
+.social-card *{position:relative;z-index:1;transition:color .3s,border-color .3s;}
+.sc-green-bar{position:absolute;top:0;left:0;right:0;height:3px;background:transparent;transition:background .3s;z-index:3;}
+.social-card:hover .sc-green-bar{background:var(--green);}
+.sc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;}
+.sc-icon-wrap{width:48px;height:48px;border:var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.sc-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.15em;}
+.sc-platform{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;letter-spacing:.03em;margin-bottom:8px;display:block;}
+.sc-handle{font-family:'DM Mono',monospace;font-size:11px;color:#888;letter-spacing:.05em;margin-bottom:20px;display:block;}
+.sc-arrow{font-family:'DM Mono',monospace;font-size:11px;color:var(--green);letter-spacing:.1em;margin-top:auto;display:flex;align-items:center;gap:8px;padding-top:20px;border-top:1px solid #e0e0e0;}
+.sc-arrow::before{content:'◆';font-size:7px;}
 
-/* ── MOBILE ── */
+/* ANIMATIONS — FIX #11 threshold raised in JS */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94);}
+.reveal.v{opacity:1;transform:translateY(0);}
+.rev-l{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease;}
+.rev-l.v{opacity:1;transform:translateX(0);}
+.rev-r{opacity:0;transform:translateX(32px);transition:opacity .7s ease,transform .7s ease;}
+.rev-r.v{opacity:1;transform:translateX(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+
+/* MOBILE — FIX #4 #6 */
 @media(max-width:1024px){
   nav{padding:0 24px;}
   .nav-links{display:none;}
-  .nav-hamburger{display:flex;}
+  .hamburger{display:flex;}
   .container{padding:0 24px;}
   .hero-inner{grid-template-columns:1fr;}
-  .hero-left{padding:60px 0;border-right:none;border-bottom:var(--border);}
-  .hero-right{padding:48px 0;}
+  .hero-left{padding:48px 0 40px;border-right:none;border-bottom:var(--border);}
+  .hero-right{padding:40px 0;justify-content:center;}
   .hero::before{display:none;}
   .token-inner,.bot-inner{grid-template-columns:1fr;}
-  .token-left{border-right:none;border-bottom:3px solid #222;}
-  /* FIX: reset border-left on mobile token */
-  .token-left{border-left:none;}
+  /* FIX #6 — remove left border artifact on mobile */
+  .token-left{border-right:none;border-left:none;border-bottom:3px solid #222;}
   .bot-info{padding:60px 0;border-right:none;border-bottom:var(--border);}
   .bot-demo{padding:60px 0;}
   .features-grid,.steps-grid{grid-template-columns:1fr;}
@@ -289,57 +349,64 @@ footer{background:var(--white);border-top:var(--border);padding:0;}
   .feature-card:last-child{border-bottom:none;}
   .step{border-right:none;border-bottom:var(--border);}
   .step:last-child{border-bottom:none;}
-  .footer-top{grid-template-columns:1fr 1fr;}
-  .footer-col{border-right:none;border-bottom:var(--border-thin);}
-  .footer-col:last-child{border-bottom:none;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+  .foot-col{border-right:none;border-bottom:var(--border-thin);}
+  .foot-col:last-child{border-bottom:none;}
   .section-header{flex-direction:column;gap:16px;}
   .section-desc{max-width:100%;}
+  .cta-inner{padding:80px 24px;}
+  .social-grid{grid-template-columns:1fr 1fr;}
+  .social-card{border-right:none;border-bottom:var(--border);}
+  .social-card:nth-child(odd){border-right:var(--border);}
+  .social-card:nth-last-child(-n+2){border-bottom:none;}
+  .social-header{flex-direction:column;gap:12px;}
+  .social-desc{max-width:100%;}
 }
 @media(max-width:640px){
   nav{padding:0 20px;}
-  .mobile-menu a{padding:20px 24px;}
+  .mob-menu a{padding:18px 24px;}
   h1{font-size:64px;}
   .token-price-big{font-size:56px;}
   .cta-title{font-size:56px;}
-  .chat-window{height:460px;}
-  .footer-top{grid-template-columns:1fr;}
-  .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
-  .footer-col:first-child{padding-left:24px;}
+  .chat-win{height:460px;}
+  .foot-grid{grid-template-columns:1fr;}
+  .foot-bot{flex-direction:column;gap:12px;padding:20px 24px;}
+  .foot-col:first-child{padding-left:24px;}
+  .social-grid{grid-template-columns:1fr;}
+  .social-card{border-right:none!important;border-bottom:var(--border);}
+  .social-card:last-child{border-bottom:none;}
+  .sc-platform{font-size:24px;}
 }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
 
-<!-- Nav -->
 <nav>
   <a href="#" class="nav-logo">ART<span>HOUSE</span></a>
   <div class="nav-links">
     <a href="#does">What It Does</a>
     <a href="#token">Token</a>
     <a href="#bot">Arthousexbt</a>
+    <a href="#social">Social</a>
     <a href="#start">Start</a>
     <a href="https://t.me/arthousexbt_bot" target="_blank" class="nav-cta">Open Bot ↗</a>
   </div>
-  <!-- FIX: hamburger menu for mobile -->
-  <button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="hamburger" id="hmbgr" onclick="toggleNav()"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- Mobile menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#does" onclick="toggleMenu()">What It Does</a>
-  <a href="#token" onclick="toggleMenu()">Token</a>
-  <a href="#bot" onclick="toggleMenu()">Arthousexbt</a>
-  <a href="#start" onclick="toggleMenu()">Start</a>
-  <a href="https://t.me/arthousexbt_bot" target="_blank">Open Bot ↗</a>
+<div class="mob-menu" id="mobMenu">
+  <a href="#does" onclick="toggleNav()">What It Does</a>
+  <a href="#token" onclick="toggleNav()">Token</a>
+  <a href="#bot" onclick="toggleNav()">Arthousexbt</a>
+  <a href="#social" onclick="toggleNav()">Social</a>
+  <a href="#start" onclick="toggleNav()">Start</a>
+  <a href="https://t.me/arthousexbt_bot" target="_blank" class="mob-cta">Open Bot ↗</a>
 </div>
 
-<!-- Ticker — FIX: JS-cloned for seamless loop -->
-<div class="ticker" style="margin-top:64px;">
+<div class="ticker">
   <div class="ticker-track" id="tickerTrack">
     <span class="ticker-item">Onchain Art Intelligence</span>
     <span class="ticker-item">Base + Zora</span>
@@ -352,98 +419,181 @@ footer{background:var(--white);border-top:var(--border);padding:0;}
   </div>
 </div>
 
-<!-- Hero -->
 <section class="hero" id="what">
+  <div class="hero-bg-grid"></div>
   <div class="container" style="max-width:100%;padding:0 48px;">
     <div class="hero-inner">
+
+      <!-- LEFT: Text + CTA -->
       <div class="hero-left">
         <div class="deco-corner tl"></div>
         <div class="deco-corner bl"></div>
         <div class="hero-label reveal">Onchain Art Intelligence · Base + Zora</div>
-        <h1 class="reveal delay-1">
-          FIND<br/>WHO'S<br/>
-          <span class="blue">ACTUALLY</span><br/>
-          <span class="stroke">BUILDING.</span>
-        </h1>
-        <p class="hero-desc reveal delay-2">
-          Arthouse is the intelligence layer for onchain art.
-          We know the difference between builders and flippers —
-          and we'll show you exactly why.
-        </p>
-        <div class="hero-btns reveal delay-3">
-          <a href="https://t.me/arthousexbt_bot" target="_blank" class="btn-primary">Ask @arthousexbt ↗</a>
-          <a href="#token" class="btn-secondary">View Token →</a>
+        <h1 class="reveal d1">FIND<br/>WHO'S<br/><span class="blue">ACTUALLY</span><br/><span class="stroke">BUILDING.</span></h1>
+        <p class="hero-desc reveal d2">The intelligence layer for onchain art. Arthouse scores creators on Base and Zora — separating builders from flippers.</p>
+        <div class="hero-btns reveal d3">
+          <a href="https://t.me/arthousexbt_bot" target="_blank" class="btn-primary" aria-label="Open Arthousexbt bot on Telegram">Ask @arthousexbt ↗</a>
+          <a href="#token" class="btn-secondary" aria-label="View ARTHOUSE token">View Token →</a>
         </div>
       </div>
+
+      <!-- RIGHT: ARTHOUSEXBT Droid -->
       <div class="hero-right">
-        <!-- FIX: observe the section wrapper, not the span -->
-        <div id="statsSection" class="hero-stats reveal delay-2">
-          <div class="stat-box">
-            <div class="stat-num"><span id="stat1">0</span>K</div>
-            <div class="stat-label">Works Preserved</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num"><span id="stat2">0</span></div>
-            <div class="stat-label">Active Creators</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num" style="color:var(--blue);">100</div>
-            <div class="stat-label">Point Scoring Scale</div>
-          </div>
-          <div class="stat-box" style="background:var(--blue);">
-            <div class="stat-num" style="color:var(--white);">∞</div>
-            <div class="stat-label" style="color:rgba(255,255,255,0.6);">Onchain Forever</div>
-          </div>
-        </div>
-        <div class="hero-badge reveal delay-3">
-          <div class="hero-badge-text">
-            ◆ &nbsp; Not every creator who mints is building.<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Arthouse knows the difference.
-          </div>
+        <div class="droid-wrap" id="droidWrap">
+          <div class="droid-glow"></div>
+
+          <!-- Floating particles -->
+          <div class="droid-particle" style="--dur:3.8s;--del:0s;--tx:30px;--ty:-70px;left:60px;top:200px;background:var(--green);"></div>
+          <div class="droid-particle" style="--dur:4.5s;--del:.8s;--tx:-25px;--ty:-80px;left:240px;top:220px;background:var(--blue);"></div>
+          <div class="droid-particle" style="--dur:3.2s;--del:1.4s;--tx:15px;--ty:-60px;left:150px;top:300px;background:var(--gold);"></div>
+          <div class="droid-particle" style="--dur:5s;--del:.3s;--tx:-35px;--ty:-90px;left:80px;top:160px;background:var(--green);"></div>
+          <div class="droid-particle" style="--dur:4.1s;--del:2s;--tx:28px;--ty:-55px;left:210px;top:180px;background:var(--blue);width:3px;height:3px;"></div>
+
+          <svg class="droid" id="droidSvg" width="260" height="360" viewBox="0 0 260 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ARTHOUSEXBT droid character">
+
+            <!-- Shadow -->
+            <ellipse cx="130" cy="352" rx="60" ry="8" fill="#0a0a0a" opacity=".12"/>
+
+            <!-- LEGS -->
+            <rect x="88" y="290" width="28" height="50" rx="2" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
+            <rect x="144" y="290" width="28" height="50" rx="2" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
+            <!-- Feet -->
+            <rect x="82" y="334" width="40" height="14" rx="2" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="2"/>
+            <rect x="138" y="334" width="40" height="14" rx="2" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="2"/>
+            <!-- Leg detail lines -->
+            <line x1="102" y1="300" x2="102" y2="330" stroke="#66C800" stroke-width="1.5" opacity=".6"/>
+            <line x1="158" y1="300" x2="158" y2="330" stroke="#66C800" stroke-width="1.5" opacity=".6"/>
+
+            <!-- BODY -->
+            <rect x="60" y="178" width="140" height="118" rx="4" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="3"/>
+            <!-- Body inner panel -->
+            <rect x="72" y="190" width="116" height="94" rx="2" fill="#111" stroke="#1e1e1e" stroke-width="1.5"/>
+
+            <!-- Chest lights -->
+            <circle class="d-chest-light" cx="100" cy="222" r="7" fill="#0000ff" opacity=".9"/>
+            <circle cx="100" cy="222" r="4" fill="#4444ff"/>
+            <circle class="d-chest-light2" cx="130" cy="222" r="7" fill="#66C800" opacity=".9"/>
+            <circle cx="130" cy="222" r="4" fill="#88ff22"/>
+            <circle class="d-chest-light3" cx="160" cy="222" r="7" fill="#c9a84c" opacity=".9"/>
+            <circle cx="160" cy="222" r="4" fill="#e8c060"/>
+
+            <!-- Chest label -->
+            <rect x="80" y="244" width="100" height="22" rx="1" fill="#0a0a0a" stroke="#333" stroke-width="1"/>
+            <text x="130" y="259" font-family="monospace" font-size="8" fill="#66C800" text-anchor="middle" letter-spacing="2">ARTHOUSEXBT</text>
+
+            <!-- Chest scan line -->
+            <clipPath id="bodyClip"><rect x="72" y="190" width="116" height="94" rx="2"/></clipPath>
+            <rect class="d-scan-line" x="72" y="190" width="116" height="2" fill="#66C800" opacity=".4" clip-path="url(#bodyClip)"/>
+
+            <!-- ARMS -->
+            <!-- Left arm -->
+            <rect x="22" y="186" width="36" height="80" rx="3" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
+            <rect x="28" y="192" width="24" height="68" rx="2" fill="#111"/>
+            <rect x="18" y="258" width="44" height="18" rx="3" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="2"/>
+            <line x1="34" y1="200" x2="34" y2="256" stroke="#0000ff" stroke-width="1.5" opacity=".5"/>
+            <!-- Right arm -->
+            <rect x="202" y="186" width="36" height="80" rx="3" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
+            <rect x="208" y="192" width="24" height="68" rx="2" fill="#111"/>
+            <rect x="198" y="258" width="44" height="18" rx="3" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="2"/>
+            <line x1="226" y1="200" x2="226" y2="256" stroke="#c9a84c" stroke-width="1.5" opacity=".5"/>
+
+            <!-- NECK -->
+            <rect x="112" y="160" width="36" height="22" rx="2" fill="#111" stroke="#0a0a0a" stroke-width="2"/>
+            <line x1="120" y1="165" x2="120" y2="178" stroke="#333" stroke-width="1"/>
+            <line x1="130" y1="163" x2="130" y2="178" stroke="#444" stroke-width="1"/>
+            <line x1="140" y1="165" x2="140" y2="178" stroke="#333" stroke-width="1"/>
+
+            <!-- HEAD -->
+            <rect x="55" y="70" width="150" height="94" rx="6" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="3"/>
+            <!-- Head inner -->
+            <rect x="64" y="78" width="132" height="78" rx="3" fill="#111" stroke="#1e1e1e" stroke-width="1.5"/>
+
+            <!-- EYES (eyeball group, moves with mouse) -->
+            <g id="eyeLeft">
+              <!-- Eye socket L -->
+              <rect x="74" y="88" width="46" height="36" rx="3" fill="#0a0a0a" stroke="#0000ff" stroke-width="2"/>
+              <rect x="78" y="92" width="38" height="28" rx="2" fill="#050515"/>
+              <!-- Eyeball L -->
+              <g class="d-eye-l" id="eyeballL">
+                <circle cx="97" cy="106" r="10" fill="#0000ff" opacity=".9"/>
+                <circle cx="97" cy="106" r="6" fill="#2222ff"/>
+                <circle cx="97" cy="106" r="3" fill="white" opacity=".9"/>
+                <circle cx="99" cy="104" r="1.5" fill="white"/>
+              </g>
+            </g>
+            <g id="eyeRight">
+              <!-- Eye socket R -->
+              <rect x="140" y="88" width="46" height="36" rx="3" fill="#0a0a0a" stroke="#0000ff" stroke-width="2"/>
+              <rect x="144" y="92" width="38" height="28" rx="2" fill="#050515"/>
+              <!-- Eyeball R -->
+              <g class="d-eye-r" id="eyeballR">
+                <circle cx="163" cy="106" r="10" fill="#0000ff" opacity=".9"/>
+                <circle cx="163" cy="106" r="6" fill="#2222ff"/>
+                <circle cx="163" cy="106" r="3" fill="white" opacity=".9"/>
+                <circle cx="165" cy="104" r="1.5" fill="white"/>
+              </g>
+            </g>
+
+            <!-- Mouth / status bar -->
+            <rect x="80" y="134" width="100" height="10" rx="2" fill="#0a0a0a" stroke="#333" stroke-width="1"/>
+            <rect x="82" y="136" width="60" height="6" rx="1" fill="#66C800" opacity=".8"/>
+            <rect x="144" y="136" width="10" height="6" rx="1" fill="#0000ff" opacity=".6"/>
+            <rect x="156" y="136" width="22" height="6" rx="1" fill="#1a1a1a"/>
+
+            <!-- ANTENNA -->
+            <g class="d-antenna">
+              <line x1="130" y1="70" x2="130" y2="38" stroke="#0a0a0a" stroke-width="3"/>
+              <rect x="116" y="28" width="28" height="14" rx="2" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
+              <circle cx="130" cy="22" r="9" fill="#0000ff" stroke="#0a0a0a" stroke-width="2"/>
+              <circle cx="130" cy="22" r="5" fill="#4444ff"/>
+              <circle cx="130" cy="22" r="2.5" fill="white" opacity=".9"/>
+            </g>
+
+            <!-- Head top screws -->
+            <circle cx="72" cy="78" r="3" fill="#222" stroke="#333" stroke-width="1"/>
+            <circle cx="188" cy="78" r="3" fill="#222" stroke="#333" stroke-width="1"/>
+            <circle cx="72" cy="156" r="3" fill="#222" stroke="#333" stroke-width="1"/>
+            <circle cx="188" cy="156" r="3" fill="#222" stroke="#333" stroke-width="1"/>
+
+            <!-- Gold accent lines on head -->
+            <line x1="64" y1="150" x2="196" y2="150" stroke="#c9a84c" stroke-width="1" opacity=".4"/>
+
+          </svg>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- Token -->
 <section class="token-section" id="token">
   <div class="container" style="max-width:100%;padding:0 48px;">
     <div class="token-inner">
-      <div class="token-left reveal-left">
+      <div class="token-left rev-l">
         <div class="token-label">$ARTHOUSE Token · Base Network</div>
         <div class="token-name">$ARTHOUSE</div>
-        <div class="token-address" id="tokenAddr" title="Click to copy" onclick="copyAddr()">
-          0xd3216582e3e31578e01b7fd8eda6de969f3658ce
-        </div>
-        <div id="tokenLoading" class="token-loading">Fetching live price...</div>
-        <div id="tokenData" style="display:none;">
-          <div class="token-price-big" id="tokenPrice">—</div>
-          <div class="token-change" id="tokenChange">—</div>
-          <div class="token-stats-grid" style="margin-top:24px;">
-            <div class="token-stat"><div class="token-stat-val" id="tokenVol">—</div><div class="token-stat-label">Volume 24h</div></div>
-            <div class="token-stat"><div class="token-stat-val" id="tokenMcap">—</div><div class="token-stat-label">Market Cap</div></div>
-            <div class="token-stat"><div class="token-stat-val" id="tokenLiq">—</div><div class="token-stat-label">Liquidity</div></div>
-            <div class="token-stat"><div class="token-stat-val" id="tokenTxns">—</div><div class="token-stat-label">Txns 24h</div></div>
+        <div class="token-addr" id="tAddr" onclick="copyAddr()" title="Click to copy">0xd3216582e3e31578e01b7fd8eda6de969f3658ce</div>
+        <div id="tLoading" class="token-loading">Fetching live price...</div>
+        <div id="tData" style="display:none;">
+          <div class="token-price-big" id="tPrice">—</div>
+          <div class="token-change" id="tChange">—</div>
+          <div class="token-stats-grid" style="margin-top:20px;">
+            <div class="token-stat"><div class="token-stat-val" id="tVol">—</div><div class="token-stat-lbl">Volume 24h</div></div>
+            <div class="token-stat"><div class="token-stat-val" id="tMcap">—</div><div class="token-stat-lbl">Market Cap</div></div>
+            <div class="token-stat"><div class="token-stat-val" id="tLiq">—</div><div class="token-stat-lbl">Liquidity</div></div>
+            <div class="token-stat"><div class="token-stat-val" id="tTxns">—</div><div class="token-stat-lbl">Txns 24h</div></div>
           </div>
-          <div class="token-refresh" id="tokenRefresh"></div>
+          <div class="token-refresh" id="tRefresh"></div>
         </div>
-        <!-- FIX: graceful fallback with direct link -->
-        <div id="tokenFallback" style="display:none;" class="token-error">
-          Live data unavailable in this preview.<br/>
-          View full chart → <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce" target="_blank">DexScreener ↗</a>
+        <div id="tFail" class="token-fallback" style="display:none;">
+          Live data unavailable in this environment.<br/>
+          View real-time chart → <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce" target="_blank">DexScreener ↗</a>
         </div>
-        <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce" target="_blank" class="token-cta-link">
-          View Full Chart on DexScreener ↗
-        </a>
+        <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce" target="_blank" class="token-cta">View Full Chart ↗</a>
       </div>
-      <div class="token-right reveal-right">
+      <div class="token-right rev-r">
         <div class="token-label">Why Hold $ARTHOUSE</div>
-        <p class="token-desc">
-          The token is not speculation. It's access.
-          Holders unlock the full intelligence layer —
-          deeper analysis, early alerts, unlimited creator scoring.
-        </p>
+        <p class="token-desc">The token is not speculation. It's access. Holders unlock the full intelligence layer — deeper analysis, early alerts, unlimited creator scoring.</p>
         <ul class="token-benefits">
           <li><span>Full 5-dimension creator scoring reports</span></li>
           <li><span>Unlimited @arthousexbt analysis</span></li>
@@ -452,16 +602,15 @@ footer{background:var(--white);border-top:var(--border);padding:0;}
           <li><span>Access to curated watchlists</span></li>
           <li><span>Early access to new features</span></li>
         </ul>
-        <div style="display:flex;gap:0;flex-wrap:wrap;">
-          <a href="https://zora.co/arthousebase" target="_blank" class="token-cta-link" style="margin-top:0;">Explore on Zora ↗</a>
-          <a href="https://t.me/arthousexbt_bot" target="_blank" class="token-cta-link" style="margin-top:0;border-left:none;">Get Full Access ↗</a>
+        <div style="display:flex;flex-wrap:wrap;">
+          <a href="https://zora.co/arthousebase" target="_blank" class="token-cta" style="margin-top:0;">Explore on Zora ↗</a>
+          <a href="https://t.me/arthousexbt_bot" target="_blank" class="token-cta" style="margin-top:0;border-left:none;">Get Full Access ↗</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- What Arthouse Does -->
 <section class="does-section" id="does">
   <div class="container">
     <div class="does-inner">
@@ -470,83 +619,68 @@ footer{background:var(--white);border-top:var(--border);padding:0;}
         <h2 class="section-title">WHAT<br/>ARTHOUSE <em>DOES</em></h2>
         <p class="section-desc">Intelligence tools for serious collectors and curators on Base and Zora.</p>
       </div>
-      <div class="features-grid reveal delay-1">
+      <div class="features-grid reveal d1">
         <div class="feature-card">
-          <span class="feature-num">◆ 01</span>
-          <div class="feature-icon-wrap">🔍</div>
-          <h3 class="feature-title">Talent Scout</h3>
-          <p class="feature-desc">Surface emerging creators before the crowd. Arthouse analyzes onchain activity, social signals, and content patterns to find builders — not flippers.</p>
+          <span class="feat-num">◆ 01</span>
+          <div class="feat-icon">🔍</div>
+          <h3 class="feat-title">Talent Scout</h3>
+          <p class="feat-desc">Surface emerging creators before the crowd. Arthouse analyzes onchain activity, social signals, and content patterns to find builders — not flippers.</p>
         </div>
         <div class="feature-card">
-          <span class="feature-num">◆ 02</span>
-          <div class="feature-icon-wrap">⚡</div>
-          <h3 class="feature-title">Creator Scoring</h3>
-          <p class="feature-desc">A rigorous scoring system across identity, consistency, building signals, traction, and reputation. 0–100 points. No guessing. Just data.</p>
+          <span class="feat-num">◆ 02</span>
+          <div class="feat-icon">⚡</div>
+          <h3 class="feat-title">Creator Scoring</h3>
+          <p class="feat-desc">A rigorous scoring system across identity, consistency, building signals, traction, and reputation. 0–100 points. No guessing. Just data.</p>
         </div>
         <div class="feature-card">
-          <span class="feature-num">◆ 03</span>
-          <div class="feature-icon-wrap">⛓️</div>
-          <h3 class="feature-title">Onchain Forever</h3>
-          <p class="feature-desc">Permanent preservation on Base and Zora. No platforms, no gatekeepers. Art and creator intelligence stored onchain, accessible forever.</p>
+          <span class="feat-num">◆ 03</span>
+          <div class="feat-icon">⛓️</div>
+          <h3 class="feat-title">Onchain Forever</h3>
+          <p class="feat-desc">Permanent preservation on Base and Zora. No platforms, no gatekeepers. Art and creator intelligence stored onchain, accessible forever.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Bot -->
 <section class="bot-section" id="bot">
   <div class="container" style="max-width:100%;padding:0 48px;">
     <div class="bot-inner">
-      <div class="bot-info reveal-left">
+      <div class="bot-info rev-l">
         <div class="bot-label">AI Intelligence Agent</div>
         <h2 class="bot-title">MEET<br/><span>@ARTHOUSEXBT</span></h2>
         <p class="bot-text">Ask about any creator on Zora. Get a score, a classification, and a clear recommendation. Arthousexbt doesn't hype — it curates.</p>
-        <ul class="bot-capabilities">
-          <li>
-            <div class="cap-icon">📊</div>
-            <div class="cap-text"><strong>Analyze Any Creator</strong><span>"analyze @username" — get full scoring breakdown</span></div>
-          </li>
-          <li>
-            <div class="cap-icon">🎯</div>
-            <div class="cap-text"><strong>Detect Red Flags</strong><span>"is this legit?" — runs red flag checklist instantly</span></div>
-          </li>
-          <li>
-            <div class="cap-icon">🏆</div>
-            <div class="cap-text"><strong>Find Top Builders</strong><span>"who's building this week?" — top 3 with reasoning</span></div>
-          </li>
-          <li>
-            <div class="cap-icon">💎</div>
-            <div class="cap-text"><strong>Collection Intelligence</strong><span>Context on drops, coins, and cultural movements</span></div>
-          </li>
+        <ul class="bot-caps">
+          <li><div class="cap-icon">📊</div><div class="cap-text"><strong>Analyze Any Creator</strong><span>"analyze @username" — get full scoring breakdown</span></div></li>
+          <li><div class="cap-icon">🎯</div><div class="cap-text"><strong>Detect Red Flags</strong><span>"is this legit?" — runs red flag checklist instantly</span></div></li>
+          <li><div class="cap-icon">🏆</div><div class="cap-text"><strong>Find Top Builders</strong><span>"who's building this week?" — top 3 with reasoning</span></div></li>
+          <li><div class="cap-icon">💎</div><div class="cap-text"><strong>Collection Intelligence</strong><span>Context on drops, coins, and cultural movements</span></div></li>
         </ul>
         <a href="https://t.me/arthousexbt_bot" target="_blank" class="btn-primary">Open Full Bot on Telegram ↗</a>
       </div>
-      <div class="bot-demo reveal-right">
-        <div class="chat-window">
-          <div class="chat-header">
+      <div class="bot-demo rev-r">
+        <div class="chat-win">
+          <div class="chat-hdr">
             <div class="chat-avatar">🎨</div>
-            <div class="chat-title">Arthousexbt</div>
-            <div class="chat-status-dot"></div>
-            <span class="chat-status-text">Online</span>
-            <!-- FIX: reset button -->
+            <div class="chat-name">Arthousexbt</div>
+            <div class="chat-dot"></div>
+            <span class="chat-online">Online</span>
             <button class="chat-reset" onclick="resetChat()">↺ Reset</button>
           </div>
-          <div class="chat-messages" id="chatMessages"></div>
-          <!-- FIX: chips always visible, reset on resetChat() -->
-          <div class="chat-suggestions" id="suggestions">
-            <button class="suggestion-chip" onclick="sendSuggestion('analyze @liquidcreator')">analyze @liquidcreator</button>
-            <button class="suggestion-chip" onclick="sendSuggestion('who is building this week?')">who's building?</button>
-            <button class="suggestion-chip" onclick="sendSuggestion('is this creator legit?')">is this legit?</button>
-            <button class="suggestion-chip" onclick="sendSuggestion('what makes a real builder?')">builder vs flipper?</button>
+          <div class="chat-msgs" id="chatMsgs"></div>
+          <div class="chips" id="chips">
+            <button class="chip" onclick="doChip('analyze @liquidcreator')">analyze @liquidcreator</button>
+            <button class="chip" onclick="doChip('who is building this week?')">who's building?</button>
+            <button class="chip" onclick="doChip('is this creator legit?')">is this legit?</button>
+            <button class="chip" onclick="doChip('what makes a real builder?')">builder vs flipper?</button>
           </div>
-          <div class="chat-input-area">
-            <input class="chat-input" id="chatInput" placeholder="Ask about any creator..." onkeydown="handleKey(event)"/>
-            <button class="chat-send" onclick="sendMsg()">SEND</button>
+          <div class="chat-inp-wrap">
+            <input class="chat-inp" id="chatInp" placeholder="Ask about any creator..." onkeydown="if(event.key==='Enter')doSend()"/>
+            <button class="chat-send" onclick="doSend()">SEND</button>
           </div>
-          <div class="chat-redirect" id="chatRedirect">
-            <span class="chat-redirect-text">◆ &nbsp;Continue full conversation on Telegram</span>
-            <a href="https://t.me/arthousexbt_bot" target="_blank" class="chat-redirect-btn">Open @arthousexbt ↗</a>
+          <div class="chat-redir" id="chatRedir">
+            <span class="redir-txt">◆ &nbsp; Continue full conversation on Telegram</span>
+            <a href="https://t.me/arthousexbt_bot" target="_blank" class="redir-btn">Open @arthousexbt ↗</a>
           </div>
         </div>
       </div>
@@ -554,7 +688,6 @@ footer{background:var(--white);border-top:var(--border);padding:0;}
   </div>
 </section>
 
-<!-- How It Works -->
 <section class="how-section" id="how">
   <div class="container">
     <div class="how-inner">
@@ -564,298 +697,360 @@ footer{background:var(--white);border-top:var(--border);padding:0;}
         <p class="section-desc">Three steps from curious to convinced.</p>
       </div>
       <div class="steps-grid">
-        <div class="step reveal delay-1">
-          <div class="step-num">01</div>
-          <div class="step-icon">→</div>
-          <h3 class="step-title">Connect</h3>
-          <p class="step-desc">Open @arthousexbt_bot on Telegram. No wallet required, no signup. Just start asking.</p>
-        </div>
-        <div class="step reveal delay-2">
-          <div class="step-num">02</div>
-          <div class="step-icon">?</div>
-          <h3 class="step-title">Ask</h3>
-          <p class="step-desc">Ask about any creator on Zora. "Analyze @username" — Arthousexbt scores across 5 dimensions instantly.</p>
-        </div>
-        <div class="step reveal delay-3">
-          <div class="step-num">03</div>
-          <div class="step-icon">★</div>
-          <h3 class="step-title">Discover</h3>
-          <p class="step-desc">Get a classification: Highly Promising, Watchlist, Too Early, or Skip — with clear reasoning every time.</p>
-        </div>
+        <div class="step reveal d1"><div class="step-bg">01</div><div class="step-icon">→</div><h3 class="step-title">Connect</h3><p class="step-desc">Open @arthousexbt_bot on Telegram. No wallet required, no signup. Just start asking.</p></div>
+        <div class="step reveal d2"><div class="step-bg">02</div><div class="step-icon">?</div><h3 class="step-title">Ask</h3><p class="step-desc">Ask about any creator on Zora. "Analyze @username" — Arthousexbt scores across 5 dimensions instantly.</p></div>
+        <div class="step reveal d3"><div class="step-bg">03</div><div class="step-icon">★</div><h3 class="step-title">Discover</h3><p class="step-desc">Get a classification: Highly Promising, Watchlist, Too Early, or Skip — with clear reasoning every time.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section" id="start">
   <div class="container">
     <div class="cta-inner">
+      <div class="deco-corner tl" style="top:40px;left:48px;"></div>
+      <div class="deco-corner tr" style="top:40px;right:48px;"></div>
+      <div class="deco-corner bl" style="bottom:40px;left:48px;"></div>
+      <div class="deco-corner br" style="bottom:40px;right:48px;"></div>
       <div class="cta-deco reveal">ARTHOUSE · ONCHAIN FOREVER</div>
-      <h2 class="cta-title reveal delay-1">START<br/><span>NOW.</span><br/><em>EXPLORE.</em></h2>
-      <p class="cta-desc reveal delay-2">Join the onchain art intelligence layer. Ask @arthousexbt anything. Find creators worth following before everyone else does.</p>
-      <div class="cta-btns reveal delay-3">
-        <a href="https://t.me/arthousexbt_bot" target="_blank" class="cta-btn-main">Open @arthousexbt on Telegram ↗</a>
-        <a href="https://zora.co/arthousebase" target="_blank" class="cta-btn-ghost">Explore on Zora →</a>
+      <h2 class="cta-title reveal d1">START<br/><span>NOW.</span><br/><em>EXPLORE.</em></h2>
+      <p class="cta-desc reveal d2">Join the onchain art intelligence layer. Ask @arthousexbt anything. Find creators worth following before everyone else does.</p>
+      <div class="cta-btns reveal d3">
+        <a href="https://t.me/arthousexbt_bot" target="_blank" class="cta-main">Open @arthousexbt on Telegram ↗</a>
+        <a href="https://zora.co/arthousebase" target="_blank" class="cta-ghost">Explore on Zora →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-col" style="padding-left:48px;">
-      <div class="footer-brand">ART<span>HOUSE</span></div>
-      <p class="footer-tagline">The intelligence layer for onchain art. Preserving creativity on Base and Zora. Talent scout, not trading bot.</p>
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;">◆ &nbsp; ONCHAIN FOREVER</div>
+<section class="social-section" id="social">
+  <div class="container">
+    <div class="social-inner">
+      <div class="social-header reveal">
+        <div style="flex:1;min-width:200px;">
+          <div class="social-label">Official Channels</div>
+          <h2 class="social-title">FOLLOW<br/><em>ARTHOUSE</em></h2>
+        </div>
+        <p class="social-desc">Stay connected across all official Arthouse channels. Updates, drops, and intelligence — live.</p>
+      </div>
+      <div class="social-grid">
+
+        <!-- X / Twitter -->
+        <a href="https://x.com/arthousebase" target="_blank" class="social-card reveal d1">
+          <div class="sc-green-bar"></div>
+          <div class="sc-top">
+            <div class="sc-icon-wrap">𝕏</div>
+            <span class="sc-num">01</span>
+          </div>
+          <span class="sc-platform">X (TWITTER)</span>
+          <span class="sc-handle">@arthousebase</span>
+          <div class="sc-arrow">FOLLOW ↗</div>
+        </a>
+
+        <!-- Base App -->
+        <a href="https://base.app/profile/arthouse" target="_blank" class="social-card reveal d2">
+          <div class="sc-green-bar"></div>
+          <div class="sc-top">
+            <div class="sc-icon-wrap">🔵</div>
+            <span class="sc-num">02</span>
+          </div>
+          <span class="sc-platform">BASE APP</span>
+          <span class="sc-handle">@arthouse</span>
+          <div class="sc-arrow">FOLLOW ↗</div>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/arthousebase?igsh=dWZkcWxiaTFhM2cz" target="_blank" class="social-card reveal d3">
+          <div class="sc-green-bar"></div>
+          <div class="sc-top">
+            <div class="sc-icon-wrap">📸</div>
+            <span class="sc-num">03</span>
+          </div>
+          <span class="sc-platform">INSTAGRAM</span>
+          <span class="sc-handle">@arthousebase</span>
+          <div class="sc-arrow">FOLLOW ↗</div>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@arthousebase" target="_blank" class="social-card reveal d4">
+          <div class="sc-green-bar"></div>
+          <div class="sc-top">
+            <div class="sc-icon-wrap">▶</div>
+            <span class="sc-num">04</span>
+          </div>
+          <span class="sc-platform">TIKTOK</span>
+          <span class="sc-handle">@arthousebase</span>
+          <div class="sc-arrow">FOLLOW ↗</div>
+        </a>
+
+      </div>
+      <!-- Green decorative accent line -->
+      <div style="margin-top:40px;height:1px;background:linear-gradient(to right,var(--green),transparent);opacity:.4;"></div>
     </div>
-    <div class="footer-col">
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <div class="foot-brand">ART<span>HOUSE</span></div>
+      <p class="foot-tag">The intelligence layer for onchain art. Preserving creativity on Base and Zora. Talent scout, not trading bot.</p>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.1em;">◆ &nbsp; ONCHAIN FOREVER</div>
+    </div>
+    <div class="foot-col">
       <h4>Platform</h4>
       <a href="https://zora.co/arthousebase" target="_blank">Zora</a>
       <a href="https://www.base.org" target="_blank">Base</a>
       <a href="https://t.me/arthousexbt_bot" target="_blank">Telegram Bot</a>
       <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce" target="_blank">DexScreener</a>
     </div>
-    <div class="footer-col">
+    <div class="foot-col">
       <h4>Resources</h4>
       <a href="#">Documentation</a>
       <a href="#">API</a>
       <a href="#">Status</a>
     </div>
-    <div class="footer-col">
+    <div class="foot-col">
       <h4>Connect</h4>
-      <a href="#">Twitter / X</a>
-      <a href="#">Farcaster</a>
-      <a href="#">Mirror</a>
+      <a href="https://x.com/arthousebase" target="_blank">X (Twitter)</a>
+      <a href="https://base.app/profile/arthouse" target="_blank">Base App</a>
+      <a href="https://www.instagram.com/arthousebase" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@arthousebase" target="_blank">TikTok</a>
     </div>
   </div>
-  <!-- FIX: year 2026 -->
-  <div class="footer-bottom">
-    <div class="footer-bottom-left">© 2026 Arthouse. All rights reserved.</div>
-    <div class="footer-bottom-right">Onchain Forever</div>
+  <div class="foot-bot">
+    <div class="foot-copy">© 2026 Arthouse. All rights reserved.</div>
+    <div class="foot-ever">Onchain Forever</div>
   </div>
 </footer>
 
 <script>
-/* ── CURSOR ── */
-const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+/* CURSOR */
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function animR(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animR);})();
+(function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim);})();
 document.addEventListener('mouseover',e=>{
-  if(e.target.closest('a,button,.suggestion-chip')){ring.style.width='56px';ring.style.height='56px';ring.style.borderColor='var(--black)';}
+  if(e.target.closest('a,button,.chip')){ring.style.width='56px';ring.style.height='56px';ring.style.borderColor='var(--black)';}
   else{ring.style.width='40px';ring.style.height='40px';ring.style.borderColor='var(--blue)';}
 });
 
-/* ── MOBILE MENU ── */
-function toggleMenu(){
-  const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
-  h.classList.toggle('open');m.classList.toggle('open');
+/* DROID EYE TRACKING */
+(function(){
+  const svg=document.getElementById('droidSvg');
+  if(!svg)return;
+  // Eye centers in SVG local coords
+  const eyes=[
+    {el:document.getElementById('eyeballL'),cx:97,cy:106,limit:5},
+    {el:document.getElementById('eyeballR'),cx:163,cy:106,limit:5}
+  ];
+  let isMobile=window.matchMedia('(max-width:768px)').matches;
+  window.addEventListener('resize',()=>{isMobile=window.matchMedia('(max-width:768px)').matches;});
+
+  // Mouse tracking for desktop
+  document.addEventListener('mousemove',e=>{
+    if(isMobile)return;
+    const rect=svg.getBoundingClientRect();
+    const svgW=rect.width,svgH=rect.height;
+    const scaleX=260/svgW,scaleY=360/svgH;
+    const mouseX=(e.clientX-rect.left)*scaleX;
+    const mouseY=(e.clientY-rect.top)*scaleY;
+    eyes.forEach(eye=>{
+      if(!eye.el)return;
+      const dx=mouseX-eye.cx,dy=mouseY-eye.cy;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      const maxD=eye.limit;
+      const tx=dist>0?Math.min(dx/dist*maxD,maxD*(dx<0?-1:1)):0;
+      const ty=dist>0?Math.min(dy/dist*maxD,maxD*(dy<0?-1:1)):0;
+      eye.el.style.transform=`translate(${tx.toFixed(2)}px,${ty.toFixed(2)}px)`;
+    });
+  });
+
+  // Mobile: idle oscillation instead of tracking
+  if(isMobile){
+    let t=0;
+    (function idleEyes(){
+      t+=0.015;
+      const tx=Math.sin(t)*3,ty=Math.cos(t*0.7)*2;
+      eyes.forEach(eye=>{
+        if(eye.el)eye.el.style.transform=`translate(${tx.toFixed(2)}px,${ty.toFixed(2)}px)`;
+      });
+      requestAnimationFrame(idleEyes);
+    })();
+  }
+
+  // Droid entrance animation
+  if(svg){
+    svg.style.opacity='0';svg.style.transform='translateY(30px)';
+    setTimeout(()=>{
+      svg.style.transition='opacity .8s ease, transform .8s cubic-bezier(.25,.46,.45,.94)';
+      svg.style.opacity='1';svg.style.transform='translateY(0)';
+    },400);
+  }
+})();
+
+/* MOBILE NAV */
+function toggleNav(){
+  document.getElementById('hmbgr').classList.toggle('open');
+  document.getElementById('mobMenu').classList.toggle('open');
 }
 
-/* ── TICKER — seamless JS clone ── */
+/* TICKER — FIX #8: JS clone for perfect seamless loop */
 const tt=document.getElementById('tickerTrack');
 tt.innerHTML+=tt.innerHTML;
 
-/* ── SCROLL REVEAL — FIX threshold 0.15 ── */
-const revObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:0.15});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>revObs.observe(el));
+/* SCROLL REVEAL — FIX #11: threshold 0.15 */
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');});},{threshold:0.15});
+document.querySelectorAll('.reveal,.rev-l,.rev-r').forEach(el=>obs.observe(el));
 
-/* ── COUNT UP — FIX: observe wrapper div not span ── */
-let statsDone=false;
-const statObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting&&!statsDone){
-      statsDone=true;
-      const s1=document.getElementById('stat1'),s2=document.getElementById('stat2');
-      let v1=0,v2=0;
-      const t=setInterval(()=>{
-        v1=Math.min(v1+0.1,12.4);v2=Math.min(v2+14,847);
-        s1.textContent=v1.toFixed(1);s2.textContent=Math.floor(v2);
-        if(v1>=12.4&&v2>=847)clearInterval(t);
-      },16);
-    }
-  });
-},{threshold:0.3});
-statObs.observe(document.getElementById('statsSection'));
-
-/* ── TOKEN FETCH — FIX: graceful CORS fallback ── */
-let tokenLoaded=false;
+/* TOKEN — FIX #1: CORS-safe with timeout and graceful fallback */
+let tokenOk=false;
 async function fetchToken(){
-  const addr='0xd3216582e3e31578e01b7fd8eda6de969f3658ce';
   try{
-    const res=await fetch(`https://api.dexscreener.com/latest/dex/tokens/${addr}`,{signal:AbortSignal.timeout(8000)});
+    const ctrl=new AbortController();
+    setTimeout(()=>ctrl.abort(),8000);
+    const res=await fetch('https://api.dexscreener.com/latest/dex/tokens/0xd3216582e3e31578e01b7fd8eda6de969f3658ce',{signal:ctrl.signal});
     if(!res.ok)throw new Error('http '+res.status);
-    const data=await res.json();
-    const pair=data.pairs&&data.pairs[0];
-    if(!pair)throw new Error('no pair');
-    document.getElementById('tokenLoading').style.display='none';
-    document.getElementById('tokenFallback').style.display='none';
-    document.getElementById('tokenData').style.display='block';
-    const price=parseFloat(pair.priceUsd);
-    document.getElementById('tokenPrice').textContent=
-      price<0.000001?'$'+price.toExponential(2):
-      price<0.0001?'$'+price.toFixed(8):
-      price<0.01?'$'+price.toFixed(6):
-      '$'+price.toFixed(4);
-    const chg=pair.priceChange?.h24||0;
-    const ce=document.getElementById('tokenChange');
+    const d=await res.json();
+    const p=d.pairs&&d.pairs[0];
+    if(!p)throw new Error('no pair');
+    document.getElementById('tLoading').style.display='none';
+    document.getElementById('tFail').style.display='none';
+    document.getElementById('tData').style.display='block';
+    const pr=parseFloat(p.priceUsd);
+    document.getElementById('tPrice').textContent=
+      pr<0.000001?'$'+pr.toExponential(2):pr<0.0001?'$'+pr.toFixed(8):pr<0.01?'$'+pr.toFixed(6):'$'+pr.toFixed(4);
+    const chg=p.priceChange?.h24||0;
+    const ce=document.getElementById('tChange');
     ce.textContent=(chg>=0?'+':'')+chg.toFixed(2)+'% (24h)';
-    ce.className='token-change '+(chg>=0?'positive':'negative');
+    ce.className='token-change '+(chg>=0?'pos':'neg');
     const fmt=n=>{if(!n||isNaN(n))return '—';n=parseFloat(n);return n>=1e9?'$'+(n/1e9).toFixed(2)+'B':n>=1e6?'$'+(n/1e6).toFixed(2)+'M':n>=1e3?'$'+(n/1e3).toFixed(1)+'K':'$'+n.toFixed(2);};
-    document.getElementById('tokenVol').textContent=fmt(pair.volume?.h24);
-    document.getElementById('tokenMcap').textContent=fmt(pair.marketCap);
-    document.getElementById('tokenLiq').textContent=fmt(pair.liquidity?.usd);
-    const tx=pair.txns?.h24;
-    document.getElementById('tokenTxns').textContent=tx?(tx.buys+tx.sells).toLocaleString():'—';
-    const now=new Date();
-    document.getElementById('tokenRefresh').textContent='Last updated: '+now.toLocaleTimeString();
-    tokenLoaded=true;
+    document.getElementById('tVol').textContent=fmt(p.volume?.h24);
+    document.getElementById('tMcap').textContent=fmt(p.marketCap);
+    document.getElementById('tLiq').textContent=fmt(p.liquidity?.usd);
+    const tx=p.txns?.h24;
+    document.getElementById('tTxns').textContent=tx?(tx.buys+tx.sells).toLocaleString():'—';
+    document.getElementById('tRefresh').textContent='Updated '+new Date().toLocaleTimeString();
+    tokenOk=true;
   }catch(e){
-    document.getElementById('tokenLoading').style.display='none';
-    if(!tokenLoaded){
-      document.getElementById('tokenFallback').style.display='block';
-    }
+    document.getElementById('tLoading').style.display='none';
+    if(!tokenOk)document.getElementById('tFail').style.display='block';
   }
 }
 fetchToken();
 setInterval(fetchToken,30000);
 
-/* ── COPY ADDRESS ── */
+/* COPY ADDR */
 function copyAddr(){
-  const addr='0xd3216582e3e31578e01b7fd8eda6de969f3658ce';
-  navigator.clipboard.writeText(addr).catch(()=>{});
-  const el=document.getElementById('tokenAddr');
-  const orig=el.textContent;
-  el.textContent='Copied!';
-  el.style.color='var(--gold)';
-  setTimeout(()=>{el.textContent=orig;el.style.color='';},1500);
+  navigator.clipboard.writeText('0xd3216582e3e31578e01b7fd8eda6de969f3658ce').catch(()=>{});
+  const el=document.getElementById('tAddr'),orig=el.textContent;
+  el.textContent='✓ Copied!';el.style.color='var(--gold)';
+  setTimeout(()=>{el.textContent=orig;el.style.color='';},1600);
 }
 
-/* ── BOT DEMO ── */
-let msgCount=0,botBusy=false;
-const chatMsgs=document.getElementById('chatMessages');
-const chatRedir=document.getElementById('chatRedirect');
+/* BOT */
+let busy=false,cnt=0;
+const CM=document.getElementById('chatMsgs'),CR=document.getElementById('chatRedir');
 
-const RESPONSES={
+const FLOWS={
   'analyze @liquidcreator':[
-    {delay:500,type:'system',text:'◆ Scanning onchain activity for @liquidcreator...'},
-    {delay:1800,type:'score',creator:'@liquidcreator',score:74,d1:19,d2:18,d3:22,d4:12,cls:'WATCHLIST ⚡',clsColor:'#f59e0b',note:'Strong content consistency and clear building signals. Traction still early. Monitor next 3–4 weeks.'},
+    {t:'sys',d:500,txt:'◆ Scanning onchain activity for @liquidcreator...'},
+    {t:'score',d:1800,creator:'@liquidcreator',score:74,d1:19,d2:18,d3:22,d4:12,cls:'WATCHLIST ⚡',cc:'#f59e0b',note:'Strong content consistency and building signals. Traction still early. Monitor next 3–4 weeks.'},
   ],
   'who is building this week?':[
-    {delay:400,type:'system',text:'◆ Analyzing active builders on Zora this week...'},
-    {delay:1600,type:'ai',text:'Top 3 active builders this week on Zora:\n\n1. @voidmaker — Ongoing "Void Series", part 7 published. Deep community engagement.\n\n2. @electriccanvas — Experimenting with Zora Coins + generative drops. High Farcaster activity.\n\n3. @quietform — Slow and consistent. No hype, strong collector base growing organically.'},
+    {t:'sys',d:400,txt:'◆ Analyzing active builders on Zora this week...'},
+    {t:'ai',d:1600,txt:'Top 3 active builders on Zora this week:\n\n1. @voidmaker — "Void Series" part 7 published. Deep community engagement.\n\n2. @electriccanvas — Experimenting with Zora Coins + generative drops. High Farcaster activity.\n\n3. @quietform — Slow and consistent. No hype, strong collector base growing organically.'},
   ],
   'is this creator legit?':[
-    {delay:300,type:'system',text:'◆ Running red flag checklist...'},
-    {delay:1400,type:'ai',text:'To run a full red flag check, share the creator handle.\n\nQuick checklist I run:\n✓ Wallet age > 3 months\n✓ Bio with real context\n✓ Active Farcaster presence\n✓ Content has a theme/niche\n✓ Holder distribution (not 1–2 wallets)\n✓ Engages with other creators\n\nSend me the handle and I\'ll check all 6.'},
+    {t:'sys',d:300,txt:'◆ Running red flag checklist...'},
+    {t:'ai',d:1500,txt:'To run a full red flag check, share the creator handle.\n\nChecklist I run:\n✓ Wallet age > 3 months\n✓ Bio with real context\n✓ Active Farcaster presence\n✓ Content has a theme/niche\n✓ Holder distribution (not 1–2 wallets)\n✓ Engages with other creators\n\nSend me the handle and I\'ll check all 6.'},
   ],
   'what makes a real builder?':[
-    {delay:300,type:'ai',text:'The difference between a builder and a flipper:\n\nBuilder signals:\n→ Shares process, not just results\n→ Has a content series or arc in progress\n→ Replies to other creators with substance\n→ Active on Farcaster discussing the ecosystem\n→ Still posting 6 months from now\n\nFlipper signals:\n→ Burst posting then silence\n→ All posts = "buy my coin"\n→ Never engages with anyone else\n→ No narrative behind the work\n\nBuilders build. Flippers exit.'},
+    {t:'ai',d:400,txt:'Builder vs Flipper:\n\nBuilder signals:\n→ Shares process, not just results\n→ Has a content series in progress\n→ Replies to other creators with substance\n→ Active on Farcaster discussing the ecosystem\n→ Still posting 6 months from now\n\nFlipper signals:\n→ Burst posting then silence\n→ All posts = "buy my coin"\n→ Never engages with anyone\n→ No narrative behind the work\n\nBuilders build. Flippers exit.'},
   ],
 };
-
-// FIX: better fallback responses
-const FALLBACKS=[
-  {delay:400,type:'system',text:'◆ Processing your query...'},
-  {delay:1400,type:'ai',text:'Good question. For detailed live analysis, ask this directly to @arthousexbt_bot on Telegram — the full intelligence layer runs there with live onchain data, complete creator profiles, and no message limits for $ARTHOUSE holders.'},
+/* FIX #3: better fallback */
+const FALLBACK=[
+  {t:'sys',d:400,txt:'◆ Processing your query...'},
+  {t:'ai',d:1500,txt:'Good question. For detailed live analysis with real onchain data, continue this conversation on @arthousexbt_bot in Telegram.\n\nFull intelligence layer runs there — no limits for $ARTHOUSE holders.'},
 ];
 
-function addMsg(type,content){
-  return new Promise(res=>{
-    if(type==='typing'){
-      const el=document.createElement('div');
-      el.className='msg';el.id='typingIndicator';
-      el.innerHTML='<div class="msg-bubble ai"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>';
-      chatMsgs.appendChild(el);
-    } else {
-      const old=document.getElementById('typingIndicator');if(old)old.remove();
-      const el=document.createElement('div');
-      el.className='msg'+(type==='user'?' user':'');
-      if(type==='score'){
-        const p1=(content.d1/25)*100,p2=(content.d2/25)*100,p3=(content.d3/30)*100,p4=(content.d4/20)*100;
-        el.innerHTML=`<div class="msg-bubble ai"><div class="score-display">
-          <strong>${content.creator}</strong><br/><br/>
-          <span style="font-size:9px;letter-spacing:0.1em;color:#999;text-transform:uppercase;">Creator Score</span><br/>
-          <span style="font-family:'Bebas Neue';font-size:40px;color:var(--blue);line-height:1;">${content.score}</span><span style="color:#aaa;font-size:12px;"> / 100</span><br/><br/>
-          <div class="score-bar"><span>Profile & Identity</span><span style="color:var(--blue);">${content.d1}/25</span></div>
-          <div style="height:3px;background:#f0f0f0;margin-bottom:8px;"><div style="width:${p1}%;height:3px;background:var(--blue);"></div></div>
-          <div class="score-bar"><span>Content Consistency</span><span style="color:var(--blue);">${content.d2}/25</span></div>
-          <div style="height:3px;background:#f0f0f0;margin-bottom:8px;"><div style="width:${p2}%;height:3px;background:var(--blue);"></div></div>
-          <div class="score-bar"><span>Currently Building ★</span><span style="color:var(--blue);">${content.d3}/30</span></div>
-          <div style="height:3px;background:#f0f0f0;margin-bottom:8px;"><div style="width:${p3}%;height:3px;background:var(--blue);"></div></div>
-          <div class="score-bar"><span>Early Traction</span><span style="color:var(--blue);">${content.d4}/20</span></div>
-          <div style="height:3px;background:#f0f0f0;margin-bottom:14px;"><div style="width:${p4}%;height:3px;background:var(--blue);"></div></div>
-          <div style="padding:8px 14px;border:2px solid ${content.clsColor};display:inline-block;font-weight:700;color:${content.clsColor};letter-spacing:0.08em;font-family:'DM Mono',monospace;font-size:12px;">${content.cls}</div>
-          <br/><br/><span style="color:#888;font-size:12px;">${content.note}</span>
-        </div></div>`;
-      } else if(type==='system'){
-        el.innerHTML=`<div class="msg-bubble system">${content}</div>`;
-      } else if(type==='user'){
-        el.innerHTML=`<div class="msg-bubble user">${content}</div>`;
-      } else {
-        el.innerHTML=`<div class="msg-bubble ai">${content.replace(/\n/g,'<br/>')}</div>`;
-      }
-      chatMsgs.appendChild(el);
-    }
-    chatMsgs.scrollTop=chatMsgs.scrollHeight;
-    res();
-  });
+function mkBubble(type,content){
+  const w=document.createElement('div');
+  w.className='msg'+(type==='usr'?' usr':'');
+  if(type==='score'){
+    const p1=(content.d1/25)*100,p2=(content.d2/25)*100,p3=(content.d3/30)*100,p4=(content.d4/20)*100;
+    w.innerHTML=`<div class="bubble ai"><div class="score-disp">
+      <strong>${content.creator}</strong><br/><br/>
+      <span style="font-size:9px;letter-spacing:.1em;color:#999;text-transform:uppercase;">Creator Score</span><br/>
+      <span style="font-family:'Bebas Neue';font-size:42px;color:var(--blue);line-height:1;">${content.score}</span><span style="color:#aaa;font-size:12px;"> / 100</span><br/><br/>
+      <div class="score-row"><span>Profile & Identity</span><span style="color:var(--blue);">${content.d1}/25</span></div>
+      <div style="height:3px;background:#f0f0f0;margin-bottom:7px;"><div style="width:${p1}%;height:3px;background:var(--blue);"></div></div>
+      <div class="score-row"><span>Content Consistency</span><span style="color:var(--blue);">${content.d2}/25</span></div>
+      <div style="height:3px;background:#f0f0f0;margin-bottom:7px;"><div style="width:${p2}%;height:3px;background:var(--blue);"></div></div>
+      <div class="score-row"><span>Currently Building ★</span><span style="color:var(--blue);">${content.d3}/30</span></div>
+      <div style="height:3px;background:#f0f0f0;margin-bottom:7px;"><div style="width:${p3}%;height:3px;background:var(--blue);"></div></div>
+      <div class="score-row"><span>Early Traction</span><span style="color:var(--blue);">${content.d4}/20</span></div>
+      <div style="height:3px;background:#f0f0f0;margin-bottom:14px;"><div style="width:${p4}%;height:3px;background:var(--blue);"></div></div>
+      <div style="padding:8px 14px;border:2px solid ${content.cc};display:inline-block;font-weight:700;color:${content.cc};letter-spacing:.08em;font-family:'DM Mono',monospace;font-size:12px;">${content.cls}</div>
+      <br/><br/><span style="color:#888;font-size:12px;">${content.note}</span>
+    </div></div>`;
+  }else if(type==='sys'){
+    w.innerHTML=`<div class="bubble sys">${content}</div>`;
+  }else if(type==='usr'){
+    w.innerHTML=`<div class="bubble usr">${content}</div>`;
+  }else{
+    w.innerHTML=`<div class="bubble ai">${content.replace(/\n/g,'<br/>')}</div>`;
+  }
+  CM.appendChild(w);CM.scrollTop=CM.scrollHeight;
 }
+
+function showTyping(){
+  const el=document.createElement('div');
+  el.className='msg';el.id='typi';
+  el.innerHTML='<div class="bubble ai"><div class="typi"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div></div>';
+  CM.appendChild(el);CM.scrollTop=CM.scrollHeight;
+}
+function hideTyping(){const el=document.getElementById('typi');if(el)el.remove();}
 
 async function runFlow(key){
-  if(botBusy)return;
-  botBusy=true;
-  const flow=RESPONSES[key]||FALLBACKS;
-  await addMsg('typing');
-  for(const step of flow){
-    await new Promise(r=>setTimeout(r,step.delay));
-    const old=document.getElementById('typingIndicator');if(old)old.remove();
-    if(step.type==='system'){
-      await addMsg('system',step.text);
-      await addMsg('typing');
-    } else if(step.type==='score'){
-      await addMsg('score',step);
-    } else {
-      await addMsg('ai',step.text);
-    }
+  if(busy)return;busy=true;
+  const flow=FLOWS[key]||FALLBACK;
+  showTyping();
+  for(const s of flow){
+    await new Promise(r=>setTimeout(r,s.d));
+    hideTyping();
+    if(s.t==='sys'){mkBubble('sys',s.txt);showTyping();}
+    else if(s.t==='score'){mkBubble('score',s);}
+    else{mkBubble('ai',s.txt);}
   }
-  msgCount++;
-  if(msgCount>=2)chatRedir.classList.add('show');
-  botBusy=false;
+  cnt++;if(cnt>=2)CR.classList.add('show');
+  busy=false;
 }
 
-// FIX: chips persist — just pass the text, don't hide chips
-function sendSuggestion(text){
-  addMsg('user',text);
-  const key=Object.keys(RESPONSES).find(k=>text.toLowerCase().includes(k.split(' ')[0].replace('@','').toLowerCase()))||null;
+/* FIX #2: chips persist — don't hide them */
+function doChip(text){
+  mkBubble('usr',text);
+  const key=Object.keys(FLOWS).find(k=>text.toLowerCase().includes(k.replace('@','').split(' ')[0].toLowerCase()))||null;
   runFlow(key||text);
 }
 
-function sendMsg(){
-  const inp=document.getElementById('chatInput');
-  const msg=inp.value.trim();if(!msg||botBusy)return;
-  inp.value='';
-  addMsg('user',msg);
-  const key=Object.keys(RESPONSES).find(k=>msg.toLowerCase().includes(k.split(' ')[0].replace('@','').toLowerCase()))||null;
+function doSend(){
+  const inp=document.getElementById('chatInp');
+  const msg=inp.value.trim();if(!msg||busy)return;
+  inp.value='';mkBubble('usr',msg);
+  const key=Object.keys(FLOWS).find(k=>msg.toLowerCase().includes(k.replace('@','').split(' ')[0].toLowerCase()))||null;
   runFlow(key);
 }
 
-function handleKey(e){if(e.key==='Enter')sendMsg();}
-
-// FIX: reset chat completely
+/* FIX #7: full chat reset */
 function resetChat(){
-  chatMsgs.innerHTML='';
-  chatRedir.classList.remove('show');
-  msgCount=0;botBusy=false;
-  const old=document.getElementById('typingIndicator');if(old)old.remove();
-  addMsg('ai','Welcome. I\'m <strong>Arthousexbt</strong> — your onchain art intelligence agent.<br/><br/>Ask me to analyze a creator, detect red flags, or find who\'s genuinely building on Zora.');
+  CM.innerHTML='';CR.classList.remove('show');
+  cnt=0;busy=false;hideTyping();
+  setTimeout(()=>{
+    mkBubble('ai','Welcome. I\'m <strong>Arthousexbt</strong> — your onchain art intelligence agent.<br/><br/>Ask me to analyze a creator, detect red flags, or find who\'s genuinely building on Zora.');
+  },100);
 }
-
-// Init chat
 resetChat();
 </script>
 </body>
