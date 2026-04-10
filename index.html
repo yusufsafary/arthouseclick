@@ -44,35 +44,36 @@ body{background:var(--white);color:var(--black);font-family:'DM Sans',sans-serif
 .cursor{position:fixed;width:12px;height:12px;background:var(--blue);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:multiply;}
 .cursor-ring{position:fixed;width:40px;height:40px;border:2px solid var(--blue);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;mix-blend-mode:multiply;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:var(--white);border-bottom:var(--border);z-index:100;}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.1em;color:var(--black);text-decoration:none;}
-.nav-logo span{color:var(--blue);}
+/* NAV — glassmorphism overlay matching hero */
+nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(30,32,38,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08);z-index:100;transition:background .3s;}
+nav.scrolled{background:rgba(24,26,31,.92);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.1em;color:var(--white);text-decoration:none;}
+.nav-logo span{color:#5577ff;}
 .nav-links{display:flex;align-items:center;}
-.nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--black);text-decoration:none;padding:0 20px;height:64px;display:flex;align-items:center;border-left:var(--border-thin);transition:all .2s;}
-.nav-links a:hover{background:var(--black);color:var(--white);}
-.nav-cta{background:var(--blue)!important;color:var(--white)!important;border-left:var(--border)!important;}
-.nav-cta:hover{background:var(--black)!important;}
+.nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);text-decoration:none;padding:0 20px;height:64px;display:flex;align-items:center;border-left:1px solid rgba(255,255,255,.08);transition:all .2s;}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.06);}
+.nav-cta{background:var(--blue)!important;color:var(--white)!important;border-left:1px solid rgba(0,0,255,.4)!important;}
+.nav-cta:hover{background:#3344dd!important;}
 
 /* MOBILE NAV — FIX #4 */
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:var(--border-thin);background:transparent;}
-.hamburger span{display:block;width:22px;height:2px;background:var(--black);transition:all .3s;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(255,255,255,.15);background:transparent;}
+.hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);transition:all .3s;}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mob-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:var(--border);z-index:99;flex-direction:column;}
+.mob-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(24,26,31,.97);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08);z-index:99;flex-direction:column;}
 .mob-menu.open{display:flex;}
-.mob-menu a{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--black);text-decoration:none;padding:20px 48px;border-bottom:var(--border-thin);transition:all .2s;}
-.mob-menu a:hover{background:var(--black);color:var(--white);}
+.mob-menu a{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;padding:20px 48px;border-bottom:1px solid rgba(255,255,255,.06);transition:all .2s;}
+.mob-menu a:hover{background:rgba(255,255,255,.06);color:var(--white);}
 .mob-menu a.mob-cta{background:var(--blue);color:var(--white);}
-.mob-menu a.mob-cta:hover{background:var(--black);}
+.mob-menu a.mob-cta:hover{background:#3344dd;}
 
-/* TICKER — FIX #8 seamless JS clone */
-.ticker{background:var(--blue);border-bottom:var(--border);overflow:hidden;padding:10px 0;margin-top:64px;}
+/* TICKER */
+.ticker{background:rgba(20,22,28,.95);border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden;padding:9px 0;margin-top:64px;}
 .ticker-track{display:flex;white-space:nowrap;width:max-content;animation:tick 22s linear infinite;}
 .ticker-track:hover{animation-play-state:paused;}
-.ticker-item{font-family:'DM Mono',monospace;font-size:11px;color:var(--white);letter-spacing:.1em;padding:0 32px;display:inline-flex;align-items:center;gap:12px;}
-.ticker-item::after{content:'◆';font-size:7px;color:rgba(255,255,255,.4);}
+.ticker-item{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.1em;padding:0 32px;display:inline-flex;align-items:center;gap:12px;}
+.ticker-item::after{content:'◆';font-size:7px;color:rgba(102,200,0,.35);}
 @keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
 /* DECO CORNERS */
@@ -163,27 +164,27 @@ section{position:relative;overflow:hidden;}
   padding:0;
 }
 
-/* BOTTOM: text content centered */
+/* BOTTOM: text content centered — compact */
 .hero-left{
   width:100%;
-  padding:40px 48px 56px;
+  padding:28px 48px 40px;
   display:flex;
   flex-direction:column;
   align-items:center;
   text-align:center;
   position:relative;
-  background:transparent;
+  background:linear-gradient(to top, rgba(18,20,26,.98) 0%, rgba(18,20,26,.8) 60%, transparent 100%);
   border-top:none;
 }
 
-.hero-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(102,200,0,.9);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
-.hero-label::before{content:'◆';font-size:8px;color:var(--gold);}
+.hero-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(102,200,0,.8);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-label::before{content:'◆';font-size:7px;color:var(--gold);}
 
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7vw,110px);line-height:.9;letter-spacing:.04em;margin-bottom:20px;color:var(--white);}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,96px);line-height:.92;letter-spacing:.04em;margin-bottom:14px;color:var(--white);}
 h1 .blue{color:#5577ff;}
-h1 .stroke{-webkit-text-stroke:2px rgba(255,255,255,.6);color:transparent;}
+h1 .stroke{-webkit-text-stroke:2px rgba(255,255,255,.55);color:transparent;}
 
-.hero-desc{font-size:15px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8;max-width:480px;margin-bottom:36px;}
+.hero-desc{font-size:14px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.75;max-width:440px;margin-bottom:28px;}
 .hero-btns{display:flex;flex-wrap:wrap;gap:0;justify-content:center;}
 .btn-primary{padding:18px 36px;background:var(--blue);color:var(--white);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:var(--border);display:inline-flex;align-items:center;gap:12px;transition:all .2s;}
 .btn-primary:hover{background:#3344dd;}
@@ -386,16 +387,7 @@ svg.droid{filter:drop-shadow(0 12px 40px rgba(0,0,0,.45));}
 .redir-btn{padding:8px 16px;background:var(--blue);color:var(--white);font-family:'DM Mono',monospace;font-size:10px;text-decoration:none;border:none;white-space:nowrap;transition:background .2s;cursor:pointer;display:inline-block;}
 .redir-btn:hover{background:var(--black);}
 
-/* HOW */
-.how-section{border-bottom:var(--border);background:var(--white);}
-.how-inner{padding:96px 0;}
-.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);border:var(--border);margin-top:64px;}
-.step{padding:48px 40px;border-right:var(--border);position:relative;}
-.step:last-child{border-right:none;}
-.step-bg{font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:1;position:absolute;top:24px;right:24px;-webkit-text-stroke:1px var(--gray-mid);color:transparent;pointer-events:none;}
-.step-icon{width:48px;height:48px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:28px;border:var(--border);}
-.step-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;}
-.step-desc{font-size:14px;color:#666;line-height:1.7;font-weight:300;}
+/* HOW CSS removed — merged as compact strip into does section */
 
 /* CTA */
 .cta-section{background:var(--black);border-bottom:var(--border);}
@@ -481,11 +473,11 @@ footer{background:var(--white);border-top:var(--border);}
   .token-left{border-right:none;border-left:none;border-bottom:3px solid #222;}
   .bot-info{padding:60px 0;border-right:none;border-bottom:var(--border);}
   .bot-demo{padding:60px 0;}
-  .features-grid,.steps-grid{grid-template-columns:1fr;}
+  .features-grid,.steps-grid,.how-strip{grid-template-columns:1fr!important;}
   .feature-card{border-right:none;border-bottom:var(--border);}
   .feature-card:last-child{border-bottom:none;}
-  .step{border-right:none;border-bottom:var(--border);}
-  .step:last-child{border-bottom:none;}
+  .how-strip>div{border-right:none!important;border-bottom:var(--border);}
+  .how-strip>div:last-child{border-bottom:none!important;}
   .foot-grid{grid-template-columns:1fr 1fr;}
   .foot-col{border-right:none;border-bottom:var(--border-thin);}
   .foot-col:last-child{border-bottom:none;}
@@ -717,14 +709,14 @@ footer{background:var(--white);border-top:var(--border);}
         </div>
       </div><!-- end hero-right -->
 
-      <!-- BOTTOM: Text + CTA centered -->
+      <!-- BOTTOM: Text + CTA centered — compact -->
       <div class="hero-left">
-        <div class="hero-label reveal">Onchain Art Intelligence · Base + Zora</div>
-        <h1 class="reveal d1">FIND WHO'S<br/><span class="blue">ACTUALLY</span> <span class="stroke">BUILDING.</span></h1>
-        <p class="hero-desc reveal d2">The intelligence layer for onchain art. Arthouse scores creators on Base and Zora — separating builders from flippers.</p>
+        <div class="hero-label reveal">◆ Onchain Art Intelligence · Base + Zora</div>
+        <h1 class="reveal d1"><span class="blue">ACTUALLY</span> <span class="stroke">BUILDING.</span></h1>
+        <p class="hero-desc reveal d2">The intelligence layer for onchain art — separating builders from flippers on Base and Zora.</p>
         <div class="hero-btns reveal d3">
-          <a href="https://t.me/arthousexbt_bot" target="_blank" class="btn-primary" aria-label="Open Arthousexbt bot on Telegram">Ask @arthousexbt ↗</a>
-          <a href="#token" class="btn-secondary" aria-label="View ARTHOUSE token">View Token →</a>
+          <a href="https://t.me/arthousexbt_bot" target="_blank" class="btn-primary">Ask @arthousexbt ↗</a>
+          <a href="#token" class="btn-secondary">View $ARTHOUSE →</a>
         </div>
       </div>
 
@@ -804,6 +796,23 @@ footer{background:var(--white);border-top:var(--border);}
           <p class="feat-desc">Permanent preservation on Base and Zora. No platforms, no gatekeepers. Art and creator intelligence stored onchain, accessible forever.</p>
         </div>
       </div>
+
+      <!-- Compact HOW strip merged here -->
+      <div class="how-strip reveal" style="display:grid;grid-template-columns:repeat(3,1fr);border:var(--border);margin-top:40px;border-top:none;">
+        <div style="padding:28px 32px;border-right:var(--border);display:flex;align-items:center;gap:20px;">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gray-mid);line-height:1;flex-shrink:0;">01</span>
+          <div><strong style="font-family:'Syne',sans-serif;font-size:14px;display:block;margin-bottom:4px;">Connect</strong><span style="font-size:13px;color:#888;font-weight:300;">Open @arthousexbt_bot on Telegram — no wallet needed.</span></div>
+        </div>
+        <div style="padding:28px 32px;border-right:var(--border);display:flex;align-items:center;gap:20px;">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gray-mid);line-height:1;flex-shrink:0;">02</span>
+          <div><strong style="font-family:'Syne',sans-serif;font-size:14px;display:block;margin-bottom:4px;">Ask</strong><span style="font-size:13px;color:#888;font-weight:300;">"Analyze @username" — scored across 5 dimensions instantly.</span></div>
+        </div>
+        <div style="padding:28px 32px;display:flex;align-items:center;gap:20px;">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gray-mid);line-height:1;flex-shrink:0;">03</span>
+          <div><strong style="font-family:'Syne',sans-serif;font-size:14px;display:block;margin-bottom:4px;">Discover</strong><span style="font-size:13px;color:#888;font-weight:300;">Get a clear classification: Builder, Watchlist, Skip — every time.</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -853,22 +862,7 @@ footer{background:var(--white);border-top:var(--border);}
   </div>
 </section>
 
-<section class="how-section" id="how">
-  <div class="container">
-    <div class="how-inner">
-      <div class="section-header reveal">
-        <span class="section-num">02 —</span>
-        <h2 class="section-title">HOW IT <em>WORKS</em></h2>
-        <p class="section-desc">Three steps from curious to convinced.</p>
-      </div>
-      <div class="steps-grid">
-        <div class="step reveal d1"><div class="step-bg">01</div><div class="step-icon">→</div><h3 class="step-title">Connect</h3><p class="step-desc">Open @arthousexbt_bot on Telegram. No wallet required, no signup. Just start asking.</p></div>
-        <div class="step reveal d2"><div class="step-bg">02</div><div class="step-icon">?</div><h3 class="step-title">Ask</h3><p class="step-desc">Ask about any creator on Zora. "Analyze @username" — Arthousexbt scores across 5 dimensions instantly.</p></div>
-        <div class="step reveal d3"><div class="step-bg">03</div><div class="step-icon">★</div><h3 class="step-title">Discover</h3><p class="step-desc">Get a classification: Highly Promising, Watchlist, Too Early, or Skip — with clear reasoning every time.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <section class="cta-section" id="start">
   <div class="container">
@@ -990,6 +984,11 @@ footer{background:var(--white);border-top:var(--border);}
 </footer>
 
 <script>
+/* NAV SCROLL */
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 40);
+},{passive:true});
+
 /* CURSOR */
 const cur=document.getElementById('cur'),ring=document.getElementById('ring');
 let mx=0,my=0,rx=0,ry=0;
