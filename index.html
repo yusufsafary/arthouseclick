@@ -45,28 +45,35 @@ body{background:var(--white);color:var(--black);font-family:'DM Sans',sans-serif
 .cursor-ring{position:fixed;width:40px;height:40px;border:2px solid var(--blue);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;mix-blend-mode:normal;}
 
 /* NAV — glassmorphism overlay matching hero */
-nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(30,32,38,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08);z-index:100;transition:background .3s;}
+nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;background:rgba(30,32,38,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08);z-index:100;transition:background .3s;}
 nav.scrolled{background:rgba(24,26,31,.92);}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.1em;color:var(--white);text-decoration:none;}
 .nav-logo span{color:var(--green);}
-.nav-links{display:flex;align-items:center;}
+.nav-links{display:none;}
 .nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);text-decoration:none;padding:0 20px;height:64px;display:flex;align-items:center;border-left:1px solid rgba(255,255,255,.08);transition:all .2s;}
 .nav-links a:hover{color:var(--white);background:rgba(255,255,255,.06);}
 .nav-cta{background:var(--green)!important;color:var(--black)!important;border-left:1px solid rgba(102,200,0,.4)!important;}
 .nav-cta:hover{background:#4da800!important;}
 
 /* MOBILE NAV — FIX #4 */
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(255,255,255,.15);background:transparent;}
-.hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);transition:all .3s;}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(0,0,255,.5);background:transparent;}
+.hamburger span{display:block;width:22px;height:2px;background:#0000ff;transition:all .3s;}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mob-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(24,26,31,.97);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08);z-index:99;flex-direction:column;}
+.mob-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(18,20,26,.98);backdrop-filter:blur(20px);z-index:99;flex-direction:column;overflow-y:auto;}
 .mob-menu.open{display:flex;}
-.mob-menu a{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;padding:20px 48px;border-bottom:1px solid rgba(255,255,255,.06);transition:all .2s;}
-.mob-menu a:hover{background:rgba(255,255,255,.06);color:var(--white);}
-.mob-menu a.mob-cta{background:var(--green);color:var(--black);}
-.mob-menu a.mob-cta:hover{background:#4da800;}
+.mob-menu .menu-section-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:24px 48px 8px;border-bottom:none;}
+.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.05em;color:rgba(255,255,255,.75);text-decoration:none;padding:14px 48px;border-bottom:1px solid rgba(255,255,255,.04);transition:all .2s;display:flex;align-items:center;justify-content:space-between;}
+.mob-menu a:hover{color:var(--white);padding-left:56px;}
+.mob-menu a .menu-arrow{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);}
+.mob-menu a:hover .menu-arrow{color:var(--green);}
+.mob-menu .menu-divider{height:1px;background:rgba(255,255,255,.06);margin:12px 48px;}
+.mob-menu a.mob-cta{font-family:'DM Mono',monospace;font-size:13px;background:var(--green);color:var(--black);margin:20px 48px;padding:16px 24px;border-bottom:none;letter-spacing:.1em;}
+.mob-menu a.mob-cta:hover{background:#4da800;padding-left:24px;}
+.mob-menu .menu-socials{padding:20px 48px;display:flex;gap:16px;flex-wrap:wrap;}
+.mob-menu .menu-socials a{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,.4);padding:6px 12px;border:1px solid rgba(255,255,255,.1);letter-spacing:.1em;transition:all .2s;font-size:10px;}
+.mob-menu .menu-socials a:hover{color:var(--white);border-color:var(--green);padding-left:12px;}
 
 /* TICKER */
 .ticker{background:rgba(20,22,28,.95);border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden;padding:9px 0;margin-top:64px;}
@@ -387,6 +394,9 @@ svg.droid{filter:drop-shadow(0 12px 40px rgba(0,0,0,.45));}
 .redir-btn{padding:8px 16px;background:var(--blue);color:var(--white);font-family:'DM Mono',monospace;font-size:10px;text-decoration:none;border:none;white-space:nowrap;transition:background .2s;cursor:pointer;display:inline-block;}
 .redir-btn:hover{background:var(--black);}
 
+
+/* Hidden sections — accessible via menu only */
+.section-hidden{display:none!important;}
 /* HOW CSS removed — merged as compact strip into does section */
 
 /* CTA */
@@ -465,8 +475,6 @@ footer{background:var(--white);border-top:var(--border);}
 /* MOBILE — FIX #4 #6 */
 @media(max-width:1024px){
   nav{padding:0 24px;}
-  .nav-links{display:none;}
-  .hamburger{display:flex;}
   .container{padding:0 24px;}
   .token-inner,.bot-inner{grid-template-columns:1fr;}
   /* FIX #6 — remove left border artifact on mobile */
@@ -527,12 +535,23 @@ footer{background:var(--white);border-top:var(--border);}
 </nav>
 
 <div class="mob-menu" id="mobMenu">
-  <a href="#does" onclick="toggleNav()">What It Does</a>
-  <a href="#token" onclick="toggleNav()">Token</a>
-  <a href="#bot" onclick="toggleNav()">Arthousexbt</a>
-  <a href="#social" onclick="toggleNav()">Social</a>
-  <a href="#start" onclick="toggleNav()">Start</a>
-  <a href="https://t.me/arthousexbt_bot" target="_blank" class="mob-cta">Open Bot ↗</a>
+  <span class="menu-section-label">Navigate</span>
+  <a href="#what" onclick="toggleNav()">Home <span class="menu-arrow">↗</span></a>
+  <a href="#token" onclick="toggleNav()">$Arthouse Token <span class="menu-arrow">↗</span></a>
+  <div class="menu-divider"></div>
+  <span class="menu-section-label">Explore</span>
+  <a href="#does" onclick="toggleNav()">What It Does <span class="menu-arrow">↗</span></a>
+  <a href="#bot" onclick="toggleNav()">Meet Arthousexbt <span class="menu-arrow">↗</span></a>
+  <a href="#start" onclick="toggleNav()">Get Started <span class="menu-arrow">↗</span></a>
+  <div class="menu-divider"></div>
+  <a href="https://t.me/arthousexbt_bot" target="_blank" class="mob-cta" onclick="toggleNav()">Open Bot on Telegram ↗</a>
+  <div class="menu-socials">
+    <a href="https://x.com/arthousebase" target="_blank" onclick="toggleNav()">𝕏 Twitter</a>
+    <a href="https://base.app/profile/arthouse" target="_blank" onclick="toggleNav()">🔵 Base</a>
+    <a href="https://www.instagram.com/arthousebase" target="_blank" onclick="toggleNav()">📸 Instagram</a>
+    <a href="https://www.tiktok.com/@arthousebase" target="_blank" onclick="toggleNav()">▶ TikTok</a>
+    <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce" target="_blank" onclick="toggleNav()">📈 DexScreener</a>
+  </div>
 </div>
 
 <div class="ticker">
@@ -768,7 +787,7 @@ footer{background:var(--white);border-top:var(--border);}
   </div>
 </section>
 
-<section class="does-section" id="does">
+<section class="does-section section-hidden" id="does">
   <div class="container">
     <div class="does-inner">
       <div class="section-header reveal">
@@ -817,7 +836,7 @@ footer{background:var(--white);border-top:var(--border);}
   </div>
 </section>
 
-<section class="bot-section" id="bot">
+<section class="bot-section section-hidden" id="bot">
   <div class="container" style="max-width:100%;padding:0 48px;">
     <div class="bot-inner">
       <div class="bot-info rev-l">
@@ -864,7 +883,7 @@ footer{background:var(--white);border-top:var(--border);}
 
 
 
-<section class="cta-section" id="start">
+<section class="cta-section section-hidden" id="start">
   <div class="container">
     <div class="cta-inner">
       <div class="deco-corner tl" style="top:40px;left:48px;"></div>
@@ -882,7 +901,7 @@ footer{background:var(--white);border-top:var(--border);}
   </div>
 </section>
 
-<section class="social-section" id="social">
+<section class="social-section section-hidden" id="social">
   <div class="container">
     <div class="social-inner">
       <div class="social-header reveal">
@@ -964,10 +983,11 @@ footer{background:var(--white);border-top:var(--border);}
       <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce" target="_blank">DexScreener</a>
     </div>
     <div class="foot-col">
-      <h4>Resources</h4>
-      <a href="#">Documentation</a>
-      <a href="#">API</a>
-      <a href="#">Status</a>
+      <h4>Features</h4>
+      <a href="#does" onclick="document.querySelector('.section-hidden#does').style.display='block';this.closest('footer').scrollIntoView()">What It Does</a>
+      <a href="#bot" onclick="document.querySelector('.section-hidden#bot').style.display='block';this.closest('footer').scrollIntoView()">Meet Arthousexbt</a>
+      <a href="#start" onclick="document.querySelector('.section-hidden#start').style.display='block'">Get Started</a>
+      <a href="#social" onclick="document.querySelector('.section-hidden#social').style.display='block'">Social Channels</a>
     </div>
     <div class="foot-col">
       <h4>Connect</h4>
@@ -1110,7 +1130,19 @@ document.addEventListener('mouseover',e=>{
 function toggleNav(){
   document.getElementById('hmbgr').classList.toggle('open');
   document.getElementById('mobMenu').classList.toggle('open');
+  // Lock body scroll when menu open
+  document.body.style.overflow = document.getElementById('mobMenu').classList.contains('open') ? 'hidden' : '';
 }
+
+// Show hidden section on menu link click
+document.querySelectorAll('.mob-menu a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function() {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target && target.classList.contains('section-hidden')) {
+      target.style.display = 'block';
+    }
+  });
+});
 
 /* TICKER — FIX #8: JS clone for perfect seamless loop */
 const tt=document.getElementById('tickerTrack');
