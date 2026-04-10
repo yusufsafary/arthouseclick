@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { HeroWalletBuy, WalletBuyButton } from "@/components/WalletBuy";
 
 const SCAN_MESSAGES = [
   "◆ SCANNING...",
@@ -467,6 +468,9 @@ function TokenSection() {
               </div>
             )}
             <a href={`https://dexscreener.com/base/${CONTRACT}`} target="_blank" rel="noopener noreferrer" className="token-cta">View Full Chart ↗</a>
+            <div style={{ marginTop: 24 }}>
+              <WalletBuyButton />
+            </div>
           </div>
           <div className="token-right rev-r">
             <div className="token-label">Why Hold $ARTHOUSE</div>
@@ -827,6 +831,9 @@ export default function Landing() {
             <div className="hero-btns reveal d3">
               <a href="https://t.me/arthousexbt_bot" target="_blank" rel="noopener noreferrer" className="btn-primary">Ask @arthousexbt ↗</a>
               <a href="#token" className="btn-secondary">View $ARTHOUSE →</a>
+            </div>
+            <div className="reveal d4" style={{ marginTop: 16 }}>
+              <HeroWalletBuy />
             </div>
           </div>
         </div>
