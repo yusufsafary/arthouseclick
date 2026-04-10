@@ -86,54 +86,119 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
 section{position:relative;overflow:hidden;}
 .container{max-width:1400px;width:100%;margin:0 auto;padding:0 48px;}
 
-/* HERO — NEW SIMPLIFIED */
-.hero{min-height:100vh;padding-top:64px;display:flex;align-items:center;border-bottom:var(--border);background:var(--white);position:relative;overflow:hidden;}
-.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(var(--gray-mid) 1px,transparent 1px),linear-gradient(90deg,var(--gray-mid) 1px,transparent 1px);background-size:48px 48px;opacity:.18;pointer-events:none;z-index:0;}
-.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:55% 45%;width:100%;min-height:calc(100vh - 64px);align-items:center;}
-.hero-left{padding:80px 64px 80px 0;border-right:var(--border);position:relative;display:flex;flex-direction:column;justify-content:center;}
-.hero-right{padding:40px 0 40px 40px;display:flex;align-items:center;justify-content:center;position:relative;}
+/* HERO — OPSI B: droid large right anchor, text left */
+.hero{min-height:100vh;padding-top:64px;display:flex;align-items:stretch;border-bottom:var(--border);background:var(--white);position:relative;overflow:hidden;}
+
+/* Subtle grid bg */
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.06) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
+
+/* Right half dark bg — droid zone */
+.hero::after{content:'';position:absolute;top:0;right:0;bottom:0;width:52%;background:var(--black);border-left:var(--border);z-index:0;}
+
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:48% 52%;width:100%;min-height:calc(100vh - 64px);}
+
+/* LEFT — text content */
+.hero-left{padding:80px 56px 80px 0;position:relative;display:flex;flex-direction:column;justify-content:center;}
 .hero-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:28px;display:flex;align-items:center;gap:12px;}
 .hero-label::before{content:'◆';font-size:8px;color:var(--gold);}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,9vw,140px);line-height:.9;letter-spacing:.02em;margin-bottom:28px;}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,8vw,130px);line-height:.88;letter-spacing:.02em;margin-bottom:28px;}
 h1 .blue{color:var(--blue);}
 h1 .stroke{-webkit-text-stroke:3px var(--black);color:transparent;}
-.hero-desc{font-size:16px;font-weight:300;color:#444;line-height:1.8;max-width:420px;margin-bottom:40px;border-left:4px solid var(--blue);padding-left:20px;}
+.hero-desc{font-size:15px;font-weight:300;color:#555;line-height:1.8;max-width:400px;margin-bottom:40px;border-left:4px solid var(--blue);padding-left:20px;}
 .hero-btns{display:flex;flex-wrap:wrap;gap:0;}
 .btn-primary{padding:18px 36px;background:var(--blue);color:var(--white);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:var(--border);display:inline-flex;align-items:center;gap:12px;transition:all .2s;}
 .btn-primary:hover{background:var(--black);}
 .btn-secondary{padding:18px 36px;background:var(--white);color:var(--black);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:var(--border);border-left:none;display:inline-flex;align-items:center;gap:12px;transition:all .2s;}
 .btn-secondary:hover{background:var(--black);color:var(--white);}
 
-/* DROID */
-.droid-wrap{position:relative;width:320px;height:420px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.droid-wrap::before{content:'ARTHOUSEXBT';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--green);white-space:nowrap;}
-.droid-glow{position:absolute;inset:-20px;background:radial-gradient(ellipse at center,rgba(102,200,0,.08) 0%,transparent 70%);pointer-events:none;animation:glowpulse 3s ease-in-out infinite;}
-@keyframes glowpulse{0%,100%{opacity:.6;}50%{opacity:1;}}
-svg.droid{overflow:visible;filter:drop-shadow(0 8px 32px rgba(0,0,0,.18));}
+/* RIGHT — droid zone (dark bg) */
+.hero-right{display:flex;align-items:center;justify-content:center;position:relative;padding:40px 0;}
 
-/* Droid parts animations */
-.d-antenna{animation:antennablink 2.4s ease-in-out infinite;}
-@keyframes antennablink{0%,85%,100%{opacity:1;}90%,95%{opacity:.2;}}
-.d-eye-l,.d-eye-r{transition:transform .08s ease-out;}
-.d-chest-light{animation:chestpulse 1.8s ease-in-out infinite;}
-@keyframes chestpulse{0%,100%{opacity:.7;}50%{opacity:1;}}
+/* DROID WRAP */
+.droid-wrap{position:relative;width:420px;height:540px;display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;}
+
+/* Name tag below */
+.droid-nametag{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;color:var(--green);white-space:nowrap;text-transform:uppercase;opacity:.8;}
+
+/* Glow — intensifies on hover/scan */
+.droid-glow{position:absolute;inset:-30px;background:radial-gradient(ellipse at 50% 60%,rgba(102,200,0,.10) 0%,transparent 68%);pointer-events:none;transition:opacity .4s;animation:glowpulse 3s ease-in-out infinite;}
+.droid-wrap:hover .droid-glow{opacity:1.6;}
+.droid-wrap.scanning .droid-glow{background:radial-gradient(ellipse at 50% 60%,rgba(102,200,0,.28) 0%,transparent 68%);}
+@keyframes glowpulse{0%,100%{opacity:.7;}50%{opacity:1;}}
+
+/* SVG base */
+svg.droid{overflow:visible;transition:filter .3s;}
+svg.droid:hover{filter:drop-shadow(0 0 24px rgba(102,200,0,.35)) drop-shadow(0 12px 40px rgba(0,0,0,.5));}
+svg.droid{filter:drop-shadow(0 12px 40px rgba(0,0,0,.45));}
+
+/* === IDLE BREATHING === */
+#droidBody{transform-origin:130px 237px;animation:breathe 3.2s ease-in-out infinite;}
+@keyframes breathe{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+
+/* Arms — idle sway */
+#armLeft{transform-origin:40px 226px;animation:armswayL 3.2s ease-in-out infinite;}
+#armRight{transform-origin:220px 226px;animation:armswayR 3.2s ease-in-out infinite;}
+@keyframes armswayL{0%,100%{transform:rotate(0deg);}50%{transform:rotate(2deg);}}
+@keyframes armswayR{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-2deg);}}
+
+/* Hover arms raise */
+.droid-wrap:hover #armLeft{animation:armraiseL .4s ease forwards;}
+.droid-wrap:hover #armRight{animation:armraiseR .4s ease forwards;}
+@keyframes armraiseL{to{transform:rotate(-18deg);}}
+@keyframes armraiseR{to{transform:rotate(18deg);}}
+
+/* Head tilt with mouse — handled via JS transform */
+#droidHead{transform-origin:130px 117px;transition:transform .12s ease-out;}
+
+/* Eyes */
+.d-eye-l,.d-eye-r{transition:transform .07s ease-out;}
+
+/* Chest lights */
+.d-chest-light {animation:chestpulse 1.8s ease-in-out infinite;}
 .d-chest-light2{animation:chestpulse 1.8s ease-in-out infinite .6s;}
 .d-chest-light3{animation:chestpulse 1.8s ease-in-out infinite 1.2s;}
-.droid-wrap:hover svg.droid{animation:droidbounce .5s cubic-bezier(.36,.07,.19,.97);}
-@keyframes droidbounce{0%,100%{transform:translateY(0);}30%{transform:translateY(-10px);}60%{transform:translateY(-4px);}80%{transform:translateY(-7px);}}
-.d-scan-line{animation:scanline 3s linear infinite;}
-@keyframes scanline{0%{transform:translateY(-60px);opacity:0;}10%{opacity:.5;}90%{opacity:.5;}100%{transform:translateY(60px);opacity:0;}}
+@keyframes chestpulse{0%,100%{opacity:.65;}50%{opacity:1;}}
 
-/* Floating particles around droid */
-.droid-particle{position:absolute;width:4px;height:4px;background:var(--green);opacity:0;animation:floatparticle var(--dur,4s) ease-in-out var(--del,0s) infinite;}
-@keyframes floatparticle{0%{transform:translate(0,0);opacity:0;}20%{opacity:.8;}80%{opacity:.6;}100%{transform:translate(var(--tx,20px),var(--ty,-60px));opacity:0;}}
+/* Scan mode — triggered on click */
+.droid-wrap.scanning .d-chest-light,.droid-wrap.scanning .d-chest-light2,.droid-wrap.scanning .d-chest-light3{animation:scanpulse .25s ease-in-out infinite;fill:#66C800!important;}
+@keyframes scanpulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.droid-wrap.scanning #eyeballL circle:first-child,.droid-wrap.scanning #eyeballR circle:first-child{fill:#66C800!important;}
 
-/* Mobile: droid smaller, stacked */
+/* Antenna blink */
+.d-antenna{animation:antennablink 2.4s ease-in-out infinite;}
+@keyframes antennablink{0%,80%,100%{opacity:1;}87%,93%{opacity:.15;}}
+.d-antenna-dot{animation:antennaglow 2.4s ease-in-out infinite;}
+@keyframes antennaglow{0%,80%,100%{fill:#0000ff;}87%,93%{fill:#66C800;}}
+
+/* Scan line in body */
+.d-scan-line{animation:scanline 2.8s linear infinite;}
+@keyframes scanline{0%{transform:translateY(0px);opacity:0;}8%{opacity:.55;}88%{opacity:.45;}100%{transform:translateY(88px);opacity:0;}}
+
+/* Scan mode fast scan */
+.droid-wrap.scanning .d-scan-line{animation:scanfast .4s linear infinite;stroke:#66C800;}
+@keyframes scanfast{0%{transform:translateY(0);opacity:.9;}100%{transform:translateY(88px);opacity:.2;}}
+
+/* Floating particles */
+.droid-particle{position:absolute;border-radius:50%;opacity:0;animation:floatparticle var(--dur,4s) ease-in-out var(--del,0s) infinite;}
+@keyframes floatparticle{0%{transform:translate(0,0) scale(1);opacity:0;}15%{opacity:1;}85%{opacity:.7;}100%{transform:translate(var(--tx,20px),var(--ty,-80px)) scale(.3);opacity:0;}}
+
+/* Scan dialog popup */
+.droid-dialog{position:absolute;top:30px;left:50%;transform:translateX(-50%);background:var(--black);border:2px solid var(--green);padding:8px 16px;font-family:'DM Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.12em;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10;}
+.droid-dialog.show{opacity:1;}
+.droid-dialog::after{content:'';position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid var(--green);}
+
+/* Mobile */
 @media(max-width:1024px){
-  .droid-wrap{width:220px;height:290px;}
+  .hero::after{display:none;}
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-left{padding:48px 0 36px;border-bottom:var(--border);}
+  .hero-right{background:var(--black);padding:40px 0;}
+  .droid-wrap{width:280px;height:360px;}
+  h1{font-size:clamp(56px,12vw,96px);}
 }
 @media(max-width:640px){
-  .droid-wrap{width:160px;height:210px;}
+  .droid-wrap{width:210px;height:270px;}
+  h1{font-size:64px;}
 }
 
 /* TOKEN */
@@ -424,7 +489,7 @@ footer{background:var(--white);border-top:var(--border);}
   <div class="container" style="max-width:100%;padding:0 48px;">
     <div class="hero-inner">
 
-      <!-- LEFT: Text + CTA -->
+      <!-- LEFT: minimal text + CTA -->
       <div class="hero-left">
         <div class="deco-corner tl"></div>
         <div class="deco-corner bl"></div>
@@ -437,128 +502,155 @@ footer{background:var(--white);border-top:var(--border);}
         </div>
       </div>
 
-      <!-- RIGHT: ARTHOUSEXBT Droid -->
+      <!-- RIGHT: ARTHOUSEXBT Droid — large visual anchor on black bg -->
       <div class="hero-right">
-        <div class="droid-wrap" id="droidWrap">
+        <div class="droid-wrap" id="droidWrap" onclick="droidClick()" title="Click to interact">
           <div class="droid-glow"></div>
 
+          <!-- Scan dialog popup -->
+          <div class="droid-dialog" id="droidDialog">◆ SCANNING...</div>
+
           <!-- Floating particles -->
-          <div class="droid-particle" style="--dur:3.8s;--del:0s;--tx:30px;--ty:-70px;left:60px;top:200px;background:var(--green);"></div>
-          <div class="droid-particle" style="--dur:4.5s;--del:.8s;--tx:-25px;--ty:-80px;left:240px;top:220px;background:var(--blue);"></div>
-          <div class="droid-particle" style="--dur:3.2s;--del:1.4s;--tx:15px;--ty:-60px;left:150px;top:300px;background:var(--gold);"></div>
-          <div class="droid-particle" style="--dur:5s;--del:.3s;--tx:-35px;--ty:-90px;left:80px;top:160px;background:var(--green);"></div>
-          <div class="droid-particle" style="--dur:4.1s;--del:2s;--tx:28px;--ty:-55px;left:210px;top:180px;background:var(--blue);width:3px;height:3px;"></div>
+          <div class="droid-particle" style="width:5px;height:5px;--dur:3.8s;--del:0s;--tx:40px;--ty:-90px;left:80px;top:260px;background:#66C800;"></div>
+          <div class="droid-particle" style="width:3px;height:3px;--dur:4.5s;--del:.9s;--tx:-30px;--ty:-100px;left:320px;top:280px;background:#0000ff;"></div>
+          <div class="droid-particle" style="width:4px;height:4px;--dur:3.3s;--del:1.5s;--tx:20px;--ty:-80px;left:200px;top:380px;background:#c9a84c;"></div>
+          <div class="droid-particle" style="width:3px;height:3px;--dur:5.2s;--del:.4s;--tx:-45px;--ty:-110px;left:100px;top:200px;background:#66C800;"></div>
+          <div class="droid-particle" style="width:4px;height:4px;--dur:4.1s;--del:2.2s;--tx:35px;--ty:-70px;left:290px;top:220px;background:#0000ff;"></div>
+          <div class="droid-particle" style="width:2px;height:2px;--dur:3.6s;--del:1.1s;--tx:-20px;--ty:-95px;left:160px;top:420px;background:#c9a84c;"></div>
 
-          <svg class="droid" id="droidSvg" width="260" height="360" viewBox="0 0 260 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ARTHOUSEXBT droid character">
+          <svg class="droid" id="droidSvg" width="340" height="460" viewBox="0 0 260 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ARTHOUSEXBT droid character">
 
-            <!-- Shadow -->
-            <ellipse cx="130" cy="352" rx="60" ry="8" fill="#0a0a0a" opacity=".12"/>
+            <!-- Ground shadow -->
+            <ellipse cx="130" cy="354" rx="64" ry="7" fill="#66C800" opacity=".08"/>
 
-            <!-- LEGS -->
-            <rect x="88" y="290" width="28" height="50" rx="2" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
-            <rect x="144" y="290" width="28" height="50" rx="2" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
-            <!-- Feet -->
-            <rect x="82" y="334" width="40" height="14" rx="2" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="2"/>
-            <rect x="138" y="334" width="40" height="14" rx="2" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="2"/>
-            <!-- Leg detail lines -->
-            <line x1="102" y1="300" x2="102" y2="330" stroke="#66C800" stroke-width="1.5" opacity=".6"/>
-            <line x1="158" y1="300" x2="158" y2="330" stroke="#66C800" stroke-width="1.5" opacity=".6"/>
+            <!-- LEGS group -->
+            <g id="droidLegs">
+              <rect x="88" y="290" width="28" height="52" rx="2" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+              <rect x="144" y="290" width="28" height="52" rx="2" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+              <rect x="81" y="335" width="42" height="15" rx="2" fill="#111" stroke="#444" stroke-width="1.5"/>
+              <rect x="137" y="335" width="42" height="15" rx="2" fill="#111" stroke="#444" stroke-width="1.5"/>
+              <line x1="102" y1="298" x2="102" y2="332" stroke="#66C800" stroke-width="1.5" opacity=".5"/>
+              <line x1="158" y1="298" x2="158" y2="332" stroke="#66C800" stroke-width="1.5" opacity=".5"/>
+              <!-- Foot lights -->
+              <rect x="83" y="346" width="8" height="3" rx="1" fill="#0000ff" opacity=".7"/>
+              <rect x="139" y="346" width="8" height="3" rx="1" fill="#0000ff" opacity=".7"/>
+            </g>
 
-            <!-- BODY -->
-            <rect x="60" y="178" width="140" height="118" rx="4" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="3"/>
-            <!-- Body inner panel -->
-            <rect x="72" y="190" width="116" height="94" rx="2" fill="#111" stroke="#1e1e1e" stroke-width="1.5"/>
+            <!-- BODY group (breathing) -->
+            <g id="droidBody">
+              <rect x="58" y="176" width="144" height="120" rx="5" fill="#111" stroke="#2a2a2a" stroke-width="2"/>
+              <rect x="70" y="188" width="120" height="96" rx="3" fill="#0d0d0d" stroke="#1e1e1e" stroke-width="1"/>
 
-            <!-- Chest lights -->
-            <circle class="d-chest-light" cx="100" cy="222" r="7" fill="#0000ff" opacity=".9"/>
-            <circle cx="100" cy="222" r="4" fill="#4444ff"/>
-            <circle class="d-chest-light2" cx="130" cy="222" r="7" fill="#66C800" opacity=".9"/>
-            <circle cx="130" cy="222" r="4" fill="#88ff22"/>
-            <circle class="d-chest-light3" cx="160" cy="222" r="7" fill="#c9a84c" opacity=".9"/>
-            <circle cx="160" cy="222" r="4" fill="#e8c060"/>
+              <!-- Chest lights -->
+              <circle class="d-chest-light" cx="100" cy="220" r="8" fill="#0000ff" opacity=".9"/>
+              <circle cx="100" cy="220" r="4.5" fill="#4466ff"/>
+              <circle class="d-chest-light2" cx="130" cy="220" r="8" fill="#66C800" opacity=".9"/>
+              <circle cx="130" cy="220" r="4.5" fill="#88ee22"/>
+              <circle class="d-chest-light3" cx="160" cy="220" r="8" fill="#c9a84c" opacity=".9"/>
+              <circle cx="160" cy="220" r="4.5" fill="#e8c060"/>
 
-            <!-- Chest label -->
-            <rect x="80" y="244" width="100" height="22" rx="1" fill="#0a0a0a" stroke="#333" stroke-width="1"/>
-            <text x="130" y="259" font-family="monospace" font-size="8" fill="#66C800" text-anchor="middle" letter-spacing="2">ARTHOUSEXBT</text>
+              <!-- Chest label -->
+              <rect x="76" y="242" width="108" height="24" rx="2" fill="#080808" stroke="#2a2a2a" stroke-width="1"/>
+              <text x="130" y="258" font-family="monospace" font-size="8.5" fill="#66C800" text-anchor="middle" letter-spacing="1.8">ARTHOUSEXBT</text>
 
-            <!-- Chest scan line -->
-            <clipPath id="bodyClip"><rect x="72" y="190" width="116" height="94" rx="2"/></clipPath>
-            <rect class="d-scan-line" x="72" y="190" width="116" height="2" fill="#66C800" opacity=".4" clip-path="url(#bodyClip)"/>
+              <!-- Body scan line -->
+              <clipPath id="bodyClip"><rect x="70" y="188" width="120" height="96" rx="3"/></clipPath>
+              <rect class="d-scan-line" x="70" y="188" width="120" height="2" fill="#66C800" opacity=".5" clip-path="url(#bodyClip)"/>
 
-            <!-- ARMS -->
-            <!-- Left arm -->
-            <rect x="22" y="186" width="36" height="80" rx="3" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
-            <rect x="28" y="192" width="24" height="68" rx="2" fill="#111"/>
-            <rect x="18" y="258" width="44" height="18" rx="3" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="2"/>
-            <line x1="34" y1="200" x2="34" y2="256" stroke="#0000ff" stroke-width="1.5" opacity=".5"/>
-            <!-- Right arm -->
-            <rect x="202" y="186" width="36" height="80" rx="3" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
-            <rect x="208" y="192" width="24" height="68" rx="2" fill="#111"/>
-            <rect x="198" y="258" width="44" height="18" rx="3" fill="#1a1a1a" stroke="#0a0a0a" stroke-width="2"/>
-            <line x1="226" y1="200" x2="226" y2="256" stroke="#c9a84c" stroke-width="1.5" opacity=".5"/>
+              <!-- Side vents -->
+              <rect x="60" y="200" width="8" height="3" rx="1" fill="#333"/>
+              <rect x="60" y="207" width="8" height="3" rx="1" fill="#333"/>
+              <rect x="60" y="214" width="8" height="3" rx="1" fill="#333"/>
+              <rect x="192" y="200" width="8" height="3" rx="1" fill="#333"/>
+              <rect x="192" y="207" width="8" height="3" rx="1" fill="#333"/>
+              <rect x="192" y="214" width="8" height="3" rx="1" fill="#333"/>
+            </g>
+
+            <!-- LEFT ARM group -->
+            <g id="armLeft">
+              <rect x="20" y="184" width="37" height="84" rx="4" fill="#111" stroke="#2a2a2a" stroke-width="1.5"/>
+              <rect x="26" y="190" width="25" height="72" rx="3" fill="#0d0d0d"/>
+              <rect x="16" y="260" width="45" height="20" rx="3" fill="#0f0f0f" stroke="#2a2a2a" stroke-width="1.5"/>
+              <line x1="33" y1="198" x2="33" y2="258" stroke="#0000ff" stroke-width="1.5" opacity=".4"/>
+              <!-- Knuckle lights -->
+              <circle cx="28" cy="272" r="2.5" fill="#0000ff" opacity=".6"/>
+              <circle cx="38" cy="272" r="2.5" fill="#66C800" opacity=".6"/>
+              <circle cx="48" cy="272" r="2.5" fill="#c9a84c" opacity=".6"/>
+            </g>
+
+            <!-- RIGHT ARM group -->
+            <g id="armRight">
+              <rect x="203" y="184" width="37" height="84" rx="4" fill="#111" stroke="#2a2a2a" stroke-width="1.5"/>
+              <rect x="209" y="190" width="25" height="72" rx="3" fill="#0d0d0d"/>
+              <rect x="199" y="260" width="45" height="20" rx="3" fill="#0f0f0f" stroke="#2a2a2a" stroke-width="1.5"/>
+              <line x1="227" y1="198" x2="227" y2="258" stroke="#c9a84c" stroke-width="1.5" opacity=".4"/>
+              <!-- Knuckle lights -->
+              <circle cx="212" cy="272" r="2.5" fill="#c9a84c" opacity=".6"/>
+              <circle cx="222" cy="272" r="2.5" fill="#66C800" opacity=".6"/>
+              <circle cx="232" cy="272" r="2.5" fill="#0000ff" opacity=".6"/>
+            </g>
 
             <!-- NECK -->
-            <rect x="112" y="160" width="36" height="22" rx="2" fill="#111" stroke="#0a0a0a" stroke-width="2"/>
-            <line x1="120" y1="165" x2="120" y2="178" stroke="#333" stroke-width="1"/>
-            <line x1="130" y1="163" x2="130" y2="178" stroke="#444" stroke-width="1"/>
-            <line x1="140" y1="165" x2="140" y2="178" stroke="#333" stroke-width="1"/>
+            <rect x="110" y="158" width="40" height="22" rx="2" fill="#0d0d0d" stroke="#222" stroke-width="1.5"/>
+            <line x1="118" y1="163" x2="118" y2="176" stroke="#333" stroke-width="1"/>
+            <line x1="130" y1="160" x2="130" y2="176" stroke="#444" stroke-width="1"/>
+            <line x1="142" y1="163" x2="142" y2="176" stroke="#333" stroke-width="1"/>
 
-            <!-- HEAD -->
-            <rect x="55" y="70" width="150" height="94" rx="6" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="3"/>
-            <!-- Head inner -->
-            <rect x="64" y="78" width="132" height="78" rx="3" fill="#111" stroke="#1e1e1e" stroke-width="1.5"/>
+            <!-- HEAD group (tilts with mouse) -->
+            <g id="droidHead">
+              <rect x="52" y="66" width="156" height="96" rx="7" fill="#111" stroke="#2a2a2a" stroke-width="2"/>
+              <rect x="61" y="74" width="138" height="80" rx="4" fill="#0d0d0d" stroke="#1a1a1a" stroke-width="1"/>
 
-            <!-- EYES (eyeball group, moves with mouse) -->
-            <g id="eyeLeft">
-              <!-- Eye socket L -->
-              <rect x="74" y="88" width="46" height="36" rx="3" fill="#0a0a0a" stroke="#0000ff" stroke-width="2"/>
-              <rect x="78" y="92" width="38" height="28" rx="2" fill="#050515"/>
-              <!-- Eyeball L -->
-              <g class="d-eye-l" id="eyeballL">
-                <circle cx="97" cy="106" r="10" fill="#0000ff" opacity=".9"/>
-                <circle cx="97" cy="106" r="6" fill="#2222ff"/>
-                <circle cx="97" cy="106" r="3" fill="white" opacity=".9"/>
-                <circle cx="99" cy="104" r="1.5" fill="white"/>
+              <!-- Eye socket LEFT -->
+              <rect x="70" y="84" width="50" height="40" rx="4" fill="#080808" stroke="#0000ff" stroke-width="2"/>
+              <rect x="74" y="88" width="42" height="32" rx="2" fill="#030310"/>
+              <!-- Eyeball L (mouse tracking) -->
+              <g id="eyeballL">
+                <circle cx="95" cy="104" r="11" fill="#0000ff" opacity=".95"/>
+                <circle cx="95" cy="104" r="6.5" fill="#3355ff"/>
+                <circle cx="95" cy="104" r="3.5" fill="white" opacity=".95"/>
+                <circle cx="97" cy="102" r="1.8" fill="white"/>
+              </g>
+
+              <!-- Eye socket RIGHT -->
+              <rect x="140" y="84" width="50" height="40" rx="4" fill="#080808" stroke="#0000ff" stroke-width="2"/>
+              <rect x="144" y="88" width="42" height="32" rx="2" fill="#030310"/>
+              <!-- Eyeball R (mouse tracking) -->
+              <g id="eyeballR">
+                <circle cx="165" cy="104" r="11" fill="#0000ff" opacity=".95"/>
+                <circle cx="165" cy="104" r="6.5" fill="#3355ff"/>
+                <circle cx="165" cy="104" r="3.5" fill="white" opacity=".95"/>
+                <circle cx="167" cy="102" r="1.8" fill="white"/>
+              </g>
+
+              <!-- Status bar / mouth -->
+              <rect x="76" y="134" width="108" height="12" rx="2" fill="#080808" stroke="#222" stroke-width="1"/>
+              <rect id="statusBar" x="78" y="136" width="64" height="8" rx="1" fill="#66C800" opacity=".85"/>
+              <rect x="144" y="136" width="12" height="8" rx="1" fill="#0000ff" opacity=".5"/>
+              <rect x="158" y="136" width="24" height="8" rx="1" fill="#111"/>
+
+              <!-- Head corner screws -->
+              <circle cx="68" cy="74" r="3.5" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+              <circle cx="192" cy="74" r="3.5" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+              <circle cx="68" cy="158" r="3.5" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+              <circle cx="192" cy="158" r="3.5" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+
+              <!-- Gold accent line -->
+              <line x1="61" y1="152" x2="199" y2="152" stroke="#c9a84c" stroke-width="1" opacity=".35"/>
+
+              <!-- ANTENNA -->
+              <g class="d-antenna">
+                <line x1="130" y1="66" x2="130" y2="34" stroke="#222" stroke-width="3"/>
+                <rect x="115" y="24" width="30" height="14" rx="2" fill="#111" stroke="#222" stroke-width="1.5"/>
+                <circle class="d-antenna-dot" cx="130" cy="18" r="10" fill="#0000ff" stroke="#222" stroke-width="2"/>
+                <circle cx="130" cy="18" r="5.5" fill="#3355ff"/>
+                <circle cx="130" cy="18" r="2.5" fill="white" opacity=".9"/>
               </g>
             </g>
-            <g id="eyeRight">
-              <!-- Eye socket R -->
-              <rect x="140" y="88" width="46" height="36" rx="3" fill="#0a0a0a" stroke="#0000ff" stroke-width="2"/>
-              <rect x="144" y="92" width="38" height="28" rx="2" fill="#050515"/>
-              <!-- Eyeball R -->
-              <g class="d-eye-r" id="eyeballR">
-                <circle cx="163" cy="106" r="10" fill="#0000ff" opacity=".9"/>
-                <circle cx="163" cy="106" r="6" fill="#2222ff"/>
-                <circle cx="163" cy="106" r="3" fill="white" opacity=".9"/>
-                <circle cx="165" cy="104" r="1.5" fill="white"/>
-              </g>
-            </g>
-
-            <!-- Mouth / status bar -->
-            <rect x="80" y="134" width="100" height="10" rx="2" fill="#0a0a0a" stroke="#333" stroke-width="1"/>
-            <rect x="82" y="136" width="60" height="6" rx="1" fill="#66C800" opacity=".8"/>
-            <rect x="144" y="136" width="10" height="6" rx="1" fill="#0000ff" opacity=".6"/>
-            <rect x="156" y="136" width="22" height="6" rx="1" fill="#1a1a1a"/>
-
-            <!-- ANTENNA -->
-            <g class="d-antenna">
-              <line x1="130" y1="70" x2="130" y2="38" stroke="#0a0a0a" stroke-width="3"/>
-              <rect x="116" y="28" width="28" height="14" rx="2" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="2"/>
-              <circle cx="130" cy="22" r="9" fill="#0000ff" stroke="#0a0a0a" stroke-width="2"/>
-              <circle cx="130" cy="22" r="5" fill="#4444ff"/>
-              <circle cx="130" cy="22" r="2.5" fill="white" opacity=".9"/>
-            </g>
-
-            <!-- Head top screws -->
-            <circle cx="72" cy="78" r="3" fill="#222" stroke="#333" stroke-width="1"/>
-            <circle cx="188" cy="78" r="3" fill="#222" stroke="#333" stroke-width="1"/>
-            <circle cx="72" cy="156" r="3" fill="#222" stroke="#333" stroke-width="1"/>
-            <circle cx="188" cy="156" r="3" fill="#222" stroke="#333" stroke-width="1"/>
-
-            <!-- Gold accent lines on head -->
-            <line x1="64" y1="150" x2="196" y2="150" stroke="#c9a84c" stroke-width="1" opacity=".4"/>
 
           </svg>
+
+          <div class="droid-nametag">◆ ARTHOUSEXBT ◆</div>
         </div>
       </div>
 
@@ -835,58 +927,111 @@ document.addEventListener('mouseover',e=>{
   else{ring.style.width='40px';ring.style.height='40px';ring.style.borderColor='var(--blue)';}
 });
 
-/* DROID EYE TRACKING */
+/* DROID FULL INTERACTIVITY */
 (function(){
-  const svg=document.getElementById('droidSvg');
-  if(!svg)return;
-  // Eye centers in SVG local coords
-  const eyes=[
-    {el:document.getElementById('eyeballL'),cx:97,cy:106,limit:5},
-    {el:document.getElementById('eyeballR'),cx:163,cy:106,limit:5}
-  ];
-  let isMobile=window.matchMedia('(max-width:768px)').matches;
-  window.addEventListener('resize',()=>{isMobile=window.matchMedia('(max-width:768px)').matches;});
+  const wrap = document.getElementById('droidWrap');
+  const svg  = document.getElementById('droidSvg');
+  const head = document.getElementById('droidHead');
+  const eyeL = document.getElementById('eyeballL');
+  const eyeR = document.getElementById('eyeballR');
+  const dialog = document.getElementById('droidDialog');
+  if(!wrap||!svg||!head||!eyeL||!eyeR) return;
 
-  // Mouse tracking for desktop
-  document.addEventListener('mousemove',e=>{
-    if(isMobile)return;
-    const rect=svg.getBoundingClientRect();
-    const svgW=rect.width,svgH=rect.height;
-    const scaleX=260/svgW,scaleY=360/svgH;
-    const mouseX=(e.clientX-rect.left)*scaleX;
-    const mouseY=(e.clientY-rect.top)*scaleY;
-    eyes.forEach(eye=>{
-      if(!eye.el)return;
-      const dx=mouseX-eye.cx,dy=mouseY-eye.cy;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      const maxD=eye.limit;
-      const tx=dist>0?Math.min(dx/dist*maxD,maxD*(dx<0?-1:1)):0;
-      const ty=dist>0?Math.min(dy/dist*maxD,maxD*(dy<0?-1:1)):0;
+  const isMobile = ()=> window.innerWidth <= 768;
+
+  // Eye base positions in SVG coords
+  const EL = {cx:95, cy:104, lim:5};
+  const ER = {cx:165,cy:104, lim:5};
+  // Head tilt limit (degrees)
+  const HEAD_TILT = 6;
+
+  /* ── Mouse / pointer tracking ── */
+  let lastMx=0, lastMy=0;
+  document.addEventListener('mousemove', e=>{
+    if(isMobile()) return;
+    lastMx = e.clientX; lastMy = e.clientY;
+    const rect = svg.getBoundingClientRect();
+    const sx = 260/rect.width, sy = 360/rect.height;
+    const mx = (e.clientX - rect.left)*sx;
+    const my = (e.clientY - rect.top)*sy;
+
+    // Eyes
+    [{ el:eyeL, ...EL }, { el:eyeR, ...ER }].forEach(eye=>{
+      const dx=mx-eye.cx, dy=my-eye.cy;
+      const d=Math.sqrt(dx*dx+dy*dy)||1;
+      const tx=Math.max(-eye.lim,Math.min(eye.lim,dx/d*eye.lim));
+      const ty=Math.max(-eye.lim,Math.min(eye.lim,dy/d*eye.lim));
       eye.el.style.transform=`translate(${tx.toFixed(2)}px,${ty.toFixed(2)}px)`;
     });
+
+    // Head tilt toward cursor
+    const headRect = head.getBoundingClientRect();
+    const hcx = headRect.left + headRect.width/2;
+    const hcy = headRect.top  + headRect.height/2;
+    const hdx = (e.clientX - hcx)/(window.innerWidth/2);
+    const hdy = (e.clientY - hcy)/(window.innerHeight/2);
+    const rotY = Math.max(-HEAD_TILT, Math.min(HEAD_TILT, hdx*HEAD_TILT));
+    const rotX = Math.max(-HEAD_TILT/2, Math.min(HEAD_TILT/2, hdy*(HEAD_TILT/2)));
+    head.style.transform = `rotateY(${rotY}deg) rotateX(${-rotX}deg)`;
   });
 
-  // Mobile: idle oscillation instead of tracking
-  if(isMobile){
-    let t=0;
-    (function idleEyes(){
-      t+=0.015;
-      const tx=Math.sin(t)*3,ty=Math.cos(t*0.7)*2;
-      eyes.forEach(eye=>{
-        if(eye.el)eye.el.style.transform=`translate(${tx.toFixed(2)}px,${ty.toFixed(2)}px)`;
-      });
-      requestAnimationFrame(idleEyes);
-    })();
-  }
+  /* ── Mobile idle oscillation ── */
+  let idleT=0;
+  (function idleTick(){
+    if(isMobile()){
+      idleT+=0.018;
+      const tx=Math.sin(idleT)*3.5, ty=Math.cos(idleT*.7)*2;
+      eyeL.style.transform=`translate(${tx.toFixed(2)}px,${ty.toFixed(2)}px)`;
+      eyeR.style.transform=`translate(${tx.toFixed(2)}px,${ty.toFixed(2)}px)`;
+      head.style.transform=`rotateY(${(Math.sin(idleT*.5)*3).toFixed(2)}deg)`;
+    }
+    requestAnimationFrame(idleTick);
+  })();
 
-  // Droid entrance animation
-  if(svg){
-    svg.style.opacity='0';svg.style.transform='translateY(30px)';
-    setTimeout(()=>{
-      svg.style.transition='opacity .8s ease, transform .8s cubic-bezier(.25,.46,.45,.94)';
-      svg.style.opacity='1';svg.style.transform='translateY(0)';
-    },400);
-  }
+  /* ── Scroll parallax ── */
+  window.addEventListener('scroll',()=>{
+    const sy = window.scrollY;
+    if(wrap) wrap.style.transform=`translateY(${(sy*.12).toFixed(1)}px)`;
+  },{passive:true});
+
+  /* ── Click: scan mode ── */
+  const scanMessages=[
+    '◆ SCANNING...',
+    '◆ ANALYZING ONCHAIN...',
+    '◆ BUILDER DETECTED',
+    '◆ TALENT SCOUTING...',
+    '◆ ZORA NETWORK OK',
+    '◆ INTELLIGENCE ACTIVE',
+  ];
+  let scanIdx=0, scanTimer=null;
+  window.droidClick=function(){
+    if(wrap.classList.contains('scanning')) return;
+    wrap.classList.add('scanning');
+    dialog.textContent = scanMessages[scanIdx % scanMessages.length];
+    scanIdx++;
+    dialog.classList.add('show');
+    clearTimeout(scanTimer);
+    scanTimer=setTimeout(()=>{
+      wrap.classList.remove('scanning');
+      dialog.classList.remove('show');
+    }, 1800);
+  };
+
+  /* ── Mobile tap ── */
+  wrap.addEventListener('touchstart', e=>{
+    e.preventDefault();
+    window.droidClick();
+  },{passive:false});
+
+  /* ── Entrance animation ── */
+  svg.style.opacity='0';
+  svg.style.transform='translateY(40px) scale(.96)';
+  setTimeout(()=>{
+    svg.style.transition='opacity .9s cubic-bezier(.25,.46,.45,.94), transform .9s cubic-bezier(.25,.46,.45,.94)';
+    svg.style.opacity='1';
+    svg.style.transform='translateY(0) scale(1)';
+  },300);
+
 })();
 
 /* MOBILE NAV */
