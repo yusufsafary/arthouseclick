@@ -34,9 +34,9 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 a,button{-webkit-tap-highlight-color:transparent;}
 :root{
-  --white:#ffffff;--black:#0a0a0a;--blue:#0000ff;
+  --white:#ffffff;--black:#0a0a0a;--blue:#0052FF;
   --green:#66C800;--gray:#f2f2f2;--gray-mid:#d0d0d0;
-  --border:3px solid #0a0a0a;--border-thin:1px solid #0a0a0a;--blue-overlay:rgba(0,0,255,.18);
+  --border:3px solid #0a0a0a;--border-thin:1px solid #0a0a0a;--blue-overlay:rgba(0,82,255,.18);
 }
 html{scroll-behavior:smooth;}
 body{background:var(--white);color:var(--black);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden;cursor:crosshair;}
@@ -48,10 +48,12 @@ body{background:var(--white);color:var(--black);font-family:'DM Sans',sans-serif
 @media(hover:none){.cursor,.cursor-ring{display:none;}body{cursor:auto;}}
 
 /* NAV — solid blue header */
-nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;background:#0000ff;border-bottom:2px solid rgba(0,0,180,.6);z-index:100;transition:background .3s;}
-nav.scrolled{background:#0000cc;}
-.nav-logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:.18em;color:var(--white);text-decoration:none;text-transform:uppercase;}
-.nav-logo span{color:var(--green);font-weight:800;}
+nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;background:#0d0f14;border-bottom:none;z-index:100;transition:background .3s;}
+nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,#0052FF 30%,#66C800 70%,transparent 100%);pointer-events:none;}
+nav.scrolled{background:#080a0e;}
+.nav-logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:.12em;color:var(--white);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:0;}
+.nav-logo .slash{color:rgba(255,255,255,.55);font-weight:400;letter-spacing:-.02em;margin-right:8px;}
+.nav-logo .wordmark{color:var(--white);font-weight:800;letter-spacing:.18em;}
 .nav-links{display:none;}
 .nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;padding:0 20px;height:64px;display:flex;align-items:center;border-left:1px solid rgba(255,255,255,.15);transition:all .2s;}
 .nav-links a:hover{color:var(--white);background:rgba(255,255,255,.1);}
@@ -280,16 +282,18 @@ svg.droid{filter:drop-shadow(0 12px 40px rgba(0,0,0,.45));}
 
 /* Mobile */
 @media(max-width:1024px){
-  .hero-right{min-height:55vh;}
+  .hero-right{min-height:50vh;}
   .droid-wrap{width:300px;height:400px;}
   h1{font-size:clamp(48px,10vw,88px);}
   .hero-left{padding:28px 24px 48px;}
   .hero-line-l,.hero-line-r{display:none;}
 }
 @media(max-width:640px){
-  .droid-wrap{width:220px;height:300px;}
-  h1{font-size:56px;}
+  .droid-wrap{width:200px;height:270px;}
+  svg.droid{width:200px;height:267px;}
+  h1{font-size:clamp(36px,10vw,52px);}
   .hero-left{padding:20px 16px 40px;}
+  .hero-right{min-height:42vh;}
 }
 
 /* TOKEN */
@@ -508,11 +512,13 @@ footer{background:var(--white);border-top:var(--border);}
   .social-card:nth-last-child(-n+2){border-bottom:none;}
   .social-header{flex-direction:column;gap:12px;}
   .social-desc{max-width:100%;}
+  /* Fix token section on tablet */
+  .token-left,.token-right{padding:48px 24px;}
 }
 @media(max-width:640px){
   nav{padding:0 16px;}
   .mob-menu a{padding:18px 24px;}
-  h1{font-size:clamp(36px,10vw,56px);}
+  h1{font-size:clamp(36px,10vw,52px);}
   .token-price-big{font-size:48px;}
   .cta-title{font-size:clamp(40px,10vw,56px);}
   .chat-win{height:420px;}
@@ -523,6 +529,11 @@ footer{background:var(--white);border-top:var(--border);}
   .social-card{border-right:none!important;border-bottom:var(--border);}
   .social-card:last-child{border-bottom:none;}
   .sc-platform{font-size:24px;}
+  .container{padding:0 16px;}
+  .token-left,.token-right{padding:40px 16px;}
+  .bot-info{padding:40px 0;}
+  .bot-demo{padding:40px 0;}
+  .chips{flex-wrap:nowrap;}
 }
 </style>
 </head>
@@ -532,7 +543,7 @@ footer{background:var(--white);border-top:var(--border);}
 <div class="cursor-ring" id="ring"></div>
 
 <nav>
-  <a href="#what" class="nav-logo">ART<span>HOUSE</span></a>
+  <a href="#what" class="nav-logo"><span class="slash">// </span><span class="wordmark">ARTHOUSE</span></a>
   <div class="nav-links">
     <a href="#does">What It Does</a>
     <a href="#token">Token</a>
