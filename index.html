@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ARTHOUSE — Onchain Art Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --white:#ffffff;
+  --black:#0a0a0a;
+  --blue:#0000ff;
+  --gold:#c9a84c;
+  --gold-light:#e8d5a3;
+  --gray:#f2f2f2;
+  --gray-mid:#d0d0d0;
+  --border:3px solid #0a0a0a;
+  --border-thin:1px solid #0a0a0a;
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--white);
+  color:var(--black);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+  cursor:crosshair;
+}
+
+/* ── CUSTOM CURSOR ── */
+.cursor{
+  position:fixed;width:12px;height:12px;
+  background:var(--blue);pointer-events:none;
+  z-index:9999;transform:translate(-50%,-50%);
+  transition:transform 0.1s;mix-blend-mode:multiply;
+}
+.cursor-ring{
+  position:fixed;width:40px;height:40px;
+  border:2px solid var(--blue);pointer-events:none;
+  z-index:9998;transform:translate(-50%,-50%);
+  transition:all 0.15s ease;mix-blend-mode:multiply;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:64px;
+  background:var(--white);
+  border-bottom:var(--border);
+  z-index:100;
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;letter-spacing:0.1em;
+  color:var(--black);text-decoration:none;
+  display:flex;align-items:center;gap:4px;
+}
+.nav-logo span{color:var(--blue);}
+.nav-links{
+  display:flex;align-items:center;gap:0;
+}
+.nav-links a{
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--black);text-decoration:none;
+  padding:0 20px;height:64px;display:flex;align-items:center;
+  border-left:var(--border-thin);
+  transition:all 0.2s;
+}
+.nav-links a:hover{background:var(--black);color:var(--white);}
+.nav-cta{
+  background:var(--blue)!important;
+  color:var(--white)!important;
+  border-left:var(--border)!important;
+  font-weight:500!important;
+}
+.nav-cta:hover{background:var(--black)!important;}
+
+/* ── DECO ORNAMENT ── */
+.deco-diamond{
+  display:inline-flex;align-items:center;gap:12px;
+}
+.deco-diamond::before,.deco-diamond::after{
+  content:'◆';font-size:8px;color:var(--gold);
+}
+.deco-line{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:24px;
+}
+.deco-line::before,.deco-line::after{
+  content:'';flex:1;height:1px;background:var(--gold);
+}
+.deco-corner{
+  position:absolute;width:40px;height:40px;
+  border-color:var(--gold);border-style:solid;
+}
+.deco-corner.tl{top:24px;left:24px;border-width:2px 0 0 2px;}
+.deco-corner.tr{top:24px;right:24px;border-width:2px 2px 0 0;}
+.deco-corner.bl{bottom:24px;left:24px;border-width:0 0 2px 2px;}
+.deco-corner.br{bottom:24px;right:24px;border-width:0 2px 2px 0;}
+
+/* ── SECTIONS ── */
+section{position:relative;overflow:hidden;}
+.container{max-width:1400px;width:100%;margin:0 auto;padding:0 48px;}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  padding-top:64px;
+  display:flex;align-items:center;
+  border-bottom:var(--border);
+  background:var(--white);
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;
+  top:0;right:0;bottom:0;width:50%;
+  background:var(--gray);
+  border-left:var(--border);
+  z-index:0;
+}
+.hero-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  width:100%;
+}
+.hero-left{
+  padding:80px 64px 80px 0;
+  border-right:var(--border);
+}
+.hero-right{
+  padding:80px 0 80px 64px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hero-label{
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:32px;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-label::before{content:'◆';font-size:8px;color:var(--gold);}
+h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(72px,10vw,148px);
+  line-height:0.9;letter-spacing:0.02em;
+  margin-bottom:32px;
+}
+h1 .blue{color:var(--blue);}
+h1 .stroke{
+  -webkit-text-stroke:3px var(--black);
+  color:transparent;
+}
+.hero-desc{
+  font-size:17px;font-weight:300;
+  color:#444;line-height:1.8;
+  max-width:440px;margin-bottom:48px;
+  border-left:4px solid var(--blue);
+  padding-left:20px;
+}
+.hero-btns{display:flex;gap:0;flex-wrap:wrap;}
+.btn-primary{
+  padding:18px 36px;
+  background:var(--blue);color:var(--white);
+  font-family:'DM Mono',monospace;font-size:12px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;border:var(--border);
+  display:inline-flex;align-items:center;gap:12px;
+  transition:all 0.2s;font-weight:500;
+}
+.btn-primary:hover{background:var(--black);}
+.btn-secondary{
+  padding:18px 36px;
+  background:var(--white);color:var(--black);
+  font-family:'DM Mono',monospace;font-size:12px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;border:var(--border);
+  border-left:none;
+  display:inline-flex;align-items:center;gap:12px;
+  transition:all 0.2s;
+}
+.btn-secondary:hover{background:var(--black);color:var(--white);}
+
+/* Hero Stats */
+.hero-stats{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;
+}
+.stat-box{
+  padding:40px 32px;
+  border:var(--border-thin);
+  border-color:#d0d0d0;
+  position:relative;overflow:hidden;
+}
+.stat-box:nth-child(1){border-right:var(--border);border-bottom:var(--border);}
+.stat-box:nth-child(2){border-bottom:var(--border);}
+.stat-box:nth-child(3){border-right:var(--border);}
+.stat-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:56px;line-height:1;
+  color:var(--black);margin-bottom:8px;
+}
+.stat-num span{color:var(--blue);}
+.stat-label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:#888;
+}
+.hero-badge{
+  margin-top:32px;padding:16px 24px;
+  border:var(--border-thin);border-color:var(--gold);
+  background:rgba(201,168,76,0.05);
+  position:relative;
+}
+.hero-badge-text{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--gold);letter-spacing:0.1em;
+}
+
+/* ── TOKEN SECTION ── */
+.token-section{
+  border-bottom:var(--border);
+  background:var(--black);
+  padding:0;
+}
+.token-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.token-left{
+  padding:64px 48px;
+  border-right:3px solid #333;
+}
+.token-right{
+  padding:64px 48px;
+}
+.token-label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+  display:flex;align-items:center;gap:8px;
+}
+.token-label::before{content:'◆';font-size:7px;}
+.token-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:64px;line-height:1;
+  color:var(--white);margin-bottom:8px;
+}
+.token-address{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:#666;letter-spacing:0.05em;
+  margin-bottom:32px;
+  word-break:break-all;
+}
+.token-price-big{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:80px;line-height:1;
+  color:var(--gold);
+  margin-bottom:8px;
+}
+.token-change{
+  font-family:'DM Mono',monospace;font-size:13px;
+  padding:4px 12px;display:inline-block;
+  margin-bottom:32px;
+}
+.token-change.positive{
+  background:rgba(0,200,100,0.15);
+  color:#00c864;border:1px solid #00c864;
+}
+.token-change.negative{
+  background:rgba(255,60,60,0.15);
+  color:#ff3c3c;border:1px solid #ff3c3c;
+}
+.token-stats-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+}
+.token-stat{
+  padding:20px 24px;
+  border:1px solid #222;
+}
+.token-stat-val{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;color:var(--white);
+  margin-bottom:4px;
+}
+.token-stat-label{
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:#666;letter-spacing:0.1em;text-transform:uppercase;
+}
+.token-loading{
+  font-family:'DM Mono',monospace;font-size:12px;
+  color:#666;display:flex;align-items:center;gap:8px;
+}
+.token-loading::before{
+  content:'';width:8px;height:8px;
+  background:var(--gold);border-radius:50%;
+  animation:pulse-dot 1s infinite;
+}
+@keyframes pulse-dot{
+  0%,100%{opacity:1;}50%{opacity:0.3;}
+}
+.token-cta-link{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:32px;padding:14px 28px;
+  border:2px solid var(--gold);
+  color:var(--gold);
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;
+  transition:all 0.2s;
+}
+.token-cta-link:hover{background:var(--gold);color:var(--black);}
+.token-desc{
+  font-size:15px;font-weight:300;
+  color:#aaa;line-height:1.8;margin-bottom:32px;
+}
+.token-benefits{list-style:none;margin-bottom:32px;}
+.token-benefits li{
+  font-family:'DM Mono',monospace;font-size:12px;
+  color:#888;padding:12px 0;
+  border-bottom:1px solid #1a1a1a;
+  display:flex;align-items:center;gap:12px;
+}
+.token-benefits li::before{content:'◆';font-size:7px;color:var(--gold);}
+.token-benefits li span{color:var(--white);}
+
+/* ── WHAT ARTHOUSE DOES ── */
+.does-section{
+  border-bottom:var(--border);
+  background:var(--white);
+}
+.does-inner{padding:96px 0;}
+.section-header{
+  display:flex;align-items:flex-start;gap:0;
+  margin-bottom:64px;
+  border-bottom:var(--border);
+  padding-bottom:32px;
+}
+.section-num{
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:0.2em;color:var(--blue);
+  min-width:80px;padding-top:8px;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(48px,6vw,88px);
+  line-height:0.95;letter-spacing:0.02em;
+  flex:1;
+}
+.section-title em{
+  font-style:normal;
+  -webkit-text-stroke:2px var(--black);
+  color:transparent;
+}
+.section-desc{
+  font-size:15px;color:#666;
+  max-width:320px;font-weight:300;
+  line-height:1.7;
+  border-left:3px solid var(--gold);
+  padding-left:20px;
+  align-self:flex-end;
+}
+.features-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;border:var(--border);
+}
+.feature-card{
+  padding:48px 40px;
+  border-right:var(--border);
+  position:relative;overflow:hidden;
+  transition:all 0.3s;
+}
+.feature-card:last-child{border-right:none;}
+.feature-card::before{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:0;
+  background:var(--blue);
+  transition:height 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  z-index:0;
+}
+.feature-card:hover::before{height:100%;}
+.feature-card:hover .feature-num,
+.feature-card:hover .feature-title,
+.feature-card:hover .feature-desc,
+.feature-card:hover .feature-icon-wrap{color:var(--white)!important;border-color:var(--white)!important;}
+.feature-card *{position:relative;z-index:1;transition:color 0.3s, border-color 0.3s;}
+.feature-num{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.2em;color:var(--gold);
+  margin-bottom:32px;display:block;
+}
+.feature-icon-wrap{
+  width:56px;height:56px;
+  border:var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:28px;
+}
+.feature-title{
+  font-family:'Syne',sans-serif;font-size:22px;
+  font-weight:700;margin-bottom:16px;
+}
+.feature-desc{
+  font-size:14px;color:#666;line-height:1.7;font-weight:300;
+}
+
+/* ── BOT SECTION ── */
+.bot-section{
+  border-bottom:var(--border);
+  background:var(--gray);
+}
+.bot-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;
+}
+.bot-info{
+  padding:96px 64px 96px 0;
+  border-right:var(--border);
+}
+.bot-demo{
+  padding:96px 0 96px 64px;
+}
+.bot-label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:24px;
+  display:flex;align-items:center;gap:8px;
+}
+.bot-label::before{content:'◆';font-size:7px;color:var(--gold);}
+.bot-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(48px,5vw,72px);
+  line-height:0.95;margin-bottom:24px;
+}
+.bot-title span{color:var(--blue);}
+.bot-text{
+  font-size:16px;color:#555;line-height:1.8;
+  font-weight:300;margin-bottom:40px;
+  max-width:440px;
+}
+.bot-capabilities{list-style:none;margin-bottom:48px;}
+.bot-capabilities li{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:16px 0;border-bottom:var(--border-thin);
+  font-size:14px;
+}
+.bot-capabilities li .cap-icon{
+  width:32px;height:32px;min-width:32px;
+  border:var(--border-thin);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+}
+.bot-capabilities li .cap-text strong{
+  display:block;font-family:'Syne',sans-serif;
+  font-weight:700;font-size:14px;margin-bottom:2px;
+}
+.bot-capabilities li .cap-text span{
+  color:#888;font-size:13px;font-weight:300;
+}
+
+/* Chat UI */
+.chat-window{
+  border:var(--border);
+  background:var(--white);
+  display:flex;flex-direction:column;
+  height:520px;
+  position:relative;
+}
+.chat-window::before{
+  content:'';position:absolute;
+  top:-2px;left:32px;right:32px;height:2px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+}
+.chat-header{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 20px;
+  background:var(--black);
+  border-bottom:var(--border);
+}
+.chat-avatar{
+  width:36px;height:36px;
+  background:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+  border:2px solid var(--white);
+}
+.chat-title{
+  font-family:'Syne',sans-serif;font-size:14px;
+  font-weight:700;color:var(--white);flex:1;
+}
+.chat-status-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#00c864;
+  box-shadow:0 0 8px #00c864;
+}
+.chat-status-text{
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:#00c864;letter-spacing:0.05em;
+}
+.chat-messages{
+  flex:1;overflow-y:auto;
+  padding:20px;
+  display:flex;flex-direction:column;gap:12px;
+  scrollbar-width:thin;
+  scrollbar-color:var(--gray-mid) transparent;
+}
+.msg{display:flex;gap:8px;}
+.msg.user{flex-direction:row-reverse;}
+.msg-bubble{
+  max-width:75%;padding:12px 16px;
+  font-size:13px;line-height:1.6;
+  border:var(--border-thin);
+}
+.msg-bubble.ai{
+  background:var(--white);
+  border-color:#d0d0d0;
+}
+.msg-bubble.user{
+  background:var(--blue);
+  color:var(--white);
+  border-color:var(--blue);
+}
+.msg-bubble.system{
+  background:rgba(201,168,76,0.1);
+  border-color:var(--gold);
+  color:#8a6f2e;
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  max-width:90%;
+  align-self:center;
+}
+.score-display{
+  font-family:'DM Mono',monospace;font-size:12px;
+  line-height:1.8;
+}
+.score-bar{
+  display:flex;align-items:center;gap:8px;
+  margin:4px 0;
+}
+.score-bar-fill{
+  height:4px;background:var(--blue);
+  display:inline-block;
+}
+.score-high{color:var(--blue);}
+.score-warn{color:#f59e0b;}
+.typing-indicator{display:flex;gap:4px;align-items:center;padding:4px 0;}
+.typing-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#999;
+  animation:typing 1.2s infinite;
+}
+.typing-dot:nth-child(2){animation-delay:0.2s;}
+.typing-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes typing{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
+.chat-suggestions{
+  padding:12px 16px;
+  border-top:var(--border-thin);border-color:#e0e0e0;
+  display:flex;gap:8px;overflow-x:auto;
+  scrollbar-width:none;
+}
+.suggestion-chip{
+  white-space:nowrap;padding:6px 14px;
+  border:var(--border-thin);
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.05em;cursor:pointer;
+  transition:all 0.2s;background:transparent;
+  color:var(--black);
+}
+.suggestion-chip:hover{background:var(--blue);color:var(--white);border-color:var(--blue);}
+.chat-input-area{
+  padding:12px 16px;
+  border-top:var(--border);
+  display:flex;gap:0;
+  background:var(--white);
+}
+.chat-input{
+  flex:1;background:transparent;
+  border:var(--border-thin);border-right:none;
+  padding:10px 16px;
+  font-family:'DM Mono',monospace;font-size:12px;
+  color:var(--black);outline:none;
+}
+.chat-send{
+  padding:10px 20px;
+  background:var(--blue);color:var(--white);
+  border:var(--border);border-left:none;
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:0.05em;cursor:pointer;
+  transition:background 0.2s;
+}
+.chat-send:hover{background:var(--black);}
+.chat-redirect{
+  padding:12px 16px;
+  background:rgba(0,0,255,0.04);
+  border-top:var(--border-thin);border-color:var(--blue);
+  display:none;
+  align-items:center;justify-content:space-between;
+  gap:12px;
+}
+.chat-redirect.show{display:flex;}
+.chat-redirect-text{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--blue);letter-spacing:0.05em;
+}
+.chat-redirect-btn{
+  padding:8px 16px;
+  background:var(--blue);color:var(--white);
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.05em;text-decoration:none;
+  border:none;white-space:nowrap;
+  transition:background 0.2s;
+  cursor:pointer;
+}
+.chat-redirect-btn:hover{background:var(--black);}
+
+/* ── HOW IT WORKS ── */
+.how-section{
+  border-bottom:var(--border);
+  background:var(--white);
+}
+.how-inner{padding:96px 0;}
+.steps-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;border:var(--border);margin-top:64px;
+}
+.step{
+  padding:48px 40px;
+  border-right:var(--border);
+  position:relative;
+}
+.step:last-child{border-right:none;}
+.step-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:96px;line-height:1;
+  color:var(--gray);
+  position:absolute;top:24px;right:24px;
+  -webkit-text-stroke:1px var(--gray-mid);
+  color:transparent;
+  pointer-events:none;
+}
+.step-icon{
+  width:48px;height:48px;
+  background:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;margin-bottom:28px;
+  border:var(--border);
+}
+.step-title{
+  font-family:'Syne',sans-serif;font-size:20px;
+  font-weight:700;margin-bottom:12px;
+}
+.step-desc{
+  font-size:14px;color:#666;line-height:1.7;font-weight:300;
+}
+.step-connector{
+  position:absolute;top:50%;right:-20px;
+  width:40px;height:2px;background:var(--black);
+  z-index:2;transform:translateY(-50%);
+  display:none;
+}
+
+/* ── CTA SECTION ── */
+.cta-section{
+  background:var(--black);
+  border-bottom:var(--border);
+}
+.cta-inner{
+  padding:120px 0;
+  text-align:center;
+  position:relative;
+}
+.cta-deco{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.3em;color:var(--gold);
+  margin-bottom:24px;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+}
+.cta-deco::before,.cta-deco::after{
+  content:'';width:60px;height:1px;background:var(--gold);
+}
+.cta-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(64px,9vw,140px);
+  line-height:0.9;color:var(--white);
+  margin-bottom:32px;letter-spacing:0.02em;
+}
+.cta-title span{color:var(--blue);}
+.cta-title em{
+  font-style:normal;
+  -webkit-text-stroke:2px var(--white);
+  color:transparent;
+}
+.cta-desc{
+  font-size:17px;color:#888;font-weight:300;
+  max-width:560px;margin:0 auto 56px;line-height:1.8;
+}
+.cta-btns{
+  display:flex;gap:0;justify-content:center;flex-wrap:wrap;
+}
+.cta-btn-main{
+  padding:20px 48px;
+  background:var(--blue);color:var(--white);
+  font-family:'DM Mono',monospace;font-size:13px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;border:3px solid var(--blue);
+  transition:all 0.2s;
+}
+.cta-btn-main:hover{background:transparent;color:var(--blue);}
+.cta-btn-ghost{
+  padding:20px 48px;
+  background:transparent;color:var(--white);
+  font-family:'DM Mono',monospace;font-size:13px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;border:3px solid #333;
+  border-left:none;
+  transition:all 0.2s;
+}
+.cta-btn-ghost:hover{border-color:var(--white);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--white);
+  border-top:var(--border);
+  padding:0;
+}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  border-bottom:var(--border-thin);
+}
+.footer-col{
+  padding:48px 40px;
+  border-right:var(--border-thin);
+}
+.footer-col:last-child{border-right:none;}
+.footer-brand{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:36px;letter-spacing:0.1em;margin-bottom:16px;
+}
+.footer-brand span{color:var(--blue);}
+.footer-tagline{
+  font-size:13px;color:#888;font-weight:300;
+  line-height:1.7;max-width:280px;
+  margin-bottom:24px;
+}
+.footer-col h4{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:#aaa;margin-bottom:20px;
+}
+.footer-col a{
+  display:block;font-size:14px;color:#555;
+  text-decoration:none;margin-bottom:12px;
+  transition:color 0.2s;
+}
+.footer-col a:hover{color:var(--blue);}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 40px;
+}
+.footer-bottom-left{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:#aaa;letter-spacing:0.05em;
+}
+.footer-bottom-right{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--gold);letter-spacing:0.1em;
+  display:flex;align-items:center;gap:8px;
+}
+.footer-bottom-right::before{content:'◆';font-size:7px;}
+
+/* ── SCROLL ANIMATIONS ── */
+.reveal{
+  opacity:0;transform:translateY(32px);
+  transition:opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94),
+             transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{
+  opacity:0;transform:translateX(-32px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{
+  opacity:0;transform:translateX(32px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+
+/* Stagger delays */
+.delay-1{transition-delay:0.1s;}
+.delay-2{transition-delay:0.2s;}
+.delay-3{transition-delay:0.3s;}
+.delay-4{transition-delay:0.4s;}
+
+/* ── TICKER ── */
+.ticker{
+  background:var(--blue);
+  border-bottom:var(--border);
+  overflow:hidden;padding:10px 0;
+}
+.ticker-inner{
+  display:flex;gap:0;animation:ticker 20s linear infinite;
+  white-space:nowrap;
+}
+.ticker-item{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--white);letter-spacing:0.1em;
+  padding:0 32px;display:inline-flex;align-items:center;gap:12px;
+}
+.ticker-item::after{content:'◆';font-size:7px;color:rgba(255,255,255,0.4);}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── MOBILE ── */
+@media(max-width:1024px){
+  nav{padding:0 24px;}
+  .nav-links{display:none;}
+  .container{padding:0 24px;}
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-left{padding:60px 0;border-right:none;border-bottom:var(--border);}
+  .hero-right{padding:48px 0;}
+  .hero::before{display:none;}
+  .token-inner,.bot-inner,.footer-top{grid-template-columns:1fr;}
+  .token-left{border-right:none;border-bottom:3px solid #333;}
+  .bot-info{padding:60px 0;border-right:none;border-bottom:var(--border);}
+  .bot-demo{padding:60px 0;}
+  .features-grid,.steps-grid{grid-template-columns:1fr;}
+  .feature-card{border-right:none;border-bottom:var(--border);}
+  .feature-card:last-child{border-bottom:none;}
+  .step{border-right:none;border-bottom:var(--border);}
+  .step:last-child{border-bottom:none;}
+  .footer-col{border-right:none;border-bottom:var(--border-thin);}
+  .footer-col:last-child{border-bottom:none;}
+  .section-header{flex-direction:column;gap:16px;}
+  .section-desc{max-width:100%;}
+}
+@media(max-width:640px){
+  h1{font-size:64px;}
+  .token-price-big{font-size:56px;}
+  .cta-title{font-size:56px;}
+  .hero-stats{grid-template-columns:1fr 1fr;}
+  .chat-window{height:420px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Navigation -->
+<nav>
+  <a href="#" class="nav-logo">ART<span>HOUSE</span></a>
+  <div class="nav-links">
+    <a href="#does">What It Does</a>
+    <a href="#token">Token</a>
+    <a href="#bot">Arthousexbt</a>
+    <a href="#start">Start</a>
+    <a href="https://t.me/arthousexbt_bot" target="_blank" class="nav-cta">Open Bot ↗</a>
+  </div>
+</nav>
+
+<!-- Ticker -->
+<div class="ticker" style="margin-top:64px;">
+  <div class="ticker-inner" id="tickerInner">
+    <span class="ticker-item">Onchain Art Intelligence</span>
+    <span class="ticker-item">Base + Zora</span>
+    <span class="ticker-item">Creator Discovery</span>
+    <span class="ticker-item">Not Every Creator Who Mints Is Building</span>
+    <span class="ticker-item">$ARTHOUSE</span>
+    <span class="ticker-item">Talent Scout</span>
+    <span class="ticker-item">Onchain Forever</span>
+    <span class="ticker-item">@arthousexbt_bot</span>
+    <span class="ticker-item">Onchain Art Intelligence</span>
+    <span class="ticker-item">Base + Zora</span>
+    <span class="ticker-item">Creator Discovery</span>
+    <span class="ticker-item">Not Every Creator Who Mints Is Building</span>
+    <span class="ticker-item">$ARTHOUSE</span>
+    <span class="ticker-item">Talent Scout</span>
+    <span class="ticker-item">Onchain Forever</span>
+    <span class="ticker-item">@arthousexbt_bot</span>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="what">
+  <div class="container" style="width:100%;max-width:100%;padding:0 48px;">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="deco-corner tl"></div>
+        <div class="hero-label reveal">Onchain Art Intelligence · Base + Zora</div>
+        <h1 class="reveal delay-1">
+          FIND<br/>
+          WHO'S<br/>
+          <span class="blue">ACTUALLY</span><br/>
+          <span class="stroke">BUILDING.</span>
+        </h1>
+        <p class="hero-desc reveal delay-2">
+          Arthouse is the intelligence layer for onchain art. 
+          We know the difference between builders and flippers — 
+          and we'll show you exactly why.
+        </p>
+        <div class="hero-btns reveal delay-3">
+          <a href="https://t.me/arthousexbt_bot" target="_blank" class="btn-primary">
+            Ask @arthousexbt ↗
+          </a>
+          <a href="#token" class="btn-secondary">
+            View Token →
+          </a>
+        </div>
+        <div class="deco-corner bl"></div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stats reveal delay-2">
+          <div class="stat-box">
+            <div class="stat-num"><span id="stat1">0</span>K</div>
+            <div class="stat-label">Works Preserved</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num"><span id="stat2">0</span></div>
+            <div class="stat-label">Active Creators</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--blue);">100</div>
+            <div class="stat-label">Point Scoring Scale</div>
+          </div>
+          <div class="stat-box" style="background:var(--blue);">
+            <div class="stat-num" style="color:var(--white);">∞</div>
+            <div class="stat-label" style="color:rgba(255,255,255,0.6);">Onchain Forever</div>
+          </div>
+        </div>
+        <div class="hero-badge reveal delay-3">
+          <div class="deco-corner tl" style="width:20px;height:20px;top:12px;left:12px;"></div>
+          <div class="deco-corner br" style="width:20px;height:20px;bottom:12px;right:12px;"></div>
+          <div class="hero-badge-text">
+            ◆ &nbsp; Not every creator who mints is building.<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Arthouse knows the difference.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Token Section -->
+<section class="token-section" id="token">
+  <div class="container" style="max-width:100%;padding:0 48px;">
+    <div class="token-inner">
+      <div class="token-left reveal-left">
+        <div class="token-label">$ARTHOUSE Token · Base Network</div>
+        <div class="token-name">$ARTHOUSE</div>
+        <div class="token-address">0xd3216582e3e31578e01b7fd8eda6de969f3658ce</div>
+
+        <div id="tokenLoading" class="token-loading">Fetching live price...</div>
+        <div id="tokenData" style="display:none;">
+          <div class="token-price-big" id="tokenPrice">—</div>
+          <div class="token-change" id="tokenChange">—</div>
+          <div class="token-stats-grid" style="margin-top:24px;">
+            <div class="token-stat">
+              <div class="token-stat-val" id="tokenVol">—</div>
+              <div class="token-stat-label">Volume 24h</div>
+            </div>
+            <div class="token-stat">
+              <div class="token-stat-val" id="tokenMcap">—</div>
+              <div class="token-stat-label">Market Cap</div>
+            </div>
+            <div class="token-stat">
+              <div class="token-stat-val" id="tokenLiq">—</div>
+              <div class="token-stat-label">Liquidity</div>
+            </div>
+            <div class="token-stat">
+              <div class="token-stat-val" id="tokenTxns">—</div>
+              <div class="token-stat-label">Txns 24h</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce"
+           target="_blank" class="token-cta-link">
+          View Full Chart on DexScreener ↗
+        </a>
+      </div>
+      <div class="token-right reveal-right">
+        <div class="token-label">Why Hold $ARTHOUSE</div>
+        <p class="token-desc">
+          The token is not speculation. It's access. 
+          Holders unlock the full intelligence layer — 
+          deeper analysis, early alerts, unlimited creator scoring.
+        </p>
+        <ul class="token-benefits">
+          <li><span>Full 5-dimension creator scoring reports</span></li>
+          <li><span>Unlimited @arthousexbt analysis</span></li>
+          <li><span>Early alerts — high-scoring creators before they trend</span></li>
+          <li><span>Weekly top builders report on Zora</span></li>
+          <li><span>Access to curated watchlists</span></li>
+          <li><span>Early access to new features</span></li>
+        </ul>
+        <div style="display:flex;gap:0;flex-wrap:wrap;">
+          <a href="https://zora.co/arthousebase" target="_blank" class="token-cta-link" style="margin-top:0;margin-right:0;">
+            Explore on Zora ↗
+          </a>
+          <a href="https://t.me/arthousexbt_bot" target="_blank" class="token-cta-link" style="margin-top:0;border-left:none;">
+            Get Full Access ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What Arthouse Does -->
+<section class="does-section" id="does">
+  <div class="container">
+    <div class="does-inner">
+      <div class="section-header reveal">
+        <span class="section-num">01 —</span>
+        <h2 class="section-title">WHAT<br/>ARTHOUSE <em>DOES</em></h2>
+        <p class="section-desc">Intelligence tools for serious collectors and curators on Base and Zora.</p>
+      </div>
+      <div class="features-grid reveal delay-1">
+        <div class="feature-card">
+          <span class="feature-num">◆ 01</span>
+          <div class="feature-icon-wrap">🔍</div>
+          <h3 class="feature-title">Talent Scout</h3>
+          <p class="feature-desc">
+            Surface emerging creators before the crowd. 
+            Arthouse analyzes onchain activity, social signals, 
+            and content patterns to find builders — not flippers.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-num">◆ 02</span>
+          <div class="feature-icon-wrap">⚡</div>
+          <h3 class="feature-title">Creator Scoring</h3>
+          <p class="feature-desc">
+            A rigorous scoring system across identity, consistency, 
+            building signals, traction, and reputation. 
+            0–100 points. No guessing. Just data.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-num">◆ 03</span>
+          <div class="feature-icon-wrap">⛓️</div>
+          <h3 class="feature-title">Onchain Forever</h3>
+          <p class="feature-desc">
+            Permanent preservation on Base and Zora. 
+            No platforms, no gatekeepers. 
+            Art and creator intelligence stored onchain, accessible forever.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bot Section -->
+<section class="bot-section" id="bot">
+  <div class="container" style="max-width:100%;padding:0 48px;">
+    <div class="bot-inner">
+      <div class="bot-info reveal-left">
+        <div class="bot-label">AI Intelligence Agent</div>
+        <h2 class="bot-title">MEET<br/><span>@ARTHOUSEXBT</span></h2>
+        <p class="bot-text">
+          Ask about any creator on Zora. Get a score, a classification, 
+          and a clear recommendation. Arthousexbt doesn't hype — it curates.
+        </p>
+        <ul class="bot-capabilities">
+          <li>
+            <div class="cap-icon">📊</div>
+            <div class="cap-text">
+              <strong>Analyze Any Creator</strong>
+              <span>"analyze @username" — get full scoring breakdown</span>
+            </div>
+          </li>
+          <li>
+            <div class="cap-icon">🎯</div>
+            <div class="cap-text">
+              <strong>Detect Red Flags</strong>
+              <span>"is this legit?" — runs red flag checklist instantly</span>
+            </div>
+          </li>
+          <li>
+            <div class="cap-icon">🏆</div>
+            <div class="cap-text">
+              <strong>Find Top Builders</strong>
+              <span>"who's building this week?" — top 3 with reasoning</span>
+            </div>
+          </li>
+          <li>
+            <div class="cap-icon">💎</div>
+            <div class="cap-text">
+              <strong>Collection Intelligence</strong>
+              <span>Context on drops, coins, and cultural movements</span>
+            </div>
+          </li>
+        </ul>
+        <a href="https://t.me/arthousexbt_bot" target="_blank" class="btn-primary">
+          Open Full Bot on Telegram ↗
+        </a>
+      </div>
+      <div class="bot-demo reveal-right">
+        <div class="chat-window">
+          <div class="chat-header">
+            <div class="chat-avatar">🎨</div>
+            <div class="chat-title">Arthousexbt</div>
+            <div class="chat-status-dot"></div>
+            <div class="chat-status-text" style="margin-left:6px;">Online</div>
+          </div>
+          <div class="chat-messages" id="chatMessages">
+            <div class="msg">
+              <div class="msg-bubble ai">
+                Welcome. I'm <strong>Arthousexbt</strong> — your onchain art intelligence agent.<br/><br/>
+                Ask me to analyze a creator, detect red flags, or find who's genuinely building on Zora.
+              </div>
+            </div>
+          </div>
+          <div class="chat-suggestions" id="suggestions">
+            <button class="suggestion-chip" onclick="sendSuggestion('analyze @liquidcreator')">analyze @liquidcreator</button>
+            <button class="suggestion-chip" onclick="sendSuggestion('who is building this week?')">who\'s building?</button>
+            <button class="suggestion-chip" onclick="sendSuggestion('is this creator legit?')">is this legit?</button>
+            <button class="suggestion-chip" onclick="sendSuggestion('what makes a real builder?')">builder vs flipper?</button>
+          </div>
+          <div class="chat-input-area">
+            <input class="chat-input" id="chatInput" placeholder="Ask about any creator..." onkeydown="handleKey(event)"/>
+            <button class="chat-send" onclick="sendMsg()">SEND</button>
+          </div>
+          <div class="chat-redirect" id="chatRedirect">
+            <span class="chat-redirect-text">◆ &nbsp;Continue full conversation on Telegram</span>
+            <a href="https://t.me/arthousexbt_bot" target="_blank" class="chat-redirect-btn">Open @arthousexbt ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="how-inner">
+      <div class="section-header reveal">
+        <span class="section-num">02 —</span>
+        <h2 class="section-title">HOW IT <em>WORKS</em></h2>
+        <p class="section-desc">Three steps from curious to convinced.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step reveal delay-1">
+          <div class="step-num">01</div>
+          <div class="step-icon">→</div>
+          <h3 class="step-title">Connect</h3>
+          <p class="step-desc">
+            Open @arthousexbt_bot on Telegram. 
+            No wallet required, no signup. 
+            Just start asking.
+          </p>
+        </div>
+        <div class="step reveal delay-2">
+          <div class="step-num">02</div>
+          <div class="step-icon">?</div>
+          <h3 class="step-title">Ask</h3>
+          <p class="step-desc">
+            Ask about any creator on Zora. 
+            "Analyze @username" — Arthousexbt 
+            scores across 5 dimensions instantly.
+          </p>
+        </div>
+        <div class="step reveal delay-3">
+          <div class="step-num">03</div>
+          <div class="step-icon">★</div>
+          <h3 class="step-title">Discover</h3>
+          <p class="step-desc">
+            Get a classification: Highly Promising, 
+            Watchlist, Too Early, or Skip — 
+            with clear reasoning every time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section" id="start">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="deco-corner tl" style="border-color:var(--gold);top:40px;left:0;"></div>
+      <div class="deco-corner tr" style="border-color:var(--gold);top:40px;right:0;"></div>
+      <div class="deco-corner bl" style="border-color:var(--gold);bottom:40px;left:0;"></div>
+      <div class="deco-corner br" style="border-color:var(--gold);bottom:40px;right:0;"></div>
+      <div class="cta-deco reveal">ARTHOUSE · ONCHAIN FOREVER</div>
+      <h2 class="cta-title reveal delay-1">
+        START<br/>
+        <span>NOW.</span><br/>
+        <em>EXPLORE.</em>
+      </h2>
+      <p class="cta-desc reveal delay-2">
+        Join the onchain art intelligence layer. 
+        Ask @arthousexbt anything. 
+        Find creators worth following before everyone else does.
+      </p>
+      <div class="cta-btns reveal delay-3">
+        <a href="https://t.me/arthousexbt_bot" target="_blank" class="cta-btn-main">
+          Open @arthousexbt on Telegram ↗
+        </a>
+        <a href="https://zora.co/arthousebase" target="_blank" class="cta-btn-ghost">
+          Explore on Zora →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-col" style="padding-left:48px;">
+      <div class="footer-brand">ART<span>HOUSE</span></div>
+      <p class="footer-tagline">
+        The intelligence layer for onchain art. 
+        Preserving creativity on Base and Zora. 
+        Talent scout, not trading bot.
+      </p>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;">
+        ◆ &nbsp; ONCHAIN FOREVER
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="https://zora.co/arthousebase" target="_blank">Zora</a>
+      <a href="https://www.base.org" target="_blank">Base</a>
+      <a href="https://t.me/arthousexbt_bot" target="_blank">Telegram Bot</a>
+      <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce" target="_blank">DexScreener</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="#">Documentation</a>
+      <a href="#">API</a>
+      <a href="#">Status</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#">Twitter / X</a>
+      <a href="#">Farcaster</a>
+      <a href="#">Mirror</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">© 2025 Arthouse. All rights reserved.</div>
+    <div class="footer-bottom-right">Onchain Forever</div>
+  </div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+function animRing(){
+  rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}animRing();
+document.querySelectorAll('a,button,.suggestion-chip').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    ring.style.width='60px';ring.style.height='60px';
+    ring.style.borderColor='var(--black)';
+  });
+  el.addEventListener('mouseleave',()=>{
+    ring.style.width='40px';ring.style.height='40px';
+    ring.style.borderColor='var(--blue)';
+  });
+});
+
+/* ── SCROLL REVEAL ── */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add('visible');
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>observer.observe(el));
+
+/* ── COUNT UP ── */
+function countUp(el,target,suffix='',duration=2000){
+  let start=0,step=target/duration*16;
+  const timer=setInterval(()=>{
+    start+=step;
+    if(start>=target){start=target;clearInterval(timer);}
+    el.textContent=suffix?start.toFixed(1):Math.floor(start);
+  },16);
+}
+const statsObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      countUp(document.getElementById('stat1'),12.4,'k');
+      countUp(document.getElementById('stat2'),847);
+      statsObserver.disconnect();
+    }
+  });
+},{threshold:0.5});
+statsObserver.observe(document.getElementById('stat1'));
+
+/* ── TOKEN FETCH ── */
+async function fetchToken(){
+  const addr='0xd3216582e3e31578e01b7fd8eda6de969f3658ce';
+  try{
+    const res=await fetch(`https://api.dexscreener.com/latest/dex/tokens/${addr}`);
+    const data=await res.json();
+    const pair=data.pairs&&data.pairs[0];
+    if(!pair)throw new Error('no pair');
+    document.getElementById('tokenLoading').style.display='none';
+    document.getElementById('tokenData').style.display='block';
+    const price=parseFloat(pair.priceUsd);
+    document.getElementById('tokenPrice').textContent=
+      price<0.0001?'$'+price.toExponential(2):
+      price<0.01?'$'+price.toFixed(6):
+      '$'+price.toFixed(4);
+    const chg=pair.priceChange?.h24||0;
+    const chgEl=document.getElementById('tokenChange');
+    chgEl.textContent=(chg>=0?'+':'')+chg.toFixed(2)+'% (24h)';
+    chgEl.className='token-change '+(chg>=0?'positive':'negative');
+    const fmt=n=>{
+      if(!n)return '—';
+      n=parseFloat(n);
+      if(n>=1e9)return '$'+(n/1e9).toFixed(2)+'B';
+      if(n>=1e6)return '$'+(n/1e6).toFixed(2)+'M';
+      if(n>=1e3)return '$'+(n/1e3).toFixed(2)+'K';
+      return '$'+n.toFixed(2);
+    };
+    document.getElementById('tokenVol').textContent=fmt(pair.volume?.h24);
+    document.getElementById('tokenMcap').textContent=fmt(pair.marketCap);
+    document.getElementById('tokenLiq').textContent=fmt(pair.liquidity?.usd);
+    const txns=pair.txns?.h24;
+    document.getElementById('tokenTxns').textContent=
+      txns?(txns.buys+txns.sells).toLocaleString():'—';
+  }catch(e){
+    document.getElementById('tokenLoading').textContent='— Live data unavailable —';
+    document.getElementById('tokenLoading').style.color='#555';
+  }
+}
+fetchToken();
+setInterval(fetchToken,30000);
+
+/* ── BOT DEMO ── */
+let msgCount=0;
+const chatMessages=document.getElementById('chatMessages');
+const chatRedirect=document.getElementById('chatRedirect');
+
+const responses={
+  'analyze @liquidcreator':[
+    {delay:400,type:'system',text:'◆ Scanning onchain activity for @liquidcreator...'},
+    {delay:1600,type:'score',creator:'@liquidcreator',score:74,d1:19,d2:18,d3:22,d4:12,d5:3,class:'WATCHLIST ⚡',note:'Strong content consistency and clear building signals. Traction still early. Monitor next 3–4 weeks.'},
+  ],
+  'who is building this week?':[
+    {delay:300,type:'system',text:'◆ Analyzing active builders on Zora this week...'},
+    {delay:1400,type:'ai',text:'Top 3 active builders this week on Zora:\n\n1. @voidmaker — Ongoing "Void Series", part 7 published. Deep community engagement.\n\n2. @electriccanvas — Experimenting with Zora Coins + generative drops. High Farcaster activity.\n\n3. @quietform — Slow and consistent. No hype, strong collector base growing organically.'},
+  ],
+  'is this creator legit?':[
+    {delay:300,type:'system',text:'◆ Running red flag checklist...'},
+    {delay:1200,type:'ai',text:'To run a full red flag check, share the creator handle.\n\nQuick checklist I run:\n✓ Wallet age > 3 months\n✓ Bio with real context\n✓ Active Farcaster presence\n✓ Content has a theme/niche\n✓ Holder distribution (not 1–2 wallets)\n✓ Engages with other creators\n\nSend me the handle and I\'ll check all 6.'},
+  ],
+  'what makes a real builder?':[
+    {delay:300,type:'ai',text:'The difference between a builder and a flipper:\n\n<strong>Builder signals:</strong>\n→ Shares process, not just results\n→ Has a content series or arc in progress\n→ Replies to other creators with substance\n→ Active on Farcaster discussing ecosystem\n→ Still posting 6 months from now\n\n<strong>Flipper signals:</strong>\n→ Burst posting then silence\n→ All posts = "buy my coin"\n→ Never engages with anyone else\n→ No narrative behind the work\n\nBuilders build. Flippers exit.'},
+  ],
+};
+
+const fallback=[
+  {delay:400,type:'system',text:'◆ Processing your query...'},
+  {delay:1200,type:'ai',text:'For detailed analysis, send this directly to @arthousexbt_bot on Telegram — the full intelligence layer runs there with live onchain data and complete creator profiles.'},
+];
+
+function addMsg(type,html,delay=0){
+  return new Promise(resolve=>{
+    setTimeout(()=>{
+      if(type==='typing'){
+        const el=document.createElement('div');
+        el.className='msg';el.id='typing';
+        el.innerHTML='<div class="msg-bubble ai"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>';
+        chatMessages.appendChild(el);
+      } else {
+        const old=document.getElementById('typing');
+        if(old)old.remove();
+        const el=document.createElement('div');
+        el.className='msg'+(type==='user'?' user':'');
+        let bubbleClass=type==='system'?'system':type==='user'?'user':'ai';
+        if(type==='score'){
+          const pct1=(html.d1/25)*100,pct2=(html.d2/25)*100,pct3=(html.d3/30)*100,pct4=(html.d4/20)*100;
+          const classColor=html.class.includes('PROMISING')?'#0000ff':html.class.includes('WATCHLIST')?'#f59e0b':'#888';
+          el.innerHTML=`<div class="msg-bubble ai"><div class="score-display">
+            <strong>${html.creator}</strong><br/><br/>
+            <span style="font-size:10px;letter-spacing:0.1em;color:#888;">CREATOR SCORE</span><br/>
+            <span style="font-family:'Bebas Neue';font-size:36px;color:var(--blue);">${html.score}</span><span style="color:#aaa;font-size:12px;">/100</span><br/><br/>
+            <div class="score-bar">Profile & Identity<span style="margin-left:auto;color:var(--blue);">${html.d1}/25</span></div>
+            <div style="height:3px;background:#f0f0f0;margin-bottom:6px;"><div style="width:${pct1}%;height:3px;background:var(--blue);"></div></div>
+            <div class="score-bar">Content Consistency<span style="margin-left:auto;color:var(--blue);">${html.d2}/25</span></div>
+            <div style="height:3px;background:#f0f0f0;margin-bottom:6px;"><div style="width:${pct2}%;height:3px;background:var(--blue);"></div></div>
+            <div class="score-bar">Currently Building ★<span style="margin-left:auto;color:var(--blue);">${html.d3}/30</span></div>
+            <div style="height:3px;background:#f0f0f0;margin-bottom:6px;"><div style="width:${pct3}%;height:3px;background:var(--blue);"></div></div>
+            <div class="score-bar">Early Traction<span style="margin-left:auto;color:var(--blue);">${html.d4}/20</span></div>
+            <div style="height:3px;background:#f0f0f0;margin-bottom:12px;"><div style="width:${pct4}%;height:3px;background:var(--blue);"></div></div>
+            <div style="padding:8px 12px;border:2px solid ${classColor};display:inline-block;font-weight:700;color:${classColor};letter-spacing:0.05em;">${html.class}</div><br/><br/>
+            <span style="color:#888;font-size:12px;">${html.note}</span>
+          </div></div>`;
+        } else {
+          el.innerHTML=`<div class="msg-bubble ${bubbleClass}">${html.replace(/\n/g,'<br/>')}</div>`;
+        }
+        chatMessages.appendChild(el);
+      }
+      chatMessages.scrollTop=chatMessages.scrollHeight;
+      resolve();
+    },delay);
+  });
+}
+
+async function runConversation(key){
+  const flow=responses[key]||fallback;
+  await addMsg('typing');
+  for(const step of flow){
+    if(step.type==='score'){
+      await new Promise(r=>setTimeout(r,step.delay));
+      const old=document.getElementById('typing');if(old)old.remove();
+      await addMsg('score',step,0);
+    } else {
+      await new Promise(r=>setTimeout(r,step.delay));
+      if(step.type==='system'){
+        const old=document.getElementById('typing');if(old)old.remove();
+        await addMsg('system',step.text,0);
+        await addMsg('typing');
+      } else {
+        await addMsg(step.type,step.text,0);
+      }
+    }
+  }
+  msgCount++;
+  if(msgCount>=2){
+    chatRedirect.classList.add('show');
+  }
+}
+
+function sendSuggestion(text){
+  document.getElementById('suggestions').style.display='none';
+  addMsg('user',text,0);
+  runConversation(text);
+}
+
+function sendMsg(){
+  const input=document.getElementById('chatInput');
+  const msg=input.value.trim();
+  if(!msg)return;
+  input.value='';
+  document.getElementById('suggestions').style.display='none';
+  addMsg('user',msg,0);
+  const key=Object.keys(responses).find(k=>
+    msg.toLowerCase().includes(k.replace('@','').split(' ')[0].toLowerCase())
+  )||null;
+  runConversation(key);
+}
+
+function handleKey(e){if(e.key==='Enter')sendMsg();}
+</script>
+</body>
+</html>
