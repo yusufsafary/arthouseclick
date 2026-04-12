@@ -8,13 +8,13 @@
 <meta name="keywords" content="arthouse, onchain art, base network, zora, creator scoring, NFT intelligence, $ARTHOUSE, web3 art, talent scout, arthousexbt"/>
 <meta name="robots" content="index, follow"/>
 <meta name="author" content="Arthouse"/>
-<link rel="canonical" href="https://arthouse.base.eth/"/>
+<link rel="canonical" href="https://arthouse.click/"/>
 <!-- Open Graph -->
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://arthouse.base.eth/"/>
+<meta property="og:url" content="https://arthouse.click/"/>
 <meta property="og:title" content="ARTHOUSE — Onchain Art Intelligence on Base & Zora"/>
 <meta property="og:description" content="The intelligence layer for onchain art. Score creators, discover builders, and find talent on Base and Zora before everyone else."/>
-<meta property="og:image" content="https://arthouse.base.eth/og-image.jpg"/>
+<meta property="og:image" content="https://arthouse.click/og-image.jpg"/>
 <meta property="og:site_name" content="Arthouse"/>
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image"/>
@@ -22,10 +22,10 @@
 <meta name="twitter:creator" content="@arthousebase"/>
 <meta name="twitter:title" content="ARTHOUSE — Onchain Art Intelligence"/>
 <meta name="twitter:description" content="The intelligence layer for onchain art. Score creators, discover builders, and find talent on Base and Zora."/>
-<meta name="twitter:image" content="https://arthouse.base.eth/og-image.jpg"/>
+<meta name="twitter:image" content="https://arthouse.click/og-image.jpg"/>
 <!-- JSON-LD Schema -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Arthouse","url":"https://arthouse.base.eth","description":"The intelligence layer for onchain art on Base and Zora","sameAs":["https://x.com/arthousebase","https://www.instagram.com/arthousebase","https://www.tiktok.com/@arthousebase","https://t.me/arthousexbt_bot"],"logo":{"@type":"ImageObject","url":"https://arthouse.base.eth/logo.png"}}
+{"@context":"https://schema.org","@type":"Organization","name":"Arthouse","url":"https://arthouse.click","description":"The intelligence layer for onchain art on Base and Zora","sameAs":["https://x.com/arthousebase","https://www.instagram.com/arthousebase","https://www.tiktok.com/@arthousebase","https://t.me/arthousexbt_bot"],"logo":{"@type":"ImageObject","url":"https://arthouse.click/logo.png"}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -48,9 +48,9 @@ body{background:var(--white);color:var(--black);font-family:'DM Sans',sans-serif
 @media(hover:none){.cursor,.cursor-ring{display:none;}body{cursor:auto;}}
 
 /* NAV — solid blue header */
-nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;background:#0d0f14;border-bottom:none;z-index:100;transition:background .3s;}
+nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:64px;background:#0a1a00;border-bottom:none;z-index:100;transition:background .3s;}
 nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,#0052FF 30%,#66C800 70%,transparent 100%);pointer-events:none;}
-nav.scrolled{background:#080a0e;}
+nav.scrolled{background:#071200;}
 .nav-logo{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--white);text-decoration:none;text-transform:uppercase;display:flex;align-items:center;gap:0;line-height:1;}
 .nav-logo .slash{color:rgba(255,255,255,.4);font-weight:300;letter-spacing:0;margin-right:6px;font-size:13px;}
 .nav-logo .wordmark{color:var(--white);font-weight:700;letter-spacing:.14em;font-size:14px;}
@@ -79,6 +79,65 @@ nav.scrolled{background:#080a0e;}
 .mob-menu .menu-socials{padding:20px 48px;display:flex;gap:16px;flex-wrap:wrap;}
 .mob-menu .menu-socials a{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,.4);padding:6px 12px;border:1px solid rgba(255,255,255,.1);letter-spacing:.1em;transition:all .2s;font-size:10px;}
 .mob-menu .menu-socials a:hover{color:var(--white);border-color:var(--green);padding-left:12px;}
+
+/* ACCORDION */
+.mob-accordion{border-bottom:1px solid rgba(255,255,255,.04);}
+.mob-accordion-trigger{
+  font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.05em;
+  color:rgba(255,255,255,.75);padding:14px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;user-select:none;transition:all .2s;
+  border:none;background:transparent;width:100%;text-align:left;
+  -webkit-tap-highlight-color:transparent;
+}
+.mob-accordion-trigger:hover{color:var(--white);padding-left:56px;}
+.mob-accordion-trigger:hover .acc-arrow{color:var(--green);}
+.acc-arrow{font-family:'DM Mono',monospace;font-size:14px;color:rgba(255,255,255,.3);transition:transform .3s,color .2s;display:inline-block;line-height:1;}
+.mob-accordion-trigger.open .acc-arrow{transform:rotate(45deg);color:var(--green);}
+.mob-accordion-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(.25,.46,.45,.94),opacity .3s ease;
+  opacity:0;
+}
+.mob-accordion-body.open{max-height:600px;opacity:1;}
+.mob-accordion-content{
+  padding:0 48px 24px;
+  border-bottom:1px solid rgba(102,200,0,.12);
+  background:rgba(102,200,0,.03);
+}
+.mob-accordion-content p{
+  font-family:'DM Sans',sans-serif;font-size:13px;
+  color:rgba(255,255,255,.45);line-height:1.75;
+  font-weight:300;margin-bottom:12px;
+}
+.mob-accordion-content .acc-tag{
+  display:inline-block;font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--green);border:1px solid rgba(102,200,0,.35);
+  padding:4px 10px;margin-bottom:16px;
+}
+.mob-accordion-content .acc-link{
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;
+  color:var(--blue);text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  border-bottom:1px solid rgba(0,82,255,.3);padding-bottom:2px;
+  transition:color .2s,border-color .2s;
+  font-size:11px;
+}
+.mob-accordion-content .acc-link:hover{color:var(--green);border-color:rgba(102,200,0,.4);}
+/* Connect accordion items */
+.mob-connect-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);
+}
+.mob-connect-item:last-child{border-bottom:none;}
+.mob-connect-icon{font-size:18px;margin-top:2px;flex-shrink:0;}
+.mob-connect-info{}
+.mob-connect-name{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.7);text-transform:uppercase;margin-bottom:4px;}
+.mob-connect-desc{font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;font-weight:300;}
+.mob-connect-item a{text-decoration:none;color:inherit;display:flex;gap:14px;align-items:flex-start;width:100%;padding:0;border:none;font-size:inherit;font-family:inherit;background:transparent;transition:none;}
+.mob-connect-item:hover .mob-connect-name{color:var(--green);}
+.mob-connect-item:hover .mob-connect-icon{filter:brightness(1.3);}
 
 /* TICKER */
 .ticker{background:rgba(20,22,28,.95);border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden;padding:9px 0;margin-top:64px;position:relative;z-index:1;}
@@ -594,19 +653,118 @@ footer{background:var(--white);border-top:var(--border);}
   <a href="#what" onclick="toggleNav()">Home <span class="menu-arrow">↗</span></a>
   <a href="#token" onclick="toggleNav()">$Arthouse Token <span class="menu-arrow">↗</span></a>
   <div class="menu-divider"></div>
-  <span class="menu-section-label">Explore</span>
-  <a href="#does" onclick="toggleNav()">What It Does <span class="menu-arrow">↗</span></a>
-  <a href="#bot" onclick="toggleNav()">Meet Arthousexbt <span class="menu-arrow">↗</span></a>
-  <a href="#start" onclick="toggleNav()">Get Started <span class="menu-arrow">↗</span></a>
+
+  <span class="menu-section-label">Features</span>
+
+  <!-- Accordion: What It Does -->
+  <div class="mob-accordion">
+    <button class="mob-accordion-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+      What It Does <span class="acc-arrow">+</span>
+    </button>
+    <div class="mob-accordion-body">
+      <div class="mob-accordion-content">
+        <span class="acc-tag">◆ Core Feature</span>
+        <p>Arthouse is the intelligence layer built for onchain art on Base and Zora. We analyze real wallet activity, content history, and community signals — not just follower counts or mint volume.</p>
+        <p>Our Creator Score system breaks down each builder across four dimensions: Profile & Identity, Content Consistency, Active Building signals, and Early Traction. Every score is transparent and data-driven.</p>
+        <p>Whether you're a collector looking for undervalued talent, a curator building a program, or simply someone who wants to know who's actually building — Arthouse gives you the signal before the noise takes over.</p>
+        <a href="#does" class="acc-link" onclick="toggleNav()">Explore Features ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion: Meet Arthousexbt -->
+  <div class="mob-accordion">
+    <button class="mob-accordion-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+      Meet Arthousexbt <span class="acc-arrow">+</span>
+    </button>
+    <div class="mob-accordion-body">
+      <div class="mob-accordion-content">
+        <span class="acc-tag">◆ AI Agent</span>
+        <p>Arthousexbt is your onchain art intelligence agent — a Telegram bot powered by real data from Base and Zora. Ask it anything: analyze a creator, run a red flag check, or find who's genuinely building this week.</p>
+        <p>It runs 24/7 and responds with structured Creator Score breakdowns, builder signals, and honest assessments. No hype. No shill. Just intelligence.</p>
+        <p>$ARTHOUSE token holders get full access — unlimited queries, priority analysis, and early access to new scoring models as the platform evolves.</p>
+        <a href="https://t.me/arthousexbt_bot" target="_blank" class="acc-link" onclick="toggleNav()">Open on Telegram ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion: Get Started -->
+  <div class="mob-accordion">
+    <button class="mob-accordion-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+      Get Started <span class="acc-arrow">+</span>
+    </button>
+    <div class="mob-accordion-body">
+      <div class="mob-accordion-content">
+        <span class="acc-tag">◆ Onboarding</span>
+        <p>Getting started is straightforward. First, acquire $ARTHOUSE on Base — the token is your access key to the full intelligence layer. You can find it on DexScreener or swap directly on Base.</p>
+        <p>Once you hold $ARTHOUSE, open @arthousexbt_bot on Telegram and connect your wallet to unlock full access. From there, you can start querying creators, running red flag checks, and tracking builders you've identified.</p>
+        <p>Not ready to buy? You can still explore the bot in demo mode — try a few queries and see the power of onchain art intelligence for yourself before committing.</p>
+        <a href="#start" class="acc-link" onclick="toggleNav()">View Full Guide ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-divider"></div>
+
+  <!-- Accordion: Connect / Social Channels -->
+  <span class="menu-section-label">Connect</span>
+  <div class="mob-accordion">
+    <button class="mob-accordion-trigger" onclick="toggleAcc(this)" aria-expanded="false">
+      Social Channels <span class="acc-arrow">+</span>
+    </button>
+    <div class="mob-accordion-body">
+      <div class="mob-accordion-content" style="padding-top:8px;">
+        <div class="mob-connect-item">
+          <a href="https://x.com/arthousebase" target="_blank" onclick="toggleNav()">
+            <span class="mob-connect-icon">𝕏</span>
+            <div class="mob-connect-info">
+              <div class="mob-connect-name">Twitter / X — @arthousebase</div>
+              <div class="mob-connect-desc">Live alpha drops, creator spotlights, builder of the week, and real-time commentary on what's moving on Base and Zora. This is where the signal flows first.</div>
+            </div>
+          </a>
+        </div>
+        <div class="mob-connect-item">
+          <a href="https://base.app/profile/arthouse" target="_blank" onclick="toggleNav()">
+            <span class="mob-connect-icon">🔵</span>
+            <div class="mob-connect-info">
+              <div class="mob-connect-name">Base App — Onchain Profile</div>
+              <div class="mob-connect-desc">Our verified onchain presence on Base. Follow our profile to track activity, see which creators we're watching, and stay connected directly on the chain we call home.</div>
+            </div>
+          </a>
+        </div>
+        <div class="mob-connect-item">
+          <a href="https://www.instagram.com/arthousebase" target="_blank" onclick="toggleNav()">
+            <span class="mob-connect-icon">📸</span>
+            <div class="mob-connect-info">
+              <div class="mob-connect-name">Instagram — @arthousebase</div>
+              <div class="mob-connect-desc">Visual-first content featuring standout onchain artworks, creator profiles, and curated highlights from the Base and Zora ecosystem. Follow for daily art intelligence.</div>
+            </div>
+          </a>
+        </div>
+        <div class="mob-connect-item">
+          <a href="https://www.tiktok.com/@arthousebase" target="_blank" onclick="toggleNav()">
+            <span class="mob-connect-icon">▶</span>
+            <div class="mob-connect-info">
+              <div class="mob-connect-name">TikTok — @arthousebase</div>
+              <div class="mob-connect-desc">Short-form explainers on onchain art culture, builder breakdowns, and creator discovery tips. If you want to understand the Web3 art space fast — start here.</div>
+            </div>
+          </a>
+        </div>
+        <div class="mob-connect-item">
+          <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce" target="_blank" onclick="toggleNav()">
+            <span class="mob-connect-icon">📈</span>
+            <div class="mob-connect-info">
+              <div class="mob-connect-name">DexScreener — $ARTHOUSE</div>
+              <div class="mob-connect-desc">Track $ARTHOUSE token price, liquidity, volume, and trading activity in real time on Base. Your gateway to the financial side of the Arthouse ecosystem.</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="menu-divider"></div>
   <a href="https://t.me/arthousexbt_bot" target="_blank" class="mob-cta" onclick="toggleNav()">Open Bot on Telegram ↗</a>
-  <div class="menu-socials">
-    <a href="https://x.com/arthousebase" target="_blank" onclick="toggleNav()">𝕏 Twitter</a>
-    <a href="https://base.app/profile/arthouse" target="_blank" onclick="toggleNav()">🔵 Base</a>
-    <a href="https://www.instagram.com/arthousebase" target="_blank" onclick="toggleNav()">📸 Instagram</a>
-    <a href="https://www.tiktok.com/@arthousebase" target="_blank" onclick="toggleNav()">▶ TikTok</a>
-    <a href="https://dexscreener.com/base/0xd3216582e3e31578e01b7fd8eda6de969f3658ce" target="_blank" onclick="toggleNav()">📈 DexScreener</a>
-  </div>
 </div>
 
 <div class="ticker">
@@ -1234,6 +1392,24 @@ function toggleNav(){
   document.getElementById('mobMenu').classList.toggle('open');
   // Lock body scroll when menu open
   document.body.style.overflow = document.getElementById('mobMenu').classList.contains('open') ? 'hidden' : '';
+}
+
+/* ACCORDION */
+function toggleAcc(trigger){
+  const body = trigger.nextElementSibling;
+  const isOpen = trigger.classList.contains('open');
+  // Close all others
+  document.querySelectorAll('.mob-accordion-trigger.open').forEach(t=>{
+    if(t!==trigger){
+      t.classList.remove('open');
+      t.setAttribute('aria-expanded','false');
+      t.nextElementSibling.classList.remove('open');
+    }
+  });
+  // Toggle current
+  trigger.classList.toggle('open',!isOpen);
+  trigger.setAttribute('aria-expanded', String(!isOpen));
+  body.classList.toggle('open',!isOpen);
 }
 
 /* SHOW HIDDEN SECTION */
