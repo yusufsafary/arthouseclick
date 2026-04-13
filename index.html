@@ -1,21 +1,29 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>ARTHOUSE — Onchain Art Intelligence on Base & Zora</title>
-<meta name="description" content="Arthouse is the intelligence layer for onchain art. Discover real builders on Base and Zora, score creators, and find talent before everyone else. Powered by $ARTHOUSE token."/>
-<meta name="keywords" content="arthouse, onchain art, base network, zora, creator scoring, NFT intelligence, $ARTHOUSE, web3 art, talent scout, arthousexbt"/>
+<meta name="description" content="Arthouse is the intelligence layer for onchain art. Score creators, find real builders on Base &amp; Zora, and discover talent first."/>
 <meta name="robots" content="index, follow"/>
 <meta name="author" content="Arthouse"/>
 <meta name="talentapp:project_verification" content="8b7597bb8f9e8a285a5aadf42cbd5a0112dee67bac1dd6d4348fe9bac9b2f3420bdc4c4d2df0494ec20f236321123a4d55785926fd45de6d51c833468ae19afc"/>
+<meta name="theme-color" content="#0052FF"/>
 <link rel="canonical" href="https://arthouse.click/"/>
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://arthouse.click/favicon.png"/>
+<link rel="apple-touch-icon" href="https://arthouse.click/apple-touch-icon.png"/>
 <!-- Open Graph -->
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://arthouse.click/"/>
+<meta property="og:locale" content="en_US"/>
 <meta property="og:title" content="ARTHOUSE — Onchain Art Intelligence on Base & Zora"/>
-<meta property="og:description" content="The intelligence layer for onchain art. Score creators, discover builders, and find talent on Base and Zora before everyone else."/>
+<meta property="og:description" content="The intelligence layer for onchain art. Score creators, find real builders on Base &amp; Zora, and get ahead of the market."/>
 <meta property="og:image" content="https://arthouse.click/og-image.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="ARTHOUSE — Onchain Art Intelligence on Base and Zora"/>
 <meta property="og:site_name" content="Arthouse"/>
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image"/>
@@ -24,13 +32,18 @@
 <meta name="twitter:title" content="ARTHOUSE — Onchain Art Intelligence"/>
 <meta name="twitter:description" content="The intelligence layer for onchain art. Score creators, discover builders, and find talent on Base and Zora."/>
 <meta name="twitter:image" content="https://arthouse.click/og-image.jpg"/>
+<meta name="twitter:image:alt" content="ARTHOUSE — Onchain Art Intelligence on Base and Zora"/>
 <!-- JSON-LD Schema -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Arthouse","url":"https://arthouse.click","description":"The intelligence layer for onchain art on Base and Zora","sameAs":["https://x.com/arthousebase","https://www.instagram.com/arthousebase","https://www.tiktok.com/@arthousebase","https://t.me/arthousexbt_bot"],"logo":{"@type":"ImageObject","url":"https://arthouse.click/logo.png"}}
+[
+  {"@context":"https://schema.org","@type":"Organization","name":"Arthouse","url":"https://arthouse.click","description":"The intelligence layer for onchain art on Base and Zora","sameAs":["https://x.com/arthousebase","https://www.instagram.com/arthousebase","https://www.tiktok.com/@arthousebase","https://t.me/arthousexbt_bot"],"logo":{"@type":"ImageObject","url":"https://arthouse.click/logo.png","width":512,"height":512},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://t.me/arthousexbt_bot"}},
+  {"@context":"https://schema.org","@type":"WebSite","name":"Arthouse","url":"https://arthouse.click","description":"The intelligence layer for onchain art on Base and Zora","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://arthouse.click/?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+]
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 a,button{-webkit-tap-highlight-color:transparent;}
@@ -74,32 +87,32 @@ nav.scrolled{background:#0041cc;box-shadow:0 4px 32px rgba(0,0,0,.35);}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mob-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(18,20,26,.98);backdrop-filter:blur(20px);z-index:99;flex-direction:column;overflow-y:auto;}
+.mob-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(10,11,16,.99);backdrop-filter:blur(20px);z-index:99;flex-direction:column;overflow-y:auto;}
 .mob-menu.open{display:flex;}
-.mob-menu .menu-section-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:24px 48px 8px;border-bottom:none;}
+.mob-menu .menu-section-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--green);padding:24px 48px 8px;border-bottom:none;}
 /* Only target direct nav links, not accordion content */
 .mob-menu>a,
-.mob-menu .mob-accordion~a{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.05em;color:rgba(255,255,255,.75);text-decoration:none;padding:14px 48px;border-bottom:1px solid rgba(255,255,255,.04);transition:all .2s;display:flex;align-items:center;justify-content:space-between;}
-.mob-menu>a:hover{color:var(--white);padding-left:56px;}
-.mob-menu>a .menu-arrow{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);}
+.mob-menu .mob-accordion~a{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.05em;color:#ffffff;text-decoration:none;padding:14px 48px;border-bottom:1px solid rgba(255,255,255,.08);transition:all .2s;display:flex;align-items:center;justify-content:space-between;}
+.mob-menu>a:hover{color:var(--green);padding-left:56px;}
+.mob-menu>a .menu-arrow{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.6);}
 .mob-menu>a:hover .menu-arrow{color:var(--green);}
-.mob-menu .menu-divider{height:1px;background:rgba(255,255,255,.06);margin:12px 48px;}
-.mob-menu>a.mob-cta{font-family:'DM Mono',monospace;font-size:13px;background:var(--green);color:var(--black);margin:20px 48px;padding:16px 24px;border-bottom:none;letter-spacing:.1em;}
+.mob-menu .menu-divider{height:1px;background:rgba(255,255,255,.1);margin:12px 48px;}
+.mob-menu>a.mob-cta{font-family:'DM Mono',monospace;font-size:13px;background:var(--green);color:var(--black);margin:20px 48px;padding:16px 24px;border-bottom:none;letter-spacing:.1em;font-weight:700;}
 .mob-menu>a.mob-cta:hover{background:#4da800;padding-left:24px;}
 
 /* ACCORDION */
-.mob-accordion{border-bottom:1px solid rgba(255,255,255,.04);}
+.mob-accordion{border-bottom:1px solid rgba(255,255,255,.08);}
 .mob-accordion-trigger{
   font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.05em;
-  color:rgba(255,255,255,.75);padding:14px 48px;
+  color:#ffffff;padding:14px 48px;
   display:flex;align-items:center;justify-content:space-between;
   cursor:pointer;user-select:none;transition:all .2s;
   border:none;background:transparent;width:100%;text-align:left;
   -webkit-tap-highlight-color:transparent;
 }
-.mob-accordion-trigger:hover{color:var(--white);padding-left:56px;}
+.mob-accordion-trigger:hover{color:var(--green);padding-left:56px;}
 .mob-accordion-trigger:hover .acc-arrow{color:var(--green);}
-.acc-arrow{font-family:'DM Mono',monospace;font-size:14px;color:rgba(255,255,255,.3);transition:transform .3s,color .2s;display:inline-block;line-height:1;}
+.acc-arrow{font-family:'DM Mono',monospace;font-size:14px;color:rgba(255,255,255,.7);transition:transform .3s,color .2s;display:inline-block;line-height:1;}
 .mob-accordion-trigger.open .acc-arrow{transform:rotate(45deg);color:var(--green);}
 .mob-accordion-body{
   max-height:0;overflow:hidden;
@@ -109,29 +122,29 @@ nav.scrolled{background:#0041cc;box-shadow:0 4px 32px rgba(0,0,0,.35);}
 .mob-accordion-body.open{max-height:600px;opacity:1;}
 .mob-accordion-content{
   padding:0 48px 24px;
-  border-bottom:1px solid rgba(102,200,0,.12);
-  background:rgba(102,200,0,.03);
+  border-bottom:1px solid rgba(102,200,0,.15);
+  background:rgba(102,200,0,.04);
 }
 .mob-accordion-content p{
   font-family:'DM Sans',sans-serif;font-size:13px;
-  color:rgba(255,255,255,.45);line-height:1.75;
+  color:rgba(255,255,255,.7);line-height:1.75;
   font-weight:300;margin-bottom:12px;
 }
 .mob-accordion-content .acc-tag{
   display:inline-block;font-family:'DM Mono',monospace;font-size:9px;
   letter-spacing:.15em;text-transform:uppercase;
-  color:var(--green);border:1px solid rgba(102,200,0,.35);
+  color:var(--green);border:1px solid rgba(102,200,0,.5);
   padding:4px 10px;margin-bottom:16px;
 }
 .mob-accordion-content .acc-link{
   font-family:'DM Mono',monospace !important;font-size:11px !important;letter-spacing:.08em;
-  color:var(--blue) !important;text-decoration:none;
+  color:var(--green) !important;text-decoration:none;
   display:inline-flex !important;align-items:center;gap:8px;
-  border-bottom:1px solid rgba(0,82,255,.3);padding:0 0 2px 0 !important;
+  border-bottom:1px solid rgba(102,200,0,.4);padding:0 0 2px 0 !important;
   transition:color .2s,border-color .2s;width:auto !important;
   justify-content:flex-start !important;
 }
-.mob-accordion-content .acc-link:hover{color:var(--green) !important;border-color:rgba(102,200,0,.4);}
+.mob-accordion-content .acc-link:hover{color:#fff !important;border-color:rgba(255,255,255,.4);}
 /* Connect accordion items — full reset */
 .mob-connect-item a{
   text-decoration:none !important;color:inherit !important;
@@ -148,8 +161,8 @@ nav.scrolled{background:#0041cc;box-shadow:0 4px 32px rgba(0,0,0,.35);}
 .mob-connect-item:last-child{border-bottom:none;}
 .mob-connect-icon{font-size:18px;margin-top:2px;flex-shrink:0;}
 .mob-connect-info{}
-.mob-connect-name{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.7);text-transform:uppercase;margin-bottom:4px;}
-.mob-connect-desc{font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;font-weight:300;}
+.mob-connect-name{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:#ffffff;text-transform:uppercase;margin-bottom:4px;}
+.mob-connect-desc{font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,.6);line-height:1.6;font-weight:300;}
 .mob-connect-item:hover .mob-connect-name{color:var(--green);}
 .mob-connect-item:hover .mob-connect-icon{filter:brightness(1.3);}
 
